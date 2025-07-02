@@ -3,6 +3,7 @@
   "datasetReference": {
     "byPath": {
       "path": "../AdventureWorks.SemanticModel"
-    }
+    },
+    "byConnection": null
   }
 }
