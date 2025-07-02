@@ -1,6 +1,6 @@
 {
     "TENANT_A": {
-        "spnSecret": "ISV_DEBITT_TENANT",
+        "spnSecret": "ISV_ARRAIS_TENANT",
         "capacity": "none",
         "workspace": "AdventureWorks_NorthAmerica",
         "adminUPNs": "3bf22cb2-ee1c-41c3-bfbb-34bfb64fe529",
@@ -20,7 +20,7 @@
         }
     },
     "TENANT_C": {
-        "spnSecret": "ISV_ARRAIS_TENANT",
+        "spnSecret": "ISV_DEBITT_TENANT",
         "capacity": "none",
         "workspace": "AdventureWorks_Oceania",
         "adminUPNs": "3bf22cb2-ee1c-41c3-bfbb-34bfb64fe529",
