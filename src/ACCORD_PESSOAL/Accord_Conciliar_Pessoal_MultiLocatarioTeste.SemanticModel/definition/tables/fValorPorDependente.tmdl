@@ -1,0 +1,100 @@
+table fValorPorDependente
+	lineageTag: 42b1452a-c7d0-443e-8352-591aeebbb175
+
+	column EmpresaContabilId
+		dataType: int64
+		formatString: 0
+		lineageTag: fbb2e912-498c-4a7c-a0fe-97b5d00a3080
+		summarizeBy: count
+		sourceColumn: EmpresaContabilId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Data
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: dbd3fe65-234b-4234-a557-b4b9e232d105
+		summarizeBy: none
+		sourceColumn: Data
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 5cbdb1b8-125b-4789-a5f3-5529ecdcebd8
+		summarizeBy: sum
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChaveEA
+		dataType: string
+		lineageTag: 42455c63-2b62-47c0-a213-4dbff5975497
+		summarizeBy: none
+		sourceColumn: ChaveEA
+
+		annotation SummarizationSetBy = Automatic
+
+	column Valor
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 47125882-1027-499c-a84e-18b386fd78fd
+		summarizeBy: sum
+		sourceColumn: Valor
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column centro_custo
+		dataType: string
+		lineageTag: b2d2b5b6-82b3-4e95-b4ab-cf8485883dd4
+		summarizeBy: none
+		sourceColumn: centro_custo
+
+		annotation SummarizationSetBy = Automatic
+
+	column salario
+		dataType: double
+		lineageTag: b1d5b886-1f6f-4ee9-a548-9baaa8858039
+		summarizeBy: sum
+		sourceColumn: salario
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IdGrupoEmpresa
+		dataType: int64
+		formatString: 0
+		lineageTag: 382bacbe-8acd-493b-acb0-9731e5356c32
+		summarizeBy: sum
+		sourceColumn: IdGrupoEmpresa
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fValorPorDependente = m
+		mode: import
+		queryGroup: Fato
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, Query="SELECT m.*, e.IdGrupoEmpresa FROM DwAccordFiscal.TbDPmovfolha m INNER JOIN DwAccordFiscal.TbEmpresa e ON m.codi_emp=e.codi_emp and m.EmpresaContabilId = e.EmpresaContabilId WHERE e.IdGrupoEmpresa IN " & IdGrupoEmpresa & " and m.EmpresaContabilId="&EmpresaContabilId&""]),
+				    #"Linhas Filtradas" = Table.SelectRows(Fonte, each ([i_eventos] = "995") and ([VALOR_INFORMADO_REAL] = "1.0")),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Linhas Filtradas",{"id", "codi_emp", "i_empregados", "tipo_proces", "i_eventos", "valor_inf", "prov_desc", "origem", "origem_reg", "rateio", "i_servicos", "valor_inf_compl", "I_CALCULOS", "SIMULACAO", "valor_cal", "CONSIDERAR_REMUNERACAO_ESOCIAL", "CONSIDERAR_RETENCAO_PAGAMENTO_ESOCIAL", "CONSIDERAR_REMUNERACAO_S_1210_ESOCIAL", "SIMPLES_NACIONAL", "VIGENCIA_ENCARGOSINSS", "perc_terceiro", "perc_inss_empresa", "perc_acid_trabalho", "CPRB", "VIGENCIA_REGIME"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Removidas",{{"data", type datetime}}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Tipo Alterado",{{"data", type date}}),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Tipo Alterado1", {"data"}),
+				    #"Linhas Classificadas" = Table.Sort(#"Duplicatas Removidas",{{"data", Order.Descending}}),
+				    #"Colunas Removidas1" = Table.RemoveColumns(#"Linhas Classificadas",{"VALOR_INFORMADO_REAL"}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Colunas Removidas1",{{"data", "Data"}, {"VALOR_CALCULADO_INTEGRAL", "Valor"}}),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Valor", Currency.Type}})
+				in
+				    #"Tipo Alterado2"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

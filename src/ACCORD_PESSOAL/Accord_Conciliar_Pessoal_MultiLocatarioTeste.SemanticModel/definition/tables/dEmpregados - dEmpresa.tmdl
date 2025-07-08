@@ -1,0 +1,703 @@
+table 'dEmpregados - dEmpresa'
+	lineageTag: 2c1d39db-e3df-48b1-a5dd-c2825dbb2799
+
+	column id
+		dataType: string
+		lineageTag: 9ca1a39b-f35f-40cb-ad6f-f28c6d77bc61
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column codi_emp
+		dataType: string
+		lineageTag: 186eb419-13d6-46fd-9899-c8cd2fa885d5
+		summarizeBy: none
+		sourceColumn: codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column i_empregados
+		dataType: string
+		lineageTag: e0ed4ce5-8661-42db-8a60-19fb6ffc4f7d
+		summarizeBy: none
+		sourceColumn: i_empregados
+
+		annotation SummarizationSetBy = Automatic
+
+	column i_filiais
+		dataType: string
+		lineageTag: 47af2a85-88ea-4e09-9025-3b29a362809a
+		summarizeBy: none
+		sourceColumn: i_filiais
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome
+		dataType: string
+		lineageTag: cfd1b474-99f0-420d-b1a5-91ca67d5a005
+		summarizeBy: none
+		sourceColumn: nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column categoria
+		dataType: string
+		lineageTag: e784a732-30e1-40d8-8d9b-fd4929d5ec2d
+		summarizeBy: none
+		sourceColumn: categoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column horas_mes
+		dataType: double
+		lineageTag: ca742045-7c44-476c-ad48-0edbd93d1b1a
+		summarizeBy: sum
+		sourceColumn: horas_mes
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column horas_semana
+		dataType: double
+		lineageTag: a74b3229-6b5f-4d42-bb0c-40e4580a79e8
+		summarizeBy: sum
+		sourceColumn: horas_semana
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column horas_dia
+		dataType: double
+		lineageTag: 0abfc090-7c5a-4e85-a5c5-1ab3ddae3c91
+		summarizeBy: sum
+		sourceColumn: horas_dia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column admissao
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d226c69c-ad1f-4742-a138-16a4b29ffdc2
+		summarizeBy: none
+		sourceColumn: admissao
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataAdmissaoAux
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3130b117-5c13-4b4e-85c8-e578bd620784
+		summarizeBy: none
+		sourceColumn: DataAdmissaoAux
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataDemissao
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 37a31eb1-d035-4abd-9ab4-c64562c02c8a
+		summarizeBy: none
+		sourceColumn: DataDemissao
+
+		annotation SummarizationSetBy = Automatic
+
+	column salario
+		dataType: double
+		lineageTag: 85b79a16-8c12-4f48-8a64-62137d64da57
+		summarizeBy: sum
+		sourceColumn: salario
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column endereco
+		dataType: string
+		lineageTag: 0064e491-daed-49a8-b89d-e7b3e3648432
+		summarizeBy: none
+		sourceColumn: endereco
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_epr
+		dataType: string
+		lineageTag: 5390de50-9f39-4ef0-8984-5fa377e8e432
+		summarizeBy: none
+		sourceColumn: tipo_epr
+
+		annotation SummarizationSetBy = Automatic
+
+	column cep
+		dataType: string
+		lineageTag: a82bda9f-3020-4043-a7ae-979f9713b4fb
+		summarizeBy: none
+		sourceColumn: cep
+
+		annotation SummarizationSetBy = Automatic
+
+	column cidade
+		dataType: string
+		lineageTag: f76d1f44-c9b3-4508-b20c-58333399c3f0
+		summarizeBy: none
+		sourceColumn: cidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column estado
+		dataType: string
+		lineageTag: 74f8b876-cf16-44c4-bbba-f4e237e95a4f
+		summarizeBy: none
+		sourceColumn: estado
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_nascimento
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f7e193a8-c688-488f-a4a1-be130df34815
+		summarizeBy: none
+		sourceColumn: data_nascimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column venc_ferias
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: bd9c21d9-4bb3-4170-92ff-6af76df74632
+		summarizeBy: none
+		sourceColumn: venc_ferias
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column sexo
+		dataType: string
+		lineageTag: cfb2d708-1352-48f4-8075-bc30878b991c
+		summarizeBy: none
+		sourceColumn: sexo
+
+		annotation SummarizationSetBy = Automatic
+
+	column cpf
+		dataType: string
+		lineageTag: a811f83d-d437-420d-998e-902b8f39d7d9
+		summarizeBy: none
+		sourceColumn: cpf
+
+		annotation SummarizationSetBy = Automatic
+
+	column vinculo
+		dataType: string
+		lineageTag: 27263adb-df49-4984-9012-2d074430b2fc
+		summarizeBy: none
+		sourceColumn: vinculo
+
+		annotation SummarizationSetBy = Automatic
+
+	column i_cargos
+		dataType: string
+		lineageTag: 5e5af418-6130-482a-985a-6ee831a13faf
+		summarizeBy: none
+		sourceColumn: i_cargos
+
+		annotation SummarizationSetBy = Automatic
+
+	column sai_rais
+		dataType: string
+		lineageTag: eb576679-d349-4b72-8fbc-da653b6f9c2d
+		summarizeBy: none
+		sourceColumn: sai_rais
+
+		annotation SummarizationSetBy = Automatic
+
+	column i_depto
+		dataType: string
+		lineageTag: 5105ce6e-4dca-4790-a965-b8cc24ea73df
+		summarizeBy: none
+		sourceColumn: i_depto
+
+		annotation SummarizationSetBy = Automatic
+
+	column i_sindicatos
+		dataType: string
+		lineageTag: 02d13ccf-c4a8-4322-9e57-f2e9b3dbd56d
+		summarizeBy: none
+		sourceColumn: i_sindicatos
+
+		annotation SummarizationSetBy = Automatic
+
+	column inicio_estabilidade
+		dataType: string
+		lineageTag: 027c00be-187a-4317-aad6-c0d2d4469802
+		summarizeBy: none
+		sourceColumn: inicio_estabilidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column fim_estabilidade
+		dataType: string
+		lineageTag: 7dd0e959-ef07-4a1b-9355-15c3bd970df5
+		summarizeBy: none
+		sourceColumn: fim_estabilidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATA_CALC_AFASTAMENTOS
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7a041af6-4c02-4cbf-b72d-4343e3ba72cd
+		summarizeBy: none
+		sourceColumn: DATA_CALC_AFASTAMENTOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column I_AFASTAMENTOS
+		dataType: string
+		lineageTag: a3a249c9-6a36-42aa-b60d-b66930e1ab96
+		summarizeBy: none
+		sourceColumn: I_AFASTAMENTOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column I_FUNCAO
+		dataType: string
+		lineageTag: 53fa0921-b42f-47ae-b32f-46ad9d388907
+		summarizeBy: none
+		sourceColumn: I_FUNCAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column I_INSTITUICAO_ENSINO
+		dataType: string
+		lineageTag: 49e033e5-8c1e-4717-ba0e-ade33de9c4ad
+		summarizeBy: none
+		sourceColumn: I_INSTITUICAO_ENSINO
+
+		annotation SummarizationSetBy = Automatic
+
+	column TIPO_HORARIO
+		dataType: string
+		lineageTag: b0f197d5-5293-4370-8027-fdb526419d2a
+		summarizeBy: none
+		sourceColumn: TIPO_HORARIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column FORMA_CALCULO
+		dataType: string
+		lineageTag: f18b3bf8-bd4a-40f6-bdb3-2835cfcb097e
+		summarizeBy: none
+		sourceColumn: FORMA_CALCULO
+
+		annotation SummarizationSetBy = Automatic
+
+	column grau_instrucao
+		dataType: string
+		lineageTag: f4baea01-ee82-4705-955f-670ca4f5b48a
+		summarizeBy: none
+		sourceColumn: grau_instrucao
+
+		annotation SummarizationSetBy = Automatic
+
+	column vinculodesc
+		dataType: string
+		lineageTag: 12cb6e76-727e-4312-8165-548a9b1f1388
+		summarizeBy: none
+		sourceColumn: vinculodesc
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_transf
+		dataType: string
+		lineageTag: fdb7a3fa-1601-449c-bb33-1aa0130f7732
+		summarizeBy: none
+		sourceColumn: data_transf
+
+		annotation SummarizationSetBy = Automatic
+
+	column i_servicos
+		dataType: string
+		lineageTag: 96fc3947-6b60-438b-926a-0a38d18182e3
+		summarizeBy: none
+		sourceColumn: i_servicos
+
+		annotation SummarizationSetBy = Automatic
+
+	column PIS
+		dataType: string
+		lineageTag: 8020664a-c38b-432e-9774-0829098ef592
+		summarizeBy: none
+		sourceColumn: PIS
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cart_Motorista
+		dataType: string
+		lineageTag: 30e0b88f-b903-4584-a431-4d08e5bc31ac
+		summarizeBy: none
+		sourceColumn: Cart_Motorista
+
+		annotation SummarizationSetBy = Automatic
+
+	column CTPS
+		dataType: string
+		lineageTag: a9967bbf-66cc-4097-8ee1-0b84fd1cea33
+		summarizeBy: none
+		sourceColumn: CTPS
+
+		annotation SummarizationSetBy = Automatic
+
+	column RG
+		dataType: string
+		lineageTag: d83c70ed-8248-41a9-8cec-f93bf4c78da1
+		summarizeBy: none
+		sourceColumn: RG
+
+		annotation SummarizationSetBy = Automatic
+
+	column Titulo_Eleitor
+		dataType: string
+		lineageTag: ce807b5f-5a93-482f-9364-f8f3db46977f
+		summarizeBy: none
+		sourceColumn: Titulo_Eleitor
+
+		annotation SummarizationSetBy = Automatic
+
+	column Cart_Reservista
+		dataType: string
+		lineageTag: 9bdc7881-ad46-4973-92e1-d652c6716efd
+		summarizeBy: none
+		sourceColumn: Cart_Reservista
+
+		annotation SummarizationSetBy = Automatic
+
+	column UF_Nascimento
+		dataType: string
+		lineageTag: ca176138-a8dd-4852-bc7a-d7ac50ff3942
+		summarizeBy: none
+		sourceColumn: UF_Nascimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mun_Nascimento
+		dataType: int64
+		formatString: 0
+		lineageTag: f0ca869a-c9cb-4a3e-a77e-c38f49629831
+		summarizeBy: sum
+		sourceColumn: Mun_Nascimento
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nome_pai
+		dataType: string
+		lineageTag: 416802cd-1e61-4761-be76-bbc47154ba7f
+		summarizeBy: none
+		sourceColumn: Nome_pai
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nome_mae
+		dataType: string
+		lineageTag: 895d77a0-1026-4bda-9228-ec40e830114d
+		summarizeBy: none
+		sourceColumn: Nome_mae
+
+		annotation SummarizationSetBy = Automatic
+
+	column Codi_Banco
+		dataType: int64
+		formatString: 0
+		lineageTag: 0bd6d276-9738-4fe8-b6c5-c559863e0a46
+		summarizeBy: sum
+		sourceColumn: Codi_Banco
+
+		annotation SummarizationSetBy = Automatic
+
+	column Conta_Corrente
+		dataType: string
+		lineageTag: e3b52514-0ee4-4d81-a438-e35d49e7dfd6
+		summarizeBy: none
+		sourceColumn: Conta_Corrente
+
+		annotation SummarizationSetBy = Automatic
+
+	column CODIGO_ESOCIAL
+		dataType: string
+		lineageTag: 8f95ac5b-cdea-4c9d-8a01-a2bdf5e8ace5
+		summarizeBy: none
+		sourceColumn: CODIGO_ESOCIAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column i_ccustos
+		dataType: string
+		lineageTag: 3f0f3d22-3e8b-4c3b-9de5-b04397d3dcbb
+		summarizeBy: none
+		sourceColumn: i_ccustos
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdGrupoEmpresa
+		dataType: int64
+		formatString: 0
+		lineageTag: 2bdfca64-c5cb-4084-83f8-3ceb26257d89
+		summarizeBy: sum
+		sourceColumn: IdGrupoEmpresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column chaveempreg
+		dataType: string
+		lineageTag: 7c275860-1002-4c3d-a751-8e54e0c3399a
+		summarizeBy: none
+		sourceColumn: chaveempreg
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dias até as Férias'
+		dataType: int64
+		formatString: 0
+		lineageTag: 108babca-fd9f-40fd-b1e5-5c95605d355e
+		summarizeBy: sum
+		sourceColumn: Dias até as Férias
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dias Prorrogáveis'
+		dataType: int64
+		formatString: 0
+		lineageTag: c7941818-bc4f-486a-93f8-30cf8bb36108
+		summarizeBy: sum
+		sourceColumn: Dias Prorrogáveis
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Condicao - 1ª Férias'
+		dataType: string
+		lineageTag: 9252903d-c140-4374-b6e0-87140efe52d3
+		summarizeBy: none
+		sourceColumn: Condicao - 1ª Férias
+
+		annotation SummarizationSetBy = Automatic
+
+	column '1ª Férias'
+		dataType: string
+		lineageTag: 5c7895c8-9a42-47a7-a8e6-8d4b8829d3da
+		summarizeBy: none
+		sourceColumn: 1ª Férias
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome do Mês'
+		dataType: string
+		lineageTag: 6d5e74a3-b727-4aae-9187-6a7abb4701d5
+		summarizeBy: none
+		sourceColumn: Nome do Mês
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 793d753d-ca8c-4522-b0cf-4343f7781e1f
+		summarizeBy: sum
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mês
+		dataType: int64
+		formatString: 0
+		lineageTag: 6d09e934-4a95-4212-b88e-4ccdd0faac84
+		summarizeBy: sum
+		sourceColumn: Mês
+
+		annotation SummarizationSetBy = Automatic
+
+	column chvcargos
+		dataType: string
+		lineageTag: e1f3e2a7-f1a5-4623-b453-471678ac0aac
+		summarizeBy: none
+		sourceColumn: chvcargos
+
+		annotation SummarizationSetBy = Automatic
+
+	column chvdepto
+		dataType: string
+		lineageTag: fba7cdec-fa19-459a-8b76-dc1615a2a6c5
+		summarizeBy: none
+		sourceColumn: chvdepto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inicio_aquis
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 2285b77b-a755-4c20-8197-510f7ab8ec24
+		summarizeBy: none
+		sourceColumn: Inicio_aquis
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Fim_aquis
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 44a57902-48e0-4a84-b064-0c4010287823
+		summarizeBy: none
+		sourceColumn: Fim_aquis
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Data_Limit
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 1cbb10a7-a8d1-4198-a763-603cfaf5076c
+		summarizeBy: none
+		sourceColumn: Data_Limit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Dif Dias'
+		dataType: int64
+		formatString: 0
+		lineageTag: 4a84a107-3500-44c8-aecf-071ee238a09b
+		summarizeBy: sum
+		sourceColumn: Dif Dias
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Ano.1'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1ed31afa-4b68-4247-8700-c082232ef2b6
+		summarizeBy: sum
+		sourceColumn: Ano.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome do Mês.1'
+		dataType: string
+		lineageTag: 5738c775-ee86-4799-a6ec-00e476eb1e34
+		summarizeBy: none
+		sourceColumn: Nome do Mês.1
+
+		annotation SummarizationSetBy = Automatic
+
+	column Empresa_Cod
+		dataType: string
+		lineageTag: 088c1901-cb1d-4be3-b205-b838b1cf0003
+		summarizeBy: none
+		sourceColumn: Empresa_Cod
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Codi + Empreg'
+		dataType: string
+		lineageTag: 1bf9e5fc-1b39-43bc-9209-5069c5e9612e
+		summarizeBy: none
+		sourceColumn: Codi + Empreg
+
+		annotation SummarizationSetBy = Automatic
+
+	column FériasGozadas?
+		dataType: string
+		lineageTag: a1119b4b-dd5f-4e48-a96d-f99b0d41a4ae
+		summarizeBy: none
+		sourceColumn: FériasGozadas?
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmpresaContabilId
+		dataType: int64
+		formatString: 0
+		lineageTag: 6a2849bf-ec87-4aa9-a0cf-f27dbeae68dd
+		summarizeBy: count
+		sourceColumn: EmpresaContabilId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'dEmpregados - dEmpresa' = m
+		mode: import
+		queryGroup: Dimensão
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [CommandTimeout=#duration(0, 1, 0, 0), ReturnSingleDatabase=true, CreateNavigationProperties=false, Query="SELECT #(lf)#(tab)f.*, #(lf)    e.IdGrupoEmpresa#(lf)FROM DwAccordFiscal.TbDPempregados f#(lf)INNER JOIN DwAccordFiscal.TbEmpresa e#(lf)#(tab)ON f.codi_emp=e.codi_emp and f.EmpresaContabilId = e.EmpresaContabilId #(lf)WHERE e.IdGrupoEmpresa IN"  & IdGrupoEmpresa & " and e.EmpresaContabilId = "&EmpresaContabilId&"#(lf)"]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"id", type text}, {"horas_mes", type number}, {"horas_semana", type number}, {"horas_dia", type number}, {"admissao", type datetime}, {"salario", type number}, {"data_nascimento", type datetime}, {"venc_ferias", type datetime}, {"DATA_CALC_AFASTAMENTOS", type datetime}}),
+				    #"Personalização Adicionada" = Table.AddColumn(#"Tipo Alterado", "chaveempreg", each Text.Combine({[codi_emp], "-", [i_empregados]})),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Personalização Adicionada",{{"chaveempreg", type text}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado1", each ([I_AFASTAMENTOS] <> "8") and ([venc_ferias] <> #datetime(1900, 1, 1, 0, 0, 0))),
+				    #"Personalização Adicionada1" = Table.AddColumn(#"Linhas Filtradas", "Dias até as Férias", each Date.From([venc_ferias]) - Date.From(DateTime.LocalNow())),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Personalização Adicionada1",{{"Dias até as Férias", Int64.Type}}),
+				    #"Adição Inserida" = Table.AddColumn(#"Tipo Alterado2", "Dias Prorrogáveis", each [Dias até as Férias] + #"Período Concessivo", type number),
+				    #"Tipo Alterado3" = Table.TransformColumnTypes(#"Adição Inserida",{{"Dias Prorrogáveis", Int64.Type}}),
+				    #"Consultas Mescladas" = Table.NestedJoin(#"Tipo Alterado3", {"chaveempreg"}, dTirouFerias, {"ChaveEmpreg"}, "dTirouFerias", JoinKind.LeftOuter),
+				    #"dTirouFerias Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas", "dTirouFerias", {"ChaveEmpreg"}, {"ChaveEmpreg.1"}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"dTirouFerias Expandido",{{"ChaveEmpreg.1", "Condicao - 1ª Férias"}}),
+				    #"Coluna Condicional Adicionada" = Table.AddColumn(#"Colunas Renomeadas", "1ª Férias", each if [#"Condicao - 1ª Férias"] = null then "Sim" else "Não"),
+				    #"Nome do Mês Inserido" = Table.AddColumn(#"Coluna Condicional Adicionada", "Nome do Mês", each Date.MonthName([venc_ferias]), type text),
+				    #"Ano Inserido" = Table.AddColumn(#"Nome do Mês Inserido", "Ano", each Date.Year([venc_ferias]), Int64.Type),
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(#"Ano Inserido",{{"Nome do Mês", Text.Proper, type text}}),
+				    #"Mês Inserido" = Table.AddColumn(#"Colocar Cada Palavra Em Maiúscula", "Mês", each Date.Month([venc_ferias]), Int64.Type),
+				    #"Coluna Duplicada" = Table.AddColumn(#"Mês Inserido", "chvcargos", each Text.Combine({[codi_emp], "-", [i_cargos]})),
+				    Personalizar1 = Table.AddColumn(#"Coluna Duplicada", "chvdepto", each Text.Combine({[codi_emp], "-", [i_depto]})),
+				    #"Tipo Alterado4" = Table.TransformColumnTypes(Personalizar1,{{"chvcargos", type text}, {"chvdepto", type text}}),
+				    #"Consultas Mescladas1" = Table.NestedJoin(#"Tipo Alterado4", {"codi_emp", "i_empregados"}, #"UltimaAquisicao - cópia", {"Codi_emp", "Codi_empregado"}, "UltimaAquisicao", JoinKind.LeftOuter),
+				    #"UltimaAquisicao Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas1", "UltimaAquisicao", {"Inicio_aquis", "Fim_aquis"}, {"Inicio_aquis", "Fim_aquis"}),
+				    #"Personalização Adicionada2" = Table.AddColumn(#"UltimaAquisicao Expandido", "Período Máximo", each Date.AddMonths([venc_ferias], 23)),
+				    #"Tipo Alterado5" = Table.TransformColumnTypes(#"Personalização Adicionada2",{{"Período Máximo", type date}}),
+				    #"Personalização Adicionada3" = Table.AddColumn(#"Tipo Alterado5", "Personalizar", each let
+				dia = Date.Day([venc_ferias]),
+				resultado_dia = if dia = 1 or dia = 31 then 30 else dia -1,
+				
+				mes = if dia =1 then Date.Month([venc_ferias]) -1 else Date.Month([venc_ferias]),
+				
+				ano = Date.Year([venc_ferias])+1,
+				
+				Data_Limite = Text.From(resultado_dia) & "/" & Text.From(mes) & "/" & Text.From(ano)
+				
+				in Data_Limite),
+				    #"Dividir Coluna por Delimitador" = Table.SplitColumn(#"Personalização Adicionada3", "Personalizar", Splitter.SplitTextByDelimiter("/", QuoteStyle.Csv), {"Personalizar.1", "Personalizar.2", "Personalizar.3"}),
+				    #"Colunas Renomeadas1" = Table.RenameColumns(#"Dividir Coluna por Delimitador",{{"Personalizar.1", "Dia"}, {"Personalizar.2", "Mes2"}, {"Personalizar.3", "Ano2"}}),
+				    #"Coluna Personalizada Adicionada" = Table.AddColumn(#"Colunas Renomeadas1", "Personalizar", each Text.PadStart([Dia], 2, "0"), type text),
+				    #"Coluna Personalizada Adicionada1" = Table.AddColumn(#"Coluna Personalizada Adicionada", "Personalizar.1", each Text.PadStart([Mes2], 2, "0"), type text),
+				    #"Colunas Renomeadas2" = Table.RenameColumns(#"Coluna Personalizada Adicionada1",{{"Personalizar", "Dia3"}, {"Personalizar.1", "Mes3"}}),
+				    #"Personalização Adicionada5" = Table.AddColumn(#"Colunas Renomeadas2", "Personalizar.1", each Date.AddMonths(Date.AddDays(Date.AddYears([Fim_aquis], 1), 1), -1)),
+				    #"Tipo Alterado6" = Table.TransformColumnTypes(#"Personalização Adicionada5",{{"Personalizar.1", type date}}),
+				    #"Colunas Renomeadas3" = Table.RenameColumns(#"Tipo Alterado6",{{"Personalizar.1", "Data_Limit"}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Colunas Renomeadas3",{"Dia", "Mes2", "Ano2", "Dia3", "Mes3"}),
+				    #"Tipo Alterado7" = Table.TransformColumnTypes(#"Colunas Removidas",{{"venc_ferias", type date}}),
+				    #"Personalização Adicionada4" = Table.AddColumn(#"Tipo Alterado7", "Personalizar", each DateTime.Date(DateTime.LocalNow())),
+				    #"Tipo Alterado8" = Table.TransformColumnTypes(#"Personalização Adicionada4",{{"Personalizar", type date}}),
+				    #"Subtração da Data Inserida" = Table.AddColumn(#"Tipo Alterado8", "Subtração", each Duration.Days([Data_Limit] - [Personalizar]), Int64.Type),
+				    #"Colunas Removidas1" = Table.RemoveColumns(#"Subtração da Data Inserida",{"Personalizar"}),
+				    #"Colunas Renomeadas4" = Table.RenameColumns(#"Colunas Removidas1",{{"Subtração", "Dif Dias"}}),
+				    #"Colunas Removidas2" = Table.RemoveColumns(#"Colunas Renomeadas4",{"Período Máximo"}),
+				    #"Ano Inserido1" = Table.AddColumn(#"Colunas Removidas2", "Ano.1", each Date.Year([Data_Limit]), Int64.Type),
+				    #"Nome do Mês Inserido1" = Table.AddColumn(#"Ano Inserido1", "Nome do Mês.1", each Date.MonthName([Data_Limit]), type text),
+				    #"Consultas Mescladas2" = Table.NestedJoin(#"Nome do Mês Inserido1", {"codi_emp"}, dEmpresa, {"codi_emp"}, "dEmpresa", JoinKind.LeftOuter),
+				    #"dEmpresa Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas2", "dEmpresa", {"Empresa_Cod"}, {"Empresa_Cod"}),
+				    #"Personalização Adicionada6" = Table.AddColumn(#"dEmpresa Expandido", "Codi + Empreg", each [i_empregados] & "-" & [nome]),
+				    #"Tipo Alterado9" = Table.TransformColumnTypes(#"Personalização Adicionada6",{{"Codi + Empreg", type text}}),
+				    #"Coluna Condicional Adicionada1" = Table.AddColumn(#"Tipo Alterado9", "FériasGozadas?", each if [venc_ferias] > [Data_Limit] then "Sim" else if [venc_ferias] < [Data_Limit] then "Não" else if [venc_ferias] = null then "ERRO" else if [Data_Limit] = null then "ERRO" else "ERRO"),
+				    #"Tipo Alterado10" = Table.TransformColumnTypes(#"Coluna Condicional Adicionada1",{{"FériasGozadas?", type text}}),
+				    #"Erros Removidos" = Table.RemoveRowsWithErrors(#"Tipo Alterado10"),
+				    #"Linhas Filtradas1" = Table.SelectRows(#"Erros Removidos", each ([#"FériasGozadas?"] = "Não"))
+				in
+				    #"Linhas Filtradas1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

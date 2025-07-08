@@ -1,0 +1,70 @@
+table _Medidas_Salario_Familia
+	lineageTag: 535427f2-a32f-4cfa-83cb-ae258d5892a6
+
+	measure 'Quantidade de Filhos com Direito' = COUNT(dDependentesSalarioFamilia[nome])
+		formatString: 0
+		lineageTag: f7dcb725-2f83-46dd-9614-f5abadc1dbc6
+
+	measure 'Total de Salário Familia' = IF((SUM(fSalarioFamilia[ValorCalculado]) - SUM(fSalarioFamilia[VALOR_CALCULADO_INTEGRAL])) = BLANK(), 0, SUM(fSalarioFamilia[ValorCalculado]) - SUM(fSalarioFamilia[VALOR_CALCULADO_INTEGRAL]))
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: c1dbbb05-49d4-4cf0-8740-4ddcf4028c4f
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure Medida = ```
+			
+			 VAR GParentesco = SELECTEDVALUE(dDependentesSalarioFamilia[GrauParentesco])
+			 VAR IDADEATUAL = SELECTEDVALUE(dDependentesSalarioFamilia[Idade])
+			 VAR VENC_DEPENDENCIA = SELECTEDVALUE(dDependentesSalarioFamilia[DEPEND_IRRF_FIM_DETERMINADO])
+			 RETURN
+			 
+			    VAR LOGICO =  SWITCH(GParentesco IN {"Filho(a) ou enteado(a) até 21 anos", 
+			    "Cônjuge ou companheiro(a) com o (a) qual tenha filho ou viva há mais de 5 anos", 
+			    "Companheiro(a) com o(a) qual tenha filho ou vivá há mais de 5 anos", 
+			    "Pais, avós e bisavós" ,
+			    "Filho(a) ou enteado(a) em qualquer idade, quando incapacitado física e/ou mentalmente para o trabalho",
+			    "Filho(a) ou enteado(a) universitário(a) ou cursando escola técnica de 2º grau, até 24 anos",
+			    "Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, do qual detenha guarda judicial, até 21 anos",
+			    "Ex-cônjuge que receba pensão de Alimentos", 
+			    "Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, com idade até 24 anos, se ainda estiver estiver cursando estabelecimento de nível superior ou escola técnica de 2º grau, desde que tenha detido sua guarda judicial até os 21 anos"},
+			            (GParentesco IN {"Filho(a) ou enteado(a) até 21 anos", "Filho(a) ou enteado(a) universitário(a) ou cursando escola técnica de 2º grau, até 24 anos"}) && IDADEATUAL> 24 && VENC_DEPENDENCIA = "S", 0,
+			            (GParentesco IN {"Filho(a) ou enteado(a) até 21 anos", 
+			    "Cônjuge ou companheiro(a) com o (a) qual tenha filho ou viva há mais de 5 anos", 
+			    "Companheiro(a) com o(a) qual tenha filho ou vivá há mais de 5 anos", 
+			    "Pais, avós e bisavós" ,
+			    "Filho(a) ou enteado(a) em qualquer idade, quando incapacitado física e/ou mentalmente para o trabalho",
+			    "Filho(a) ou enteado(a) universitário(a) ou cursando escola técnica de 2º grau, até 24 anos",
+			    "Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, do qual detenha guarda judicial, até 21 anos",
+			    "Ex-cônjuge que receba pensão de Alimentos", 
+			    "Irmão(ã), neto(a) ou bisneto(a) sem arrimo dos pais, com idade até 24 anos, se ainda estiver estiver cursando estabelecimento de nível superior ou escola técnica de 2º grau, desde que tenha detido sua guarda judicial até os 21 anos"}) && VENC_DEPENDENCIA = "S",0,1)
+			    RETURN
+			        LOGICO
+			
+			```
+		formatString: 0
+		lineageTag: d70a60e1-8c7c-47be-897e-a5ac2ed2fe52
+
+	column 'Coluna 1'
+		dataType: string
+		isHidden
+		lineageTag: 289e4ff5-603d-4cb2-8e44-43660411ad7a
+		summarizeBy: none
+		sourceColumn: Coluna 1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Medidas_Salario_Familia-a9684e82-5b70-40ed-b387-a70a757bb36c = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+

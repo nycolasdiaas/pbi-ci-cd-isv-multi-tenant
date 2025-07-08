@@ -1,0 +1,138 @@
+table _Medidas_Encargos
+	lineageTag: 43b492a5-a9cc-44a1-88c2-ac93f6597d0f
+
+	measure PIS = IF(CALCULATE(SUM(fEncargosEmpresa[valor]), fEncargosEmpresa[imposto] = "PIS") = BLANK(), 0, CALCULATE(SUM(fEncargosEmpresa[valor]), fEncargosEmpresa[imposto] = "PIS"))
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: a71486b9-d559-4fe2-8a8f-78a336f414f6
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure FGTS = IF(CALCULATE(SUM(fEncargosEmpresa[valor]), fEncargosEmpresa[imposto] = "FGTS") = BLANK(), 0, CALCULATE(SUM(fEncargosEmpresa[valor]), fEncargosEmpresa[imposto] = "FGTS"))
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 62b13f48-1836-4629-ad01-51b6eebeb5d2
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'INSS COMPLEMENTAR' = IF(CALCULATE(SUM(fEncargosEmpresa[valor]), fEncargosEmpresa[imposto] = "INSS COMPLEMENTAR") = BLANK(), 0, CALCULATE(SUM(fEncargosEmpresa[valor]), fEncargosEmpresa[imposto] = "INSS COMPLEMENTAR"))
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: f8aa2a12-dbec-4c8c-bf59-745103d111b7
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure INSS = IF(CALCULATE(SUM(fEncargosEmpresa[valor]), fEncargosEmpresa[imposto] = "INSS") = BLANK(), 0, CALCULATE(SUM(fEncargosEmpresa[valor]), fEncargosEmpresa[imposto] = "INSS"))
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 3ceb933c-834a-4e9b-b850-64a76c0bad84
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure IRRF = IF(CALCULATE(SUM(fEncargosEmpresa[valor]), fEncargosEmpresa[imposto] = "IRRF") = BLANK(), 0, CALCULATE(SUM(fEncargosEmpresa[valor]), fEncargosEmpresa[imposto] = "IRRF"))
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 7892a563-a62d-469a-9f81-0c89a1d16672
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure MooM% =
+			
+			IF([Impostos] = 0 || [ImpostosMesAnterior] = 0, "", ([Impostos] - [ImpostosMesAnterior]) / [ImpostosMesAnterior])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: c3cbd5b3-04e9-48b7-aa51-d3122eae5765
+
+		changedProperty = FormatString
+
+	measure ImpostosMesAnterior =
+			
+			CALCULATE([Impostos], DATEADD(dCalendario[Data], -1, MONTH))
+		lineageTag: 5c4b154e-71c8-473d-8711-8e299fca806c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Impostos = SUM(fEncargosEmpresa[valor])
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 4a2a82b6-e0c3-4765-8bd4-69601ba8411d
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'FGTS COMPLEMENTAR' = IF(CALCULATE(SUM(fEncargosEmpresa[valor]), fEncargosEmpresa[imposto] = "FGTS COMPLEMENTAR") = BLANK(), 0, CALCULATE(SUM(fEncargosEmpresa[valor]), fEncargosEmpresa[imposto] = "FGTS COMPLEMENTAR"))
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: b5f44ee7-54b1-482a-9b7c-b6b86194414d
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Diferença de INSS Retido' = ```
+			
+			SUMX(dCalendario,
+			    CALCULATE(
+			        ABS (
+			            IF(
+			                (SUM(fISSPrefeitura[RetINSS]) - SUM(fServico[valor_inss])) = 0,
+			                0,
+			                SUM(fISSPrefeitura[RetINSS]) - SUM(fServico[valor_inss])
+			            )),
+			            
+			        fServico[Participante] <> "00000000000000"
+			))
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: d7b54761-7cfa-4d0b-8538-a2d4ef84ccdd
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure VrNFSe =
+			
+			SUM(fISSPrefeitura[ValorServico])
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 20ee50a3-c2dc-4c00-b1a2-176800151d86
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'Dif INSS' = ```
+			
+			SUMX(fISSPrefeitura,
+			CALCULATE(
+			
+			            ABS(SUM(fISSPrefeitura[RetINSS]) - SUM(fServico[valor_inss])),
+			      
+			    fServico[Participante] <> "00000000000000",
+			    USERELATIONSHIP('fServico'[chaveserv],'fISSPrefeitura'[chaveserv])
+			    ))
+			```
+		lineageTag: 067d1780-c981-4cea-b92f-7097f05bc894
+
+	column 'Coluna 1'
+		dataType: string
+		isHidden
+		lineageTag: aed6be4e-a7dc-4b50-99a0-0dcbbe8bbe27
+		summarizeBy: none
+		sourceColumn: Coluna 1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Medidas_Encargos-9a29549b-c97b-4413-b5a9-70753c786568 = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+

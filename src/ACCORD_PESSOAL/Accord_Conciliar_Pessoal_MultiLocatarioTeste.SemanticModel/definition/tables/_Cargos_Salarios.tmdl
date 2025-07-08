@@ -1,0 +1,148 @@
+table _Cargos_Salarios
+	lineageTag: b56c5a65-ce61-4c6f-af85-694eeddba938
+
+	measure MinSalarioMasculino = ```
+			
+			VAR AltSalario = MAX(TbDpAlteracaoSalarial[competencia])
+			RETURN
+			
+			    CALCULATE(
+			        MIN(TbDpAlteracaoSalarial[novo_salario]),
+			            dEmpregados[DataAdmissaoAux] < AltSalario,
+			            ISBLANK(TbDpRescisao[demissao]),
+			            dEmpregados[sexo]= "M",
+			            (DATESINPERIOD(dCalendario[Data], 
+			                MAX(dCalendario[Data]),
+			                -12,
+			                MONTH))
+			    )
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 6f1f7ce4-4839-45b9-9ceb-baeb809df04a
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure AvgSalarioMasculino = ```
+			
+			VAR AltSalario = MAX(TbDpAlteracaoSalarial[competencia])
+			RETURN
+			
+			    CALCULATE(
+			        AVERAGE(TbDpAlteracaoSalarial[novo_salario]),
+			            dEmpregados[DataAdmissaoAux] < AltSalario,
+			            ISBLANK(TbDpRescisao[demissao]),
+			            dEmpregados[sexo]= "M",
+			            (DATESINPERIOD(dCalendario[Data], 
+			                MAX(dCalendario[Data]),
+			                -12,
+			                MONTH))
+			    )
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 7e4e8372-3942-4300-a602-d2cd6d15ffa3
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure MaxSalarioMasculino = ```
+			
+			VAR AltSalario = MAX(TbDpAlteracaoSalarial[competencia])
+			RETURN
+			
+			    CALCULATE(
+			        MAX(TbDpAlteracaoSalarial[novo_salario]),
+			            dEmpregados[DataAdmissaoAux] < AltSalario,
+			            ISBLANK(TbDpRescisao[demissao]),
+			            dEmpregados[sexo]= "M",
+			            (DATESINPERIOD(dCalendario[Data], 
+			                MAX(dCalendario[Data]),
+			                -12,
+			                MONTH))
+			    )
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: a351e00c-f96e-4ba7-b554-84cf3de8bc26
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure MinSalarioFeminino = ```
+			
+			VAR AltSalario = MAX(TbDpAlteracaoSalarial[competencia])
+			RETURN
+			
+			    CALCULATE(
+			        MIN(TbDpAlteracaoSalarial[novo_salario]),
+			            dEmpregados[DataAdmissaoAux] < AltSalario,
+			            ISBLANK(TbDpRescisao[demissao]),
+			            dEmpregados[sexo]= "F",
+			            (DATESINPERIOD(dCalendario[Data], 
+			                MAX(dCalendario[Data]),
+			                -12,
+			                MONTH))
+			    )
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 7cd9b023-739b-4225-9aea-4f52985bb6f4
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure MaxSalarioFeminino = ```
+			
+			VAR AltSalario = MAX(TbDpAlteracaoSalarial[competencia])
+			RETURN
+			
+			    CALCULATE(
+			        MAX(TbDpAlteracaoSalarial[novo_salario]),
+			            dEmpregados[DataAdmissaoAux] < AltSalario,
+			            ISBLANK(TbDpRescisao[demissao]),
+			            dEmpregados[sexo]= "F",
+			            (DATESINPERIOD(dCalendario[Data], 
+			                MAX(dCalendario[Data]),
+			                -12,
+			                MONTH))
+			    )
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 256eec6a-70ee-4c40-b253-6410df3177b9
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure AvgSalarioFeminino = ```
+			
+			VAR AltSalario = MAX(TbDpAlteracaoSalarial[competencia])
+			RETURN
+			
+			    CALCULATE(
+			        AVERAGE(TbDpAlteracaoSalarial[novo_salario]),
+			            dEmpregados[DataAdmissaoAux] < AltSalario,
+			            ISBLANK(TbDpRescisao[demissao]),
+			            dEmpregados[sexo]= "F",
+			            (DATESINPERIOD(dCalendario[Data], 
+			                MAX(dCalendario[Data]),
+			                -12,
+			                MONTH))
+			    )
+			```
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 1c1996e2-6919-48b3-8a10-733847281cf0
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure 'QTDe Promocoes' = COUNTROWS(TbDPAlteracaoCargo)
+		formatString: 0
+		lineageTag: 3ff7590f-4dfd-488f-a132-f26740411897
+
+	measure 'QTDe Salarios' = COUNTROWS(TbDpAlteracaoSalarial)
+		formatString: 0
+		lineageTag: 7c57e7f8-8382-43fe-8783-874da954ac85
+
+	partition _Cargos_Salarios-64351986-5f13-4c0b-a32f-c5105c2d7dfc = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Colunas Removidas" = Table.RemoveColumns(Fonte,{"Coluna 1"})
+				in
+				    #"Colunas Removidas"
+
+	annotation PBI_ResultType = Table
+

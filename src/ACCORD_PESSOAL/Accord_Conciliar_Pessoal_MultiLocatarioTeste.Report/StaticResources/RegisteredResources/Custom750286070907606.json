@@ -1,0 +1,14 @@
+{
+  "name": "Custom",
+  "textClasses": {
+    "label": {
+      "fontSize": 10,
+      "fontFace": "'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+      "color": "#10204E"
+    },
+    "title": {
+      "fontFace": "'Segoe UI', wf_segoe-ui_normal, helvetica, arial, sans-serif",
+      "fontSize": 14
+    }
+  }
+}

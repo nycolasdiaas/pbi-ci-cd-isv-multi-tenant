@@ -1,0 +1,475 @@
+table fFolha
+	lineageTag: c5c980e8-9ad2-4f87-a0b0-2a8f6a3343a8
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 5d9d2181-5063-4a39-a2ed-df7af022a739
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column codi_emp
+		dataType: string
+		lineageTag: 4d1e1c09-7ebd-4a55-be8f-178426a34dd6
+		summarizeBy: none
+		sourceColumn: codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column i_empregados
+		dataType: string
+		lineageTag: 8911c22f-09f6-4b65-9587-ec8c586fe4f1
+		summarizeBy: none
+		sourceColumn: i_empregados
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo_proces
+		dataType: string
+		lineageTag: c8a9c40c-cece-4aca-9050-a1e5e674cdf5
+		summarizeBy: none
+		sourceColumn: tipo_proces
+
+		annotation SummarizationSetBy = Automatic
+
+	column i_eventos
+		dataType: string
+		lineageTag: f444c13f-37f0-490f-aa1a-cedb08c444aa
+		summarizeBy: none
+		sourceColumn: i_eventos
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_inf
+		dataType: string
+		lineageTag: 577dda6f-755e-4cbb-b89f-78250a469239
+		summarizeBy: none
+		sourceColumn: valor_inf
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_cal
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: a36fc3ef-2f0c-436c-86ef-fda008cb9e00
+		summarizeBy: sum
+		sourceColumn: valor_cal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column prov_desc
+		dataType: string
+		lineageTag: ea7bfd85-4b48-4cef-ae08-ec6cf60a861a
+		summarizeBy: none
+		sourceColumn: prov_desc
+
+		annotation SummarizationSetBy = Automatic
+
+	column origem
+		dataType: string
+		lineageTag: 3add8f5c-32da-492b-ad92-c6e00d011482
+		summarizeBy: none
+		sourceColumn: origem
+
+		annotation SummarizationSetBy = Automatic
+
+	column origem_reg
+		dataType: string
+		lineageTag: 53e316fe-51bd-477b-b7b9-87344a2ea9c5
+		summarizeBy: none
+		sourceColumn: origem_reg
+
+		annotation SummarizationSetBy = Automatic
+
+	column rateio
+		dataType: string
+		lineageTag: 78fc7a74-c6bd-4a13-877f-2df5293b6523
+		summarizeBy: none
+		sourceColumn: rateio
+
+		annotation SummarizationSetBy = Automatic
+
+	column i_servicos
+		dataType: string
+		lineageTag: c73c6901-c4d3-49ce-b3e4-960b51b7df4a
+		summarizeBy: none
+		sourceColumn: i_servicos
+
+		annotation SummarizationSetBy = Automatic
+
+	column valor_inf_compl
+		dataType: string
+		lineageTag: ee96753e-ad93-4649-863f-5af99fd8b1a9
+		summarizeBy: none
+		sourceColumn: valor_inf_compl
+
+		annotation SummarizationSetBy = Automatic
+
+	column I_CALCULOS
+		dataType: string
+		lineageTag: 107c5adc-bed0-4b2e-bf6c-e5975424effa
+		summarizeBy: none
+		sourceColumn: I_CALCULOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column SIMULACAO
+		dataType: string
+		lineageTag: 9808a17b-845d-4e5b-85b7-2b972f992f7f
+		summarizeBy: none
+		sourceColumn: SIMULACAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column VALOR_CALCULADO_INTEGRAL
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 884b135e-c061-41ab-b75f-314c2bea94cd
+		summarizeBy: sum
+		sourceColumn: VALOR_CALCULADO_INTEGRAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column VALOR_INFORMADO_REAL
+		dataType: decimal
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: a7712ef1-3377-457c-be4d-0872ed29023d
+		summarizeBy: sum
+		sourceColumn: VALOR_INFORMADO_REAL
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column CONSIDERAR_REMUNERACAO_ESOCIAL
+		dataType: string
+		lineageTag: 63f190d4-e06a-4342-9776-4d67985bb7d5
+		summarizeBy: none
+		sourceColumn: CONSIDERAR_REMUNERACAO_ESOCIAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONSIDERAR_RETENCAO_PAGAMENTO_ESOCIAL
+		dataType: string
+		lineageTag: a4a05ef0-5d1c-43b6-aaf6-8e419d7f9553
+		summarizeBy: none
+		sourceColumn: CONSIDERAR_RETENCAO_PAGAMENTO_ESOCIAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONSIDERAR_REMUNERACAO_S_1210_ESOCIAL
+		dataType: string
+		lineageTag: ee833c1d-a0c6-4b1d-8fe5-302dff2d31c8
+		summarizeBy: none
+		sourceColumn: CONSIDERAR_REMUNERACAO_S_1210_ESOCIAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column VIGENCIA_REGIME
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: f79d2155-b463-4eb9-8757-71247115d5d3
+		summarizeBy: none
+		sourceColumn: VIGENCIA_REGIME
+
+		annotation SummarizationSetBy = Automatic
+
+	column SIMPLES_NACIONAL
+		dataType: string
+		lineageTag: d96e3eea-9a23-4123-aa4d-4a32b7c94fa7
+		summarizeBy: none
+		sourceColumn: SIMPLES_NACIONAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column VIGENCIA_ENCARGOSINSS
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6267eda1-d855-4a58-bee5-78d38ca12fc8
+		summarizeBy: none
+		sourceColumn: VIGENCIA_ENCARGOSINSS
+
+		annotation SummarizationSetBy = Automatic
+
+	column perc_terceiro
+		dataType: double
+		lineageTag: bd49633a-8b42-409c-bdc8-ca9a017fa0b5
+		summarizeBy: sum
+		sourceColumn: perc_terceiro
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column perc_inss_empresa
+		dataType: double
+		lineageTag: 94205b6c-e38f-454e-aa89-e1d1572abab8
+		summarizeBy: sum
+		sourceColumn: perc_inss_empresa
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column perc_acid_trabalho
+		dataType: double
+		lineageTag: 829bf63b-f3e4-4fbb-93fa-4376fc5a1d1e
+		summarizeBy: sum
+		sourceColumn: perc_acid_trabalho
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CPRB
+		dataType: string
+		lineageTag: 6b249139-6acc-4c15-bf46-f37afe904e63
+		summarizeBy: none
+		sourceColumn: CPRB
+
+		annotation SummarizationSetBy = Automatic
+
+	column centro_custo
+		dataType: string
+		lineageTag: 3b30da06-3524-406e-8919-e2784a45f7ff
+		summarizeBy: none
+		sourceColumn: centro_custo
+
+		annotation SummarizationSetBy = Automatic
+
+	column chvfunc
+		dataType: string
+		lineageTag: aaf8237f-893b-4d3c-9434-df0579644f3e
+		summarizeBy: none
+		sourceColumn: chvfunc
+
+		annotation SummarizationSetBy = Automatic
+
+	column chvevento
+		dataType: string
+		lineageTag: 79dda51c-8624-445b-ac0b-0a41a09580ed
+		summarizeBy: none
+		sourceColumn: chvevento
+
+		annotation SummarizationSetBy = Automatic
+
+	column Competencia
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 36b442d2-4606-4f6f-a348-7a6a6baa9a20
+		summarizeBy: none
+		sourceColumn: Competencia
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column chavefunccomp
+		dataType: string
+		lineageTag: e6ccdf69-4da3-49f7-8dfb-01d05c354833
+		summarizeBy: none
+		sourceColumn: chavefunccomp
+
+		annotation SummarizationSetBy = Automatic
+
+	column cpf
+		dataType: string
+		lineageTag: abf7fbea-3afb-4889-8d85-437349169e5d
+		summarizeBy: none
+		sourceColumn: cpf
+
+		annotation SummarizationSetBy = Automatic
+
+	column EncargoINSS
+		dataType: double
+		lineageTag: 593d0449-ecbb-4da5-bf71-02d1293720d8
+		summarizeBy: sum
+		sourceColumn: EncargoINSS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 634db7ca-fd49-4c7c-8aa1-2fec17f155ec
+		summarizeBy: sum
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome do Mês'
+		dataType: string
+		lineageTag: 6f109aea-fd8c-42ee-8991-668018a7debc
+		summarizeBy: none
+		sourceColumn: Nome do Mês
+		sortByColumn: Mês
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mês
+		dataType: int64
+		formatString: 0
+		lineageTag: 2916714f-3e2b-40f4-ac5f-669f0a6b6ae5
+		summarizeBy: sum
+		sourceColumn: Mês
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome
+		dataType: string
+		lineageTag: cb6cfe6d-e040-4332-accd-dd0278e51c26
+		summarizeBy: none
+		sourceColumn: nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column CNPJ
+		dataType: string
+		lineageTag: 9ab1e0b1-3613-4ef8-8fba-3ac39d577b66
+		summarizeBy: none
+		sourceColumn: CNPJ
+
+		annotation SummarizationSetBy = Automatic
+
+	column Empresa_Cod
+		dataType: string
+		lineageTag: ad7af68a-9dfa-4117-aead-3b801f937072
+		summarizeBy: none
+		sourceColumn: Empresa_Cod
+
+		annotation SummarizationSetBy = Automatic
+
+	column codNome
+		dataType: string
+		lineageTag: e3d0dca9-1806-477d-97f2-96e9e9bda65d
+		summarizeBy: none
+		sourceColumn: codNome
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdGrupoEmpresa
+		dataType: int64
+		formatString: 0
+		lineageTag: a7e7241e-af4e-48b7-bd46-e7d8ef2eca87
+		summarizeBy: sum
+		sourceColumn: IdGrupoEmpresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column salario
+		dataType: double
+		lineageTag: 54882154-c78d-4ffc-86b7-495a3daca132
+		summarizeBy: sum
+		sourceColumn: salario
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EmpresaContabilId
+		dataType: int64
+		formatString: 0
+		lineageTag: 28ae6350-f41b-4774-9afb-c4c67fe2f859
+		summarizeBy: count
+		sourceColumn: EmpresaContabilId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ChaveEA
+		dataType: string
+		lineageTag: f1d82766-0deb-4148-93c2-f950557f0f68
+		summarizeBy: none
+		sourceColumn: ChaveEA
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fFolha-f15c69a6-3079-436c-ae1b-459ab7b6f525 = m
+		mode: import
+		queryGroup: Fato
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, CommandTimeout=#duration(0, 1, 0, 0), CreateNavigationProperties=false, Query="SELECT m.id,
+				    m.EmpresaContabilId,
+				    m.codi_emp,
+				    m.i_empregados,
+				    m.data,
+				    m.ChaveEA,
+				    m.tipo_proces,
+				    m.i_eventos,
+				    m.valor_inf,
+				    m.valor_cal,
+				    m.prov_desc,
+				    m.origem,
+				    m.origem_reg,
+				    m.rateio,
+				    m.i_servicos,
+				    m.valor_inf_compl,
+				    m.I_CALCULOS,
+				    m.SIMULACAO,
+				    m.VALOR_CALCULADO_INTEGRAL,
+				    m.VALOR_INFORMADO_REAL,
+				    m.CONSIDERAR_REMUNERACAO_ESOCIAL,
+				    m.CONSIDERAR_RETENCAO_PAGAMENTO_ESOCIAL,
+				    m.CONSIDERAR_REMUNERACAO_S_1210_ESOCIAL,
+				    m.VIGENCIA_REGIME,
+				    m.SIMPLES_NACIONAL,
+				    m.VIGENCIA_ENCARGOSINSS,
+				    m.perc_terceiro,
+				    m.perc_inss_empresa,
+				    m.perc_acid_trabalho,
+				    m.CPRB,
+				    m.centro_custo,
+				    m.salario, e.IdGrupoEmpresa FROM DwAccordFiscal.TbDPmovfolha m INNER JOIN DwAccordFiscal.TbEmpresa e ON m.codi_emp=e.codi_emp and m.EmpresaContabilId = e.EmpresaContabilId WHERE e.IdGrupoEmpresa IN " & IdGrupoEmpresa & " and e.EmpresaContabilId = "&EmpresaContabilId&""]),
+				    #"Valor Substituído" = Table.ReplaceValue(Fonte,"1","Não Optante",Replacer.ReplaceText,{"SIMPLES_NACIONAL"}),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído","2","Optante",Replacer.ReplaceText,{"SIMPLES_NACIONAL"}),
+				    #"Valor Substituído2" = Table.ReplaceValue(#"Valor Substituído1","3","Optante Anexo IV",Replacer.ReplaceText,{"SIMPLES_NACIONAL"}),
+				    #"Valor Substituído3" = Table.ReplaceValue(#"Valor Substituído2","4","Optante",Replacer.ReplaceText,{"SIMPLES_NACIONAL"}),
+				    #"Valor Substituído4" = Table.ReplaceValue(#"Valor Substituído3","5","Optante",Replacer.ReplaceText,{"SIMPLES_NACIONAL"}),
+				    #"Valor Substituído5" = Table.ReplaceValue(#"Valor Substituído4",null,"0",Replacer.ReplaceValue,{"CPRB"}),
+				    #"Linhas Filtradas1" = Table.SelectRows(#"Valor Substituído5", each [tipo_proces] <> "41" and [tipo_proces] <> "60"),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Linhas Filtradas1",{{"data", type datetime}}),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Tipo Alterado",{{"data", type date}, {"valor_cal", Currency.Type}, {"VALOR_CALCULADO_INTEGRAL", Currency.Type}, {"VALOR_INFORMADO_REAL", Currency.Type}}),
+				    #"Coluna Mesclada Inserida" = Table.AddColumn(#"Tipo Alterado1", "chvfunc", each Text.Combine({[codi_emp], [i_empregados]}, "-"), type text),
+				    #"Coluna Mesclada Inserida1" = Table.AddColumn(#"Coluna Mesclada Inserida", "chvevento", each Text.Combine({[codi_emp], [i_eventos]}, "-"), type text),
+				    #"Fim do Mês Inserido" = Table.AddColumn(#"Coluna Mesclada Inserida1", "Competencia", each Date.EndOfMonth([data]), type date),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Fim do Mês Inserido",{"data"}),
+				    #"Coluna Mesclada Inserida2" = Table.AddColumn(#"Colunas Removidas", "chavefunccomp", each Text.Combine({[chvfunc], Text.From([Competencia], "pt-BR")}, "-"), type text),
+				    #"Coluna Mesclada Inserida3" = Table.AddColumn(#"Coluna Mesclada Inserida2", "chaveunica", each Text.Combine({[chvevento], "-", Text.From([Competencia], "pt-BR")}), type text),
+				    #"Consultas Mescladas" = Table.NestedJoin(#"Coluna Mesclada Inserida3", {"chvfunc"}, dEmpregados, {"chaveempreg"}, "dEmpregados", JoinKind.LeftOuter),
+				    #"dFuncionarios Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas", "dEmpregados", {"cpf"}, {"cpf"}),
+				    #"Personalização Adicionada" = Table.AddColumn(#"dFuncionarios Expandido", "EncargoINSS", each if [SIMPLES_NACIONAL] = "Optante" then 0 else if [SIMPLES_NACIONAL] <> "Optante" and [CPRB] = "0" then [perc_terceiro]+[perc_inss_empresa]+[perc_acid_trabalho] else if [SIMPLES_NACIONAL] <> "Optante" and [CPRB] = "1" then [perc_terceiro]+[perc_acid_trabalho] else "VERIFICAR"),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Personalização Adicionada",{{"EncargoINSS", type number}}),
+				    #"Linhas Filtradas2" = Table.SelectRows(#"Tipo Alterado2", each true),
+				    #"Ano Inserido" = Table.AddColumn(#"Linhas Filtradas2", "Ano", each Date.Year([Competencia]), Int64.Type),
+				    #"Mês Inserido" = Table.AddColumn(#"Ano Inserido", "Mês", each Date.Month([Competencia]), Int64.Type),
+				    #"Nome do Mês Inserido" = Table.AddColumn(#"Mês Inserido", "Nome do Mês", each Date.MonthName([Competencia]), type text),
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(#"Nome do Mês Inserido",{{"Nome do Mês", Text.Proper, type text}}),
+				    #"Consultas Mescladas1" = Table.NestedJoin(#"Colocar Cada Palavra Em Maiúscula", {"chvfunc"}, dEmpregados, {"chaveempreg"}, "dEmpregados", JoinKind.LeftOuter),
+				    #"dEmpregados Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas1", "dEmpregados", {"nome"}, {"nome"}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"dEmpregados Expandido", each ([nome] <> null)),
+				    #"Coluna Mesclada Inserida5" = Table.AddColumn(#"Linhas Filtradas", "codNome", each Text.Combine({[i_empregados], "-", [nome]}), type text),
+				    #"Coluna Mesclada Inserida4" = Table.AddColumn(#"Coluna Mesclada Inserida5", "chavepararetirarduplicadas", each Text.Combine({[chaveunica], "-", [i_empregados]}), type text),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Coluna Mesclada Inserida4", {"chavepararetirarduplicadas"}),
+				    #"Colunas Removidas2" = Table.RemoveColumns(#"Duplicatas Removidas",{"chavepararetirarduplicadas"}),
+				    #"Colunas Removidas1" = Table.RemoveColumns(#"Colunas Removidas2",{"chaveunica"}),
+				    #"Consultas Mescladas2" = Table.NestedJoin(#"Colunas Removidas1", {"codi_emp"}, dEmpresa, {"codi_emp"}, "dEmpresa", JoinKind.LeftOuter),
+				    #"dEmpresa Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas2", "dEmpresa", {"CNPJ", "Empresa_Cod"}, {"CNPJ", "Empresa_Cod"})
+				in
+				    #"dEmpresa Expandido"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

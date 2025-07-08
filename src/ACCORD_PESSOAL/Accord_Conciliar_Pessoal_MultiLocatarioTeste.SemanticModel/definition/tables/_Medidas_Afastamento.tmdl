@@ -1,0 +1,29 @@
+table _Medidas_Afastamento
+	lineageTag: dfb7805c-e2c0-4c57-a682-88d28db6e7fe
+
+	measure 'Quantidade de Afastamento' = COUNT(dAfastamento[codi_empregado])
+		formatString: 0
+		lineageTag: c671b766-3d15-4a83-abc0-961b3abf4940
+
+	column 'Coluna 1'
+		dataType: string
+		isHidden
+		lineageTag: 62098612-e52a-4400-8bc8-0f080a61c86c
+		summarizeBy: none
+		sourceColumn: Coluna 1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Medidas_Afastamento-2a875a57-de19-402f-aa06-2eb6bae9fcce = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+
