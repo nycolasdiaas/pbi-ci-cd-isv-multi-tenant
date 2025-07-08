@@ -13,7 +13,7 @@
             { "name": "MySqlDatabase", "value": "DwAccordFiscal" }
         ]
     },
-    "ARRAIS_E_COSTA": {
+    "ARRAIS_TENANT": {
         "spnSecret": "ISV_ARRAIS_TENANT",
         "capacity": "none",
         "workspace": "\"ARRAIS E COSTA\"",
@@ -27,10 +27,10 @@
             { "name": "MySqlDatabase", "value": "DwAccordFiscal" }
         ]
     },
-    "MARPE": {
+    "MARPE_TENANT": {
         "spnSecret": "ISV_MARPE_TENANT",
         "capacity": "none",
-        "workspace": "AdventureWorks_MARPEOceania",
+        "workspace": "MARPE",
         "semanticModelPath": "src/ACCORD_PESSOAL/Accord_Conciliar_Pessoal_MultiLocatarioTeste.SemanticModel",
         "reportPaths": [
             "src/ACCORD_PESSOAL/Accord_Conciliar_Pessoal_MultiLocatarioTeste.Report"
@@ -41,7 +41,7 @@
             { "name": "MySqlDatabase", "value": "DwAccordFiscal" }
         ]
     },
-    "DEBITT": {
+    "DEBITT_TENANT": {
         "spnSecret": "ISV_DEBITT_TENANT",
         "capacity": "none",
         "workspace": "DEBITT",
