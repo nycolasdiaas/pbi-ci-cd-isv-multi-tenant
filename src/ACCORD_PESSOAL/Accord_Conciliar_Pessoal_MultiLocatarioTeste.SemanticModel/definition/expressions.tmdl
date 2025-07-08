@@ -1,0 +1,129 @@
+expression dTirouFerias =
+		let
+		    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, Query="SELECT tabela2.ChaveEmpreg #(lf)FROM (#(lf)#(tab)SELECT tabela.* #(lf)#(tab)FROM (#(lf)#(tab)#(tab)SELECT concat(t.codi_emp,'-',t.codi_empregado) AS ChaveEmpreg, count(concat(t.codi_emp,'-',t.codi_empregado)) AS Contagem, t.* #(lf)#(tab)#(tab)FROM DwAccordFiscal.TbDPFerias t#(lf)#(tab)#(tab)GROUP BY ChaveEmpreg) AS tabela #(lf)#(tab)WHERE tabela.Contagem > 1) AS tabela2"])
+		in
+		    Fonte
+	lineageTag: a1b90aee-e1a8-4d41-9107-4b02e5c77a31
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression 'Período Concessivo' = 335 meta [IsParameterQuery=true, Type="Any", IsParameterQueryRequired=true]
+	lineageTag: bc395656-2c54-4524-8d7f-2025d3254de8
+
+	annotation PBI_ResultType = Number
+
+expression dQuantidadeFilhosMesAtual =
+		let
+		    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, Query="SELECT #(lf)h.*, e.IdGrupoEmpresa #(lf)FROM DwAccordFiscal.TbDPHistQuantFilhosSalarioFamilia h#(lf)INNER JOIN DwAccordFiscal.TbEmpresa e#(lf) ON h.codi_emp=e.codi_emp and e.EmpresaContabilId = h.EmpresaContabilId #(lf)WHERE e.IdGrupoEmpresa IN " &IdGrupoEmpresa & " and e.EmpresaContabilId = "&EmpresaContabilId&""])
+		in
+		    Fonte
+	lineageTag: c178e44b-46fb-4b49-9495-0321655698b7
+	queryGroup: Dimensão
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
+expression fServico_RetPrestado =
+		let
+		    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, CommandTimeout=#duration(0, 1, 0, 0), Query="SELECT s.*, e.IdGrupoEmpresa FROM DwAccordFiscal.TbNFServicoISS s INNER JOIN DwAccordFiscal.TbEmpresa e ON s.codi_emp=e.codi_emp and s.EmpresaContabilId = e.EmpresaContabilId WHERE e.IdGrupoEmpresa IN " & IdGrupoEmpresa & " and e.EmpresaContabilId = "&EmpresaContabilId&""]),
+		    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Id", type text}, {"codi_emp", type text}, {"codi_sai", type text}, {"codi_cli", type text}, {"ddoc_sai", type date}, {"dsai_sai", type date}, {"nume_sai", type text}, {"vcon_sai", Currency.Type}, {"valor_irrf", Currency.Type}, {"valor_iss", Currency.Type}, {"valor_iss_proprio", Currency.Type}, {"valor_inss", Currency.Type}, {"valor_crf", Currency.Type}, {"valor_pis", Currency.Type}, {"valor_cofins", Currency.Type}, {"valor_csll", Currency.Type}, {"tip", type text}}),
+		    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"dsai_sai", "tip"}),
+		    #"Consultas Mescladas" = Table.NestedJoin(#"Colunas Removidas", {"codi_emp"}, dEmpresa, {"codi_emp"}, "dEmpresas", JoinKind.LeftOuter),
+		    #"dEmpresas Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas", "dEmpresas", {"DataInicioCliente"}, {"DataInicioCliente"}),
+		    #"Tipo Alterado2" = Table.TransformColumnTypes(#"dEmpresas Expandido",{{"DataInicioCliente", type date}}),
+		    #"Personalização Adicionada" = Table.AddColumn(#"Tipo Alterado2", "Dias", each [ddoc_sai] - [DataInicioCliente]),
+		    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Personalização Adicionada",{{"Dias", Int64.Type}})
+		in
+		    #"Tipo Alterado1"
+	lineageTag: 8ec4bc47-165e-44c5-a1bc-22993c1b6a93
+	queryGroup: Fato
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Exception
+
+/// Filtro de data inicial
+expression RangeStart = "01/01/2022" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: b52a37e7-dfab-4693-91e1-3e6ff699b923
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navigation
+
+/// Filtro Data Final
+expression RangeEnd = "31/12/2025" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: ad258751-67fc-409d-b78b-1e765f4ef8af
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navigation
+
+expression fServico_RetTomado =
+		let
+		    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, CommandTimeout=#duration(0, 1, 0, 0), Query="SELECT x.*, e.IdGrupoEmpresa FROM DwAccordFiscal.TbNFeEntradaISS x INNER JOIN DwAccordFiscal.TbEmpresa e ON x.codi_emp=e.codi_emp and x.EmpresaContabilId = e.EmpresaContabilId WHERE e.IdGrupoEmpresa IN " & IdGrupoEmpresa & " and e.EmpresaContabilId = "&EmpresaContabilId&""]),
+		    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Id", type text}, {"codi_emp", type text}, {"codi_ent", type text}, {"codi_for", type text}, {"ddoc_ent", type date}, {"dent_ent", type date}, {"nume_ent", type text}, {"vcon_ent", Currency.Type}, {"valor_irrf", Currency.Type}, {"valor_iss", Currency.Type}, {"valor_inss", Currency.Type}, {"valor_crf", Currency.Type}}),
+		    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"dent_ent"}),
+		    #"Consultas Mescladas" = Table.NestedJoin(#"Colunas Removidas", {"codi_emp"}, dEmpresa, {"codi_emp"}, "dEmpresas", JoinKind.LeftOuter),
+		    #"dEmpresas Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas", "dEmpresas", {"DataInicioCliente"}, {"DataInicioCliente"}),
+		    #"Tipo Alterado2" = Table.TransformColumnTypes(#"dEmpresas Expandido",{{"DataInicioCliente", type date}}),
+		    #"Personalização Adicionada" = Table.AddColumn(#"Tipo Alterado2", "Dias", each [ddoc_ent] - [DataInicioCliente]),
+		    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Personalização Adicionada",{{"Dias", Int64.Type}})
+		in
+		    #"Tipo Alterado1"
+	lineageTag: 64758520-5a9c-40f8-ad51-f795dc6a468c
+	queryGroup: Fato
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Exception
+
+expression fServicoTomados =
+		let
+		    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, CommandTimeout=#duration(0, 1, 0, 0), Query="SELECT x.*, e.IdGrupoEmpresa FROM DwAccordFiscal.TbNFeEntrada x INNER JOIN DwAccordFiscal.TbEmpresa e ON x.codi_empresa=e.codi_emp and x.EmpresaContabilId = e.EmpresaContabilId WHERE e.IdGrupoEmpresa IN " & IdGrupoEmpresa & " and e.EmpresaContabilId = "&EmpresaContabilId&""]),
+		    #"Linhas Filtradas" = Table.SelectRows(Fonte, each [EspecieDOC] = 31 or [EspecieDOC] = 32 or [EspecieDOC] = 33 or [EspecieDOC] = 34 or [EspecieDOC] = 39 or [EspecieDOC] = 45 or [EspecieDOC] = 46 or [EspecieDOC] = 47 or [EspecieDOC] = 63),
+		    #"Tipo Alterado" = Table.TransformColumnTypes(#"Linhas Filtradas",{{"Id", type text}, {"codi_empresa", type text}, {"NumDOC", type text}, {"EspecieDOC", type text}, {"DataEscrita", type date}, {"DataEmissao", type date}, {"codi_entrada", type text}, {"codi_for", type text}}),
+		    #"Valor Substituído" = Table.ReplaceValue(#"Tipo Alterado",null,"00000000000000",Replacer.ReplaceValue,{"Participante"}),
+		    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído","00000000000","00000000000000",Replacer.ReplaceValue,{"Participante"}),
+		    #"Linhas Filtradas2" = Table.SelectRows(#"Valor Substituído1", each [DataEscrita] >= Date.FromText(RangeStart) and [DataEscrita] <= Date.FromText(RangeEnd)),
+		    #"Colunas Renomeadas" = Table.RenameColumns(#"Linhas Filtradas2",{{"ChaveAcesso", "ChaveEletronica"}, {"ValorDOC", "VlrContabilServico"}, {"NumDOC", "NotaFiscal"}, {"SerieDOC", "Serie DOC"}, {"DataEmissao", "DataEmissao"}, {"DataEscrita", "DataServico"}, {"TipoEmitente", "Tipo Emitente"}, {"TipoNFe", "Tipo NFe"}, {"CGFEmpresa", "CGF Empresa"}, {"cgce_emp", "CNPJ Empresa"}, {"Situacao", "SituacaoDOC"}, {"codi_empresa", "codi_emp"}}),
+		    #"Colunas Removidas" = Table.RemoveColumns(#"Colunas Renomeadas",{"CGF Empresa", "CNPJ Empresa", "Serie DOC", "codi_usu", "Tipo Emitente", "Tipo NFe", "EntradaInterestadual", "ConsultaNFe", "ChaveVerificacao"}),
+		    #"Personalização Adicionada" = Table.AddColumn(#"Colunas Removidas", "Tipo", each "Tomado"),
+		    #"Fim do Mês Inserido" = Table.AddColumn(#"Personalização Adicionada", "MesEmissao", each Date.EndOfMonth([DataEmissao]), type date),
+		    #"Coluna Mesclada Inserida" = Table.AddColumn(#"Fim do Mês Inserido", "chaveserv", each Text.Combine({[codi_emp], [NotaFiscal], [Tipo], [Participante]}, "-"), type text),
+		    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Coluna Mesclada Inserida",{{"codi_for", type text}}),
+		    #"Consultas Mescladas" = Table.NestedJoin(#"Tipo Alterado1", {"codi_emp", "codi_for", "codi_entrada"}, fServico_RetTomado, {"codi_emp", "codi_for", "codi_ent"}, "fServico_RetTomado", JoinKind.LeftOuter),
+		    #"fServico_RetTomado Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas", "fServico_RetTomado", {"valor_irrf", "valor_iss", "valor_crf", "valor_inss"}, {"valor_irrf", "valor_iss", "valor_crf", "valor_inss"}),
+		    #"Consultas Mescladas1" = Table.NestedJoin(#"fServico_RetTomado Expandido", {"codi_emp"}, dEmpresa, {"codi_emp"}, "dEmpresas", JoinKind.LeftOuter),
+		    #"dEmpresas Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas1", "dEmpresas", {"DataInicioCliente"}, {"DataInicioCliente"}),
+		    #"Tipo Alterado3" = Table.TransformColumnTypes(#"dEmpresas Expandido",{{"DataInicioCliente", type date}}),
+		    #"Personalização Adicionada1" = Table.AddColumn(#"Tipo Alterado3", "Dias", each [MesEmissao] - [DataInicioCliente]),
+		    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Personalização Adicionada1",{{"Dias", Int64.Type}})
+		in
+		    #"Tipo Alterado2"
+	lineageTag: 5ca6ecb5-fd01-414c-bac4-db9797278277
+	queryGroup: Fato
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Exception
+
+/// Grupo Empresa para filtro nas tabelas, conjunto de empresas definido no Accord Automação.
+expression IdGrupoEmpresa = "(209)" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: a5cf140a-3dd5-48b7-ae5d-1b2642173d04
+
+	annotation PBI_ResultType = Text
+
+	annotation PBI_NavigationStepName = Navigation
+
+/// EmpresaContabilId para definir de qual escritorio vai pertencer esse painel.
+/// Por ex: 1- Accord, 5- Arrais.
+expression EmpresaContabilId = "5" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 0e2462a1-a2d4-4e86-97c5-999d363138ba
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Text
+

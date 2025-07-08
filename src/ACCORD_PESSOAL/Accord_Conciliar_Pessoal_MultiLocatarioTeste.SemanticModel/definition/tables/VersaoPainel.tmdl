@@ -1,0 +1,24 @@
+table VersaoPainel
+	lineageTag: 1e5e4fad-4e39-4234-bd7a-74d74728fa1e
+
+	column Versao
+		dataType: string
+		lineageTag: 47ded6ce-bf17-4709-81c6-a68b06ddd119
+		summarizeBy: none
+		sourceColumn: Versao
+
+		annotation SummarizationSetBy = Automatic
+
+	partition VersaoPainel = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i45WMjDTMzDWMzIwMlWKjQUA", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Colunas Renomeadas" = Table.RenameColumns(Fonte,{{"Coluna 1", "Versao"}})
+				in
+				    #"Colunas Renomeadas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

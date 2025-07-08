@@ -1,0 +1,33 @@
+table SalárioSimulacao
+	lineageTag: 262683c8-7c0d-457a-b64b-5cb663d9afa5
+
+	measure Saláriosele = SELECTEDVALUE('SalárioSimulacao'[Salário],0)
+		formatString: 0
+		lineageTag: 2680020c-3757-460f-94cb-14e1e1e93f69
+
+	measure _Medidas_RegimeDivergente
+		lineageTag: 1eb69c36-5fc5-4e6d-8a15-cc58b7860fbb
+
+	measure 'Atualizado em' = now()
+		formatString: General Date
+		lineageTag: 45c32376-f52f-4774-8325-9e070fc0e9a9
+
+	column Salário
+		formatString: 0
+		lineageTag: 3e955abf-53af-41c9-8089-40aedef63c3b
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+	partition SalárioSimulacao-435e83a8-8bc1-447a-a75a-fb446cc0da30 = calculated
+		mode: import
+		source = GENERATESERIES(CURRENCY(0), CURRENCY(20000), CURRENCY(100))
+
+	annotation PBI_Id = 4c1c5cd8a9d64280bc1a967936375101
+

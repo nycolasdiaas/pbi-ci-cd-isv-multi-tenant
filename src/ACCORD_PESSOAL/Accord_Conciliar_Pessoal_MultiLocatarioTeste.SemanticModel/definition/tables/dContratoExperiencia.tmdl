@@ -1,0 +1,226 @@
+table dContratoExperiencia
+	lineageTag: 012fb9f3-387e-4177-bdfe-2602779a2379
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: bbf4b365-64c5-4d5d-991a-31a93f28b18c
+		summarizeBy: count
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column codi_empregado
+		dataType: string
+		lineageTag: 3b3f03fd-9a5e-4722-96d0-9c0dbc57c9b0
+		summarizeBy: none
+		sourceColumn: codi_empregado
+
+		annotation SummarizationSetBy = Automatic
+
+	column codi_emp
+		dataType: string
+		lineageTag: 63656f86-f28f-4438-b898-5ec980426cbe
+		summarizeBy: none
+		sourceColumn: codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Admissao
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: ca18d6be-da37-4c76-b0db-25f4a9d2174e
+		summarizeBy: none
+		sourceColumn: Admissao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Cargo
+		dataType: string
+		lineageTag: 87eec7c2-131e-4e33-940f-b34da7fcab56
+		summarizeBy: none
+		sourceColumn: Cargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column CPF
+		dataType: string
+		lineageTag: 2e9ee1b4-f367-40bb-b1b0-ce1831a1c56e
+		summarizeBy: none
+		sourceColumn: CPF
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inicio_Experiencia
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 7b1fe40b-2ccf-44cd-a547-7370b946a879
+		summarizeBy: none
+		sourceColumn: Inicio_Experiencia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Fim_Experiencia
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 796716ba-1cf5-4066-b539-d3123bb5221c
+		summarizeBy: none
+		sourceColumn: Fim_Experiencia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Prorrogacao_Experiencia
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: be2258b4-fb55-4917-be70-976e42806a3c
+		summarizeBy: none
+		sourceColumn: Prorrogacao_Experiencia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Dias_Experiencia
+		dataType: int64
+		formatString: 0
+		lineageTag: 99cdfed7-f75b-4042-8f52-5ebb4ef0b344
+		summarizeBy: sum
+		sourceColumn: Dias_Experiencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dias_Prorrogacao
+		dataType: int64
+		formatString: 0
+		lineageTag: 722dc3e4-2996-4294-b03b-b5d747f88775
+		summarizeBy: sum
+		sourceColumn: Dias_Prorrogacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column chaveempreg
+		dataType: string
+		lineageTag: f429ca60-f223-4f4e-be4b-ae1f199073b5
+		summarizeBy: none
+		sourceColumn: chaveempreg
+
+		annotation SummarizationSetBy = Automatic
+
+	column Experiencia = IF(dContratoExperiencia[Fim_Experiencia] > TODAY() || dContratoExperiencia[Prorrogacao_Experiencia] > TODAY(), "Experiencia", "")
+		lineageTag: 409468f4-eea7-424f-b15b-11617734bee5
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome do Mês'
+		dataType: string
+		lineageTag: 8282e310-e79e-4d99-ac19-5f8e4aa53cc8
+		summarizeBy: none
+		sourceColumn: Nome do Mês
+		sortByColumn: Mês
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: b4a535c8-22f3-4997-8288-5234d78fcbf1
+		summarizeBy: sum
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mês
+		dataType: int64
+		formatString: 0
+		lineageTag: 39993790-c97c-4afd-9563-842e1d2ca019
+		summarizeBy: sum
+		sourceColumn: Mês
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome
+		dataType: string
+		lineageTag: 96b1d886-4279-4d81-8807-a8011ef969bf
+		summarizeBy: none
+		sourceColumn: nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column Empresa_Cod
+		dataType: string
+		lineageTag: f55c489d-9e2e-431e-846e-4cda61e2c944
+		summarizeBy: none
+		sourceColumn: Empresa_Cod
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Estagiario ou Aprendiz' =
+			
+			IF (
+			    OR (
+			        OR (
+			            SEARCH ( "aprendiz", [Cargo],, BLANK () ),
+			            SEARCH ( "estagiario", [Cargo],, BLANK () )
+			        ),
+			        SEARCH ( "estagiário", [Cargo],, BLANK () )
+			    )
+			        = TRUE (),
+			    1,
+			    0
+			)
+		formatString: 0
+		lineageTag: 6236796d-5d6d-49a8-a232-fa7325c16a4f
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdGrupoEmpresa
+		dataType: int64
+		formatString: 0
+		lineageTag: eff9a883-e75e-4aae-98a2-a0b163e15940
+		summarizeBy: sum
+		sourceColumn: IdGrupoEmpresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmpresaContabilId
+		dataType: int64
+		formatString: 0
+		lineageTag: b0f8c052-f213-40fb-933b-7cbdba0cea66
+		summarizeBy: count
+		sourceColumn: EmpresaContabilId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dContratoExperiencia-94d87f62-7f51-4f05-9ce4-db856f3780a6 = m
+		mode: import
+		queryGroup: Dimensão
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, CommandTimeout=#duration(0, 1, 0, 0), CreateNavigationProperties=false, Query="SELECT #(lf)c.*, #(lf)e.IdGrupoEmpresa #(lf)FROM TbDPContratoExperiencia c#(lf)INNER JOIN TbEmpresa e #(lf) ON c.codi_emp=e.codi_emp#(lf) and c.EmpresaContabilId = e.EmpresaContabilId WHERE IdGrupoEmpresa IN " & IdGrupoEmpresa & " and e.EmpresaContabilId = "&EmpresaContabilId&""]),
+				    #"Coluna Mesclada Inserida" = Table.AddColumn(Fonte, "chaveempreg", each Text.Combine({[codi_emp], "-", [codi_empregado]}), type text),
+				    #"Nome do Mês Inserido" = Table.AddColumn(#"Coluna Mesclada Inserida", "Nome do Mês", each Date.MonthName([Inicio_Experiencia]), type text),
+				    #"Ano Inserido" = Table.AddColumn(#"Nome do Mês Inserido", "Ano", each Date.Year([Inicio_Experiencia]), Int64.Type),
+				    #"Mês Inserido" = Table.AddColumn(#"Ano Inserido", "Mês", each Date.Month([Inicio_Experiencia]), Int64.Type),
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(#"Mês Inserido",{{"Nome do Mês", Text.Proper, type text}}),
+				    #"Consultas Mescladas" = Table.NestedJoin(#"Colocar Cada Palavra Em Maiúscula", {"chaveempreg"}, dEmpregados, {"chaveempreg"}, "dEmpregados", JoinKind.LeftOuter),
+				    #"dEmpregados Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas", "dEmpregados", {"nome"}, {"nome"}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"dEmpregados Expandido", each ([nome] <> null)),
+				    #"Consultas Mescladas1" = Table.NestedJoin(#"Linhas Filtradas", {"codi_emp"}, dEmpresa, {"codi_emp"}, "dEmpresa", JoinKind.LeftOuter),
+				    #"dEmpresa Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas1", "dEmpresa", {"Empresa"}, {"Empresa_Cod"})
+				in
+				    #"dEmpresa Expandido"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

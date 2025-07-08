@@ -1,0 +1,175 @@
+table dAvisoPrevio
+	lineageTag: c87e77fa-a89e-4a59-a31b-c924ad9e7572
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: fb393c82-9ebf-4e5c-a508-4bfa5f87e640
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column codi_emp
+		dataType: string
+		lineageTag: 1605996f-f4e3-487e-932d-2f29651f39e1
+		summarizeBy: none
+		sourceColumn: codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column codi_empregado
+		dataType: string
+		lineageTag: 5a6028d5-f14c-4ac1-b350-f7675c5843c4
+		summarizeBy: none
+		sourceColumn: codi_empregado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nome
+		dataType: string
+		lineageTag: d646e21c-ec69-401f-bbcb-6fe3dadaf07d
+		summarizeBy: none
+		sourceColumn: Nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data do Aviso'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: f77e28f6-f80a-4e78-b177-64f6104f7a7c
+		summarizeBy: none
+		sourceColumn: Data do Aviso
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Data da Demissão'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: f50f659c-58bc-4296-b08e-bce5b5b705d4
+		summarizeBy: none
+		sourceColumn: Data da Demissão
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Concedido por'
+		dataType: string
+		lineageTag: da9bdfc7-dc07-414b-9259-16c658de4af3
+		summarizeBy: none
+		sourceColumn: Concedido por
+
+		annotation SummarizationSetBy = Automatic
+
+	column chaveempreg
+		dataType: string
+		lineageTag: abc20411-6e8f-4eb5-b347-ebbc423a031e
+		summarizeBy: none
+		sourceColumn: chaveempreg
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fim do Aviso' = DATEDIFF(TODAY(), dAvisoPrevio[Data da Demissão], DAY)
+		formatString: 0
+		lineageTag: 7d47943d-558f-4113-8ea1-3bf8a6ca9071
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Condição Aviso' = IF(AND(dAvisoPrevio[Fim do Aviso] >= -10, dAvisoPrevio[Fim do Aviso] < 5), "< 5 dias", IF(AND(dAvisoPrevio[Fim do Aviso] >= 5, dAvisoPrevio[Fim do Aviso] < 15), "< 15 dias", IF(dAvisoPrevio[Fim do Aviso] >= 15, "> 15 dias", "Não Conciderar")))
+		lineageTag: f0e2f8f5-23ec-4b67-aeb7-dd030010dbeb
+		summarizeBy: none
+		sortByColumn: indice
+
+		annotation SummarizationSetBy = Automatic
+
+	column indice = IF(AND(dAvisoPrevio[Fim do Aviso] >= -10, dAvisoPrevio[Fim do Aviso] < 5), 1, IF(AND(dAvisoPrevio[Fim do Aviso] >= 5, dAvisoPrevio[Fim do Aviso] < 15), 2, IF(dAvisoPrevio[Fim do Aviso] >= 15, 3, 4)))
+		formatString: 0
+		lineageTag: 13c7c2ce-0662-4d40-bd17-bc358c4fe272
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome do Mês'
+		dataType: string
+		lineageTag: 6f60df8b-d4a9-4fe2-89cc-d1feed7485b3
+		summarizeBy: none
+		sourceColumn: Nome do Mês
+		sortByColumn: Mês
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 06299cad-a73c-4675-9a22-e4c68b4fa2ae
+		summarizeBy: sum
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mês
+		dataType: int64
+		formatString: 0
+		lineageTag: 7458b124-f881-455f-a7ab-8374b9c2274c
+		summarizeBy: sum
+		sourceColumn: Mês
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Limite de Pagamento' = dAvisoPrevio[Data da Demissão] + 10
+		formatString: Short Date
+		lineageTag: 87fb5600-a565-4c08-b4d2-d9461fa6e1b2
+		summarizeBy: none
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdGrupoEmpresa
+		dataType: int64
+		formatString: 0
+		lineageTag: 945404c1-56bb-4524-8082-342cf9a619f1
+		summarizeBy: sum
+		sourceColumn: IdGrupoEmpresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmpresaContabilId
+		dataType: int64
+		formatString: 0
+		lineageTag: 8210550b-d29a-47f4-ae7c-cf099b41dd3c
+		summarizeBy: count
+		sourceColumn: EmpresaContabilId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dAvisoPrevio-202cb7b8-d8ea-42ef-bcbc-dfe8b16ab627 = m
+		mode: import
+		queryGroup: Dimensão
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, Query="SELECT #(lf)a.*, #(lf)e.IdGrupoEmpresa #(lf)FROM DwAccordFiscal.TbDPAvisoPrevio a#(lf)INNER JOIN DwAccordFiscal.TbEmpresa e#(lf) ON a.codi_emp=e.codi_emp and a.EmpresaContabilId = e.EmpresaContabilId #(lf)WHERE IdGrupoEmpresa IN" & IdGrupoEmpresa & " and e.EmpresaContabilId = "&EmpresaContabilId&";#(lf)"]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"DataAviso", type date}, {"DataDemissao", type date}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Tipo Alterado",{{"DataAviso", "Data do Aviso"}, {"DataDemissao", "Data da Demissão"}, {"Concessor", "Concedido por"}}),
+				    #"Coluna Mesclada Inserida" = Table.AddColumn(#"Colunas Renomeadas", "chaveempreg", each Text.Combine({[codi_emp], "-", [codi_empregado]}), type text),
+				    #"Nome do Mês Inserido" = Table.AddColumn(#"Coluna Mesclada Inserida", "Nome do Mês", each Date.MonthName([Data do Aviso]), type text),
+				    #"Ano Inserido" = Table.AddColumn(#"Nome do Mês Inserido", "Ano", each Date.Year([Data do Aviso]), Int64.Type),
+				    #"Mês Inserido" = Table.AddColumn(#"Ano Inserido", "Mês", each Date.Month([Data do Aviso]), Int64.Type),
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(#"Mês Inserido",{{"Nome do Mês", Text.Proper, type text}})
+				in
+				    #"Colocar Cada Palavra Em Maiúscula"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

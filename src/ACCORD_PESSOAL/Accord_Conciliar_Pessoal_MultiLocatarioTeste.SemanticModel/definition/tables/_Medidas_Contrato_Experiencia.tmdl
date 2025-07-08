@@ -1,0 +1,65 @@
+table _Medidas_Contrato_Experiencia
+	lineageTag: e22629eb-671d-4c00-87e7-910134b575a1
+
+	measure 'Qtde de Func em Exp Menor 90 dias' =
+			
+			IF (
+			    CALCULATE (
+			        COUNT ( dContratoExperiencia[chaveempreg] ),
+			        dContratoExperiencia[Experiencia] = "Experiencia",
+			        dContratoExperiencia[Dias_Experiencia] <= 90
+			    )
+			        = BLANK (),
+			    0,
+			    CALCULATE (
+			        COUNT ( dContratoExperiencia[chaveempreg] ),
+			        dContratoExperiencia[Experiencia] = "Experiencia",
+			        dContratoExperiencia[Dias_Experiencia] <= 90
+			    )
+			)
+		formatString: 0
+		lineageTag: 10bcefbc-9d6d-404f-8378-1be6db1c8908
+
+	measure 'Qtde de Func em Exp Maior 90 dias' = ```
+			
+			IF (
+			    CALCULATE (
+			        COUNT ( dContratoExperiencia[chaveempreg] ),
+			        dContratoExperiencia[Experiencia] = "Experiencia",
+			        dContratoExperiencia[Dias_Experiencia] > 90
+			    )
+			        = BLANK (),
+			    0,
+			    CALCULATE (
+			        COUNT ( dContratoExperiencia[chaveempreg] ),
+			        dContratoExperiencia[Experiencia] = "Experiencia",
+			        dContratoExperiencia[Dias_Experiencia] > 90
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 9ee9fa54-e3dd-49bf-871e-afe4d5d2168a
+
+	column 'Coluna 1'
+		dataType: string
+		isHidden
+		lineageTag: b98feb15-f60d-42c1-87d4-5e30acfa8b40
+		summarizeBy: none
+		sourceColumn: Coluna 1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Medidas_Contrato_Experiencia-743e2b2e-0cdc-4432-b955-c8ec7712141f = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+

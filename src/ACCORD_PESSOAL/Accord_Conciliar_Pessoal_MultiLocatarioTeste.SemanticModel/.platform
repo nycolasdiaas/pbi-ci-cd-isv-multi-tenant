@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Accord_Conciliar_Pessoal_MultiLocatarioTeste"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "39058130-4610-4009-99dd-c0ee641c44ed"
+  }
+}

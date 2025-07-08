@@ -2,31 +2,31 @@
     "dev": {
         "spnSecret": "DEV",
         "capacity": "none",
-        "workspace": "AdventureWorks_DEV",
+        "workspace": "ACCORDBI_DEV",
         "adminUPNs": "3bf22cb2-ee1c-41c3-bfbb-34bfb64fe529",
-        "semanticModelsParameters": {
-            "SqlServerInstance": "BOOK-PROIJR07F2",
-            "SqlServerDatabase": "AdventureWorksDW-DEV"
-        }
+        "semanticModelsParameters": [
+            { "name": "MySqlServerAddress", "value": "dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com" },
+            { "name": "MySqlDatabase", "value": "DwAccordFiscal" }
+        ]
     },
     "staging": {
         "spnSecret": "STG",
         "capacity": "none",
-        "workspace": "AdventureWorks_STG",
+        "workspace": "ACCORDBI_STG",
         "adminUPNs": "3bf22cb2-ee1c-41c3-bfbb-34bfb64fe529",
-        "semanticModelsParameters": {
-            "SqlServerInstance": "BOOK-PROIJR07F2",
-            "SqlServerDatabase": "AdventureWorksDW-PRD"
-        }
+        "semanticModelsParameters": [
+            { "name": "MySqlServerAddress", "value": "dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com" },
+            { "name": "MySqlDatabase", "value": "DwAccordFiscal" }
+        ]
     },
     "main": {
         "spnSecret": "PRD",
         "capacity": "none",
-        "workspace": "AdventureWorks_PRD",
+        "workspace": "ACCORDBI_PRD",
         "adminUPNs": "3bf22cb2-ee1c-41c3-bfbb-34bfb64fe529",
-        "semanticModelsParameters": {
-            "SqlServerInstance": "BOOK-PROIJR07F2",
-            "SqlServerDatabase": "AdventureWorksDW-PRD"
-        }
+        "semanticModelsParameters": [
+            { "name": "MySqlServerAddress", "value": "dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com" },
+            { "name": "MySqlDatabase", "value": "DwAccordFiscal" }
+        ]
     }
 }

@@ -1,0 +1,134 @@
+table fEncargosEmpresa
+	lineageTag: 53b62fed-0dc0-4adc-a856-fe1f9dc20a97
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 62b33dc0-c15c-481b-a560-6f58ebcc5356
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column codi_emp
+		dataType: string
+		lineageTag: baa50c04-836b-4bc0-8fa8-db11c482e5f4
+		summarizeBy: none
+		sourceColumn: codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column competencia
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: adab1380-35c8-472e-b989-9a6309deaf16
+		summarizeBy: none
+		sourceColumn: competencia
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column valor
+		dataType: double
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 58194c72-b321-4653-89a7-bf1cd72eec2c
+		summarizeBy: sum
+		sourceColumn: valor
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	column imposto
+		dataType: string
+		lineageTag: 2a942a04-d9e9-445e-b38a-3be044a99926
+		summarizeBy: none
+		sourceColumn: imposto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: bc4bccf1-3227-4dce-96aa-54d5d76c9203
+		summarizeBy: sum
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome do Mês'
+		dataType: string
+		lineageTag: c63875d6-e788-48ee-9a9f-d9c6e261a095
+		summarizeBy: none
+		sourceColumn: Nome do Mês
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mês
+		dataType: int64
+		formatString: 0
+		lineageTag: d01765d9-967a-4452-ba52-1930353458b6
+		summarizeBy: sum
+		sourceColumn: Mês
+
+		annotation SummarizationSetBy = Automatic
+
+	column CNPJ
+		dataType: string
+		lineageTag: 896f73ae-3157-4f47-a12c-b0431c111aa7
+		summarizeBy: none
+		sourceColumn: CNPJ
+
+		annotation SummarizationSetBy = Automatic
+
+	column Empresa_Cod
+		dataType: string
+		lineageTag: b91c13a7-2979-4e7b-a981-0d95ed164e66
+		summarizeBy: none
+		sourceColumn: Empresa_Cod
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdGrupoEmpresa
+		dataType: int64
+		formatString: 0
+		lineageTag: 808e3acd-5422-4ce7-a93d-40232b961437
+		summarizeBy: sum
+		sourceColumn: IdGrupoEmpresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmpresaContabilId
+		dataType: int64
+		formatString: 0
+		lineageTag: 2a753209-cfb5-4ef8-99b2-55884ec13d23
+		summarizeBy: count
+		sourceColumn: EmpresaContabilId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fEncargosEmpresa-83f8090a-1d26-4c1b-911a-2537eaf34f61 = m
+		mode: import
+		queryGroup: Fato
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, Query="SELECT c.*, e.IdGrupoEmpresa FROM DwAccordFiscal.TbDPEncargosEmpresa c INNER JOIN DwAccordFiscal.TbEmpresa e ON c.codi_emp=e.codi_emp and e.EmpresaContabilId = c.EmpresaContabilId WHERE e.EmpresaContabilId = "&EmpresaContabilId&" and e.IdGrupoEmpresa IN " & IdGrupoEmpresa & ""]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"competencia", type date}}),
+				    #"Ano Inserido" = Table.AddColumn(#"Tipo Alterado", "Ano", each Date.Year([competencia]), Int64.Type),
+				    #"Nome do Mês Inserido" = Table.AddColumn(#"Ano Inserido", "Nome do Mês", each Date.MonthName([competencia]), type text),
+				    #"Mês Inserido" = Table.AddColumn(#"Nome do Mês Inserido", "Mês", each Date.Month([competencia]), Int64.Type),
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(#"Mês Inserido",{{"Nome do Mês", Text.Proper, type text}}),
+				    #"Consultas Mescladas" = Table.NestedJoin(#"Colocar Cada Palavra Em Maiúscula", {"codi_emp"}, dEmpresa, {"codi_emp"}, "dEmpresa", JoinKind.LeftOuter),
+				    #"dEmpresa Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas", "dEmpresa", {"CNPJ", "Empresa_Cod"}, {"CNPJ", "Empresa_Cod"})
+				in
+				    #"dEmpresa Expandido"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

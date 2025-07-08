@@ -1,0 +1,25 @@
+table 'Ultima Atualização'
+	lineageTag: 8f29e6ab-5aa3-4ea2-9ee0-7371800940df
+
+	column 'Ultima Atualização'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2588dc9d-a87c-4c0a-9ff5-b0b6ffe78548
+		summarizeBy: none
+		sourceColumn: Ultima Atualização
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Ultima Atualização-6f53ef41-f135-4a66-8a56-4f87546dbfd5' = m
+		mode: import
+		source =
+				let
+				    Fonte = DateTime.LocalNow() - #duration(0,3,0,0),
+				    #"Convertido para Tabela" = #table(1, {{Fonte}}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Convertido para Tabela",{{"Column1", "Ultima Atualização"}}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Ultima Atualização", type datetime}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+

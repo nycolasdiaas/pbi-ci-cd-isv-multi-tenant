@@ -1,0 +1,55 @@
+table 'UltimaAquisicao - cópia'
+	lineageTag: 8941350b-6e89-429e-8db2-05ce69b988b9
+
+	column Codi_emp
+		dataType: string
+		lineageTag: a6636d00-2bc9-4f28-9367-1fa299dd337f
+		summarizeBy: none
+		sourceColumn: Codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Codi_empregado
+		dataType: string
+		lineageTag: 2fc0bb2d-5ba8-458f-a0f4-3e620015397c
+		summarizeBy: none
+		sourceColumn: Codi_empregado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inicio_aquis
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 31055439-65dc-4c2d-a703-ea97fdec999f
+		summarizeBy: none
+		sourceColumn: Inicio_aquis
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Fim_aquis
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 533ec428-35d9-44cd-8c6f-7411827decb1
+		summarizeBy: none
+		sourceColumn: Fim_aquis
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'UltimaAquisicao - cópia' = m
+		mode: import
+		queryGroup: Fato
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [Query="select t2.codi_emp as Codi_emp, t2.i_empregados as Codi_empregado, t2.data_inicio as Inicio_aquis, t2.data_fim as Fim_aquis#(lf)from DwAccordFiscal.TbDPFeriasAquisitivo t2#(lf)INNER JOIN TbEmpresa te ON te.codi_emp = t2.codi_emp AND te.EmpresaContabilId = t2.EmpresaContabilId#(lf)WHERE te.EmpresaContabilId = "&EmpresaContabilId&"", ReturnSingleDatabase=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Inicio_aquis", type date}, {"Fim_aquis", type date}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

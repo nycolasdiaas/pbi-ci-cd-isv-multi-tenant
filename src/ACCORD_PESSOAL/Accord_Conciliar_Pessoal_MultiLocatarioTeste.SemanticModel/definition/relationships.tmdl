@@ -1,0 +1,176 @@
+relationship 388f41d8-be99-492a-ac56-829f1314e953
+	crossFilteringBehavior: bothDirections
+	fromColumn: dEmpregados.codi_emp
+	toColumn: dEmpresa.codi_emp
+
+relationship f47660c6-831f-4cf5-b645-0345390bc62a
+	crossFilteringBehavior: bothDirections
+	fromColumn: dAvisoPrevio.chaveempreg
+	toColumn: dEmpregados.chaveempreg
+
+relationship cf5e1415-f1dd-4164-923a-f59c9af0d529
+	fromColumn: dAfastamento.chaveempreg
+	toColumn: dEmpregados.chaveempreg
+
+relationship 5c3168af-7fb7-453c-b1dd-d68fe6fbcd5e
+	crossFilteringBehavior: bothDirections
+	fromColumn: dDependentesSalarioFamilia.chaveempreg
+	toColumn: dEmpregados.chaveempreg
+
+relationship ad50a5f2-1b56-4059-ab46-f7e23f3929b4
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: dContratoExperiencia.chaveempreg
+	toColumn: dEmpregados.chaveempreg
+
+relationship 90579b1d-f00f-43c4-9139-a84c94fcc8e1
+	crossFilteringBehavior: bothDirections
+	fromCardinality: one
+	fromColumn: dEmpresa.codi_emp
+	toColumn: dEquipesExecucao.codi_emp
+
+relationship e3312b35-469f-4b65-98b8-91ce4296fc7d
+	fromColumn: dEmpregados.chvcargos
+	toColumn: dCargos.chvcargo
+
+relationship 39b21ba6-d9f4-40a7-ac46-fbbb566d6819
+	fromColumn: dEmpregados.chvdepto
+	toColumn: dDepartamentos.chvdepartamento
+
+relationship a55c16c2-43c7-4510-9bfd-3c747c59d43b
+	crossFilteringBehavior: bothDirections
+	fromColumn: fFolha.chvevento
+	toColumn: dEventos.chvevento
+
+relationship 8ce76286-8ec5-45ec-ac29-3b78e0c1e70e
+	fromColumn: fFerias.chaveempreg
+	toColumn: dEmpregados.chaveempreg
+
+relationship dd023502-cd2d-43d0-b610-ef2020384f3b
+	fromColumn: fSalarioFamilia.chaveempreg
+	toColumn: dEmpregados.chaveempreg
+
+relationship 7f2f4d3e-5e46-4c8f-a7f0-58a355b3fa41
+	fromColumn: fFolha.Competencia
+	toColumn: dCalendario.Data
+
+relationship 726efff6-bb3b-4f5d-a0c4-c7825f6a66c7
+	fromColumn: fFolha.chvfunc
+	toColumn: dEmpregados.chaveempreg
+
+relationship f4b8eba3-f4fc-499d-a02b-3e7fbe8a98f2
+	fromColumn: fEncargosEmpresa.competencia
+	toColumn: dCalendario.Data
+
+relationship 21a3813c-2042-4436-b588-868c9f31407e
+	fromColumn: fASO.codi_emp
+	toColumn: dEmpresa.codi_emp
+
+relationship 9c09ce2d-7b3d-44c8-89d8-640c15d87c38
+	fromColumn: fFerias.Inicio_aquis
+	toColumn: dCalendario.Data
+
+relationship 3b2d5505-1ea5-4269-8361-dc837d5649a4
+	fromColumn: dDependentesSalarioFamilia.'Data de Nascimento'
+	toColumn: dCalendario.Data
+
+relationship 90224372-6236-43e2-a66e-afc7c0b5e22e
+	fromColumn: fSalarioFamilia.data
+	toColumn: dCalendario.Data
+
+relationship 6047cbd4-4fa5-43d1-b02c-f057f147ea63
+	fromColumn: fASO.DataDemissao
+	toColumn: dCalendario.Data
+
+relationship b34cccf7-980e-4f8f-82c1-b6fbe3c0c584
+	isActive: false
+	fromColumn: fASO.DataAdmissao
+	toColumn: dCalendario.Data
+
+relationship 7bd1f8d7-9ab0-4005-8a14-c1890430f366
+	fromColumn: TbDpAlteracaoSalarial.chaveempreg
+	toColumn: dEmpregados.chaveempreg
+
+relationship f9951bca-0d43-4fd9-bc3a-115d389d4879
+	fromColumn: TbDpRescisao.chavempreg
+	toColumn: dEmpregados.chaveempreg
+
+relationship a3e5d026-7ab4-4d98-9c9b-0d8eaf85f7e5
+	fromColumn: TbDPAlteracaoCargo.chaveempreg
+	toColumn: dEmpregados.chaveempreg
+
+relationship a9f287f0-4f04-4d2d-b41a-646ae96f77c1
+	fromColumn: TbDPAlteracaoCargo.data_troca
+	toColumn: dCalendario.Data
+
+relationship e370fdc6-f400-4a7f-b48a-55fa703be65d
+	fromColumn: TbDpAlteracaoSalarial.competencia
+	toColumn: dCalendario.Data
+
+relationship 0ac1f0e9-f706-4c81-9f44-e47cb19f1a40
+	fromColumn: dAfastamento.DataReal
+	toColumn: dCalendario.Data
+
+relationship ee0151da-5e78-4dad-9db4-9ab809062ed7
+	isActive: false
+	fromColumn: dEmpregados.Data_Limit
+	toColumn: dCalendario.Data
+
+relationship 71d76130-c2f0-4d4b-af15-45e6e83d33f0
+	isActive: false
+	fromColumn: dAvisoPrevio.codi_emp
+	toColumn: dEmpresa.codi_emp
+
+relationship 638310cf-67f8-4d6d-8c7b-798dc585eb6e
+	isActive: false
+	fromColumn: dContratoExperiencia.codi_emp
+	toColumn: dEmpresa.codi_emp
+
+relationship 39b02388-6bf2-4a32-854c-b4eaadfbc904
+	isActive: false
+	fromColumn: dAfastamento.codi_emp
+	toColumn: dEmpresa.codi_emp
+
+relationship d12bb0c7-3ec2-439b-87e6-933c8079d287
+	isActive: false
+	fromColumn: dDependentesSalarioFamilia.codi_emp
+	toColumn: dEmpresa.codi_emp
+
+relationship 1c70f946-a8b5-4b53-99fb-91c27116123a
+	isActive: false
+	fromColumn: fSalarioFamilia.codi_emp
+	toColumn: dEmpresa.codi_emp
+
+relationship 009047e0-0050-4ff3-a9ba-f974f2df5752
+	isActive: false
+	fromColumn: fFolha.codi_emp
+	toColumn: dEmpresa.codi_emp
+
+relationship 4875e380-29cd-4db9-9f9c-1570aac205c8
+	isActive: false
+	fromColumn: dCargos.codi_emp
+	toColumn: dEmpresa.codi_emp
+
+relationship 4ef668e7-361b-47de-84c7-c0a439cadd68
+	isActive: false
+	fromColumn: dDepartamentos.codi_emp
+	toColumn: dEmpresa.codi_emp
+
+relationship ce286773-957a-445a-8eae-c4d9ab1e3f99
+	isActive: false
+	fromColumn: dEventos.codi_emp
+	toColumn: dEmpresa.codi_emp
+
+relationship bc53c1e6-2c9f-412a-82c1-06c21e0ee4c6
+	fromColumn: fEncargosEmpresa.codi_emp
+	toColumn: dEmpresa.codi_emp
+
+relationship eec8b015-3a51-45f7-b54d-e6e01f198600
+	fromColumn: 'dEmpregados - dEmpresa'.codi_emp
+	toColumn: dEmpresa.codi_emp
+
+relationship 9dcceac6-449b-48a0-8f16-0467484dd5e6
+	isActive: false
+	fromColumn: fSalarioFamilia.id
+	toColumn: fFolha.id
+

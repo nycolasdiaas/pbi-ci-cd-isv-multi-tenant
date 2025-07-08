@@ -1,0 +1,41 @@
+table _Medidas_Aviso_Previo
+	lineageTag: a3b25008-3980-4ac2-b6b0-98518c11fe44
+
+	measure 'Fim do Aviso' = DATEDIFF(TODAY(), MAX(dAvisoPrevio[Data da Demissão]), DAY)
+		formatString: 0
+		lineageTag: dbcee8da-875e-4e96-933f-f5074f1d7d5c
+
+		annotation PBI_FormatHint = {"isDecimal":true}
+
+	measure 'Quantidade de Funcionario em Aviso Previo' =
+			
+			IF (
+			    COUNT ( dAvisoPrevio[Data do Aviso] ) = BLANK (),
+			    0,
+			    COUNT ( dAvisoPrevio[Data do Aviso] )
+			)
+		formatString: 0
+		lineageTag: 473cfda0-4525-48af-b5b3-51eebb2d9785
+
+	column 'Coluna 1'
+		dataType: string
+		isHidden
+		lineageTag: 7ccfc004-ef41-4f79-a783-108852800a17
+		summarizeBy: none
+		sourceColumn: Coluna 1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Medidas_Aviso_Previo-53880ba8-42ef-403a-b195-1a1ed19add27 = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+

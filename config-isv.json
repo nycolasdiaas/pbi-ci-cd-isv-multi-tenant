@@ -2,31 +2,57 @@
     "TENANT_A": {
         "spnSecret": "ISV_TENANT_A",
         "capacity": "none",
-        "workspace": "AdventureWorks_NorthAmerica",
+        "workspace": "\"ACCORD CONTABILIDADE\"",
+        "semanticModelPath": "src/ACCORD_PESSOAL/Accord_Conciliar_Pessoal_MultiLocatarioTeste.SemanticModel",
+        "reportPaths": [
+            "src/ACCORD_PESSOAL/Accord_Conciliar_Pessoal_MultiLocatarioTeste.Report"
+        ],
         "adminUPNs": "3bf22cb2-ee1c-41c3-bfbb-34bfb64fe529",
-        "semanticModelsParameters": {
-            "SqlServerInstance": "BOOK-PROIJR07F2",
-            "SqlServerDatabase": "AdventureWorksDW-NorthAmerica"
-        }
+        "semanticModelsParameters": [
+            { "name": "MySqlServerAddress", "value": "dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com" },
+            { "name": "MySqlDatabase", "value": "DwAccordFiscal" }
+        ]
     },
-    "TENANT_B": {
-        "spnSecret": "ISV_TENANT_B",
+    "ARRAIS_TENANT": {
+        "spnSecret": "ISV_ARRAIS_TENANT",
         "capacity": "none",
-        "workspace": "AdventureWorks_Europe",
+        "workspace": "\"ARRAIS E COSTA\"",
+        "semanticModelPath": "src/ACCORD_PESSOAL/Accord_Conciliar_Pessoal_MultiLocatarioTeste.SemanticModel",
+        "reportPaths": [
+            "src/ACCORD_PESSOAL/Accord_Conciliar_Pessoal_MultiLocatarioTeste.Report"
+        ],
         "adminUPNs": "3bf22cb2-ee1c-41c3-bfbb-34bfb64fe529",
-        "semanticModelsParameters": {
-            "SqlServerInstance": "BOOK-PROIJR07F2",
-            "SqlServerDatabase": "AdventureWorksDW-Europe"
-        }
+        "semanticModelsParameters": [
+            { "name": "MySqlServerAddress", "value": "dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com" },
+            { "name": "MySqlDatabase", "value": "DwAccordFiscal" }
+        ]
     },
-    "TENANT_C": {
-        "spnSecret": "ISV_TENANT_C",
+    "MARPE_TENANT": {
+        "spnSecret": "ISV_MARPE_TENANT",
         "capacity": "none",
-        "workspace": "AdventureWorks_Oceania",
+        "workspace": "MARPE",
+        "semanticModelPath": "src/ACCORD_PESSOAL/Accord_Conciliar_Pessoal_MultiLocatarioTeste.SemanticModel",
+        "reportPaths": [
+            "src/ACCORD_PESSOAL/Accord_Conciliar_Pessoal_MultiLocatarioTeste.Report"
+        ],
         "adminUPNs": "3bf22cb2-ee1c-41c3-bfbb-34bfb64fe529",
-        "semanticModelsParameters": {
-            "SqlServerInstance": "BOOK-PROIJR07F2",
-            "SqlServerDatabase": "AdventureWorksDW-Pacific"
-        }
+        "semanticModelsParameters": [
+            { "name": "MySqlServerAddress", "value": "dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com" },
+            { "name": "MySqlDatabase", "value": "DwAccordFiscal" }
+        ]
+    },
+    "DEBITT_TENANT": {
+        "spnSecret": "ISV_DEBITT_TENANT",
+        "capacity": "none",
+        "workspace": "DEBITT",
+        "semanticModelPath": "src/ACCORD_PESSOAL/Accord_Conciliar_Pessoal_MultiLocatarioTeste.SemanticModel",
+        "reportPaths": [
+            "src/ACCORD_PESSOAL/Accord_Conciliar_Pessoal_MultiLocatarioTeste.Report"
+        ],
+        "adminUPNs": "3bf22cb2-ee1c-41c3-bfbb-34bfb64fe529",
+        "semanticModelsParameters": [
+            { "name": "MySqlServerAddress", "value": "dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com" },
+            { "name": "MySqlDatabase", "value": "DwAccordFiscal" }
+        ]
     }
 }

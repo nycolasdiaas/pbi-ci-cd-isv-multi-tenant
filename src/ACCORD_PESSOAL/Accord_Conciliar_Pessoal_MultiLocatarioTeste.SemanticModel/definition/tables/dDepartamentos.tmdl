@@ -1,0 +1,109 @@
+table dDepartamentos
+	lineageTag: cd34f928-7e38-4b19-b167-6e5c53a4323f
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 6dd11700-78da-4449-99df-4d3b26359266
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column codi_emp
+		dataType: string
+		lineageTag: d5bbc81a-9a30-401f-a869-bfbbf2fcdd85
+		summarizeBy: none
+		sourceColumn: codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column i_depto
+		dataType: string
+		lineageTag: 64c66037-9f9c-4338-a586-2131d0439bc1
+		summarizeBy: none
+		sourceColumn: i_depto
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome
+		dataType: string
+		lineageTag: 02ea1735-a0ff-461c-9a2b-8b2f13dd546b
+		summarizeBy: none
+		sourceColumn: nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATA_INICIO
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 70297f41-23c4-4ad4-8c41-9fc2662f4e59
+		summarizeBy: none
+		sourceColumn: DATA_INICIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column SITUACAO
+		dataType: string
+		lineageTag: 87983751-b80f-467b-a354-b787ee679bd3
+		summarizeBy: none
+		sourceColumn: SITUACAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATA_INATIVACAO
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e4b0eea6-266d-4cea-8c18-4fc183706843
+		summarizeBy: none
+		sourceColumn: DATA_INATIVACAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column chvdepartamento
+		dataType: string
+		lineageTag: e7d05da6-903b-441c-b2a0-7696eaa3c55d
+		summarizeBy: none
+		sourceColumn: chvdepartamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdGrupoEmpresa
+		dataType: int64
+		formatString: 0
+		lineageTag: 4fc9216c-1704-45c1-8299-435566d849df
+		summarizeBy: none
+		sourceColumn: IdGrupoEmpresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmpresaContabilId
+		dataType: int64
+		formatString: 0
+		lineageTag: 4943e2f7-0bc9-4e7d-ab88-9c9b145d73ca
+		summarizeBy: none
+		sourceColumn: EmpresaContabilId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dDepartamentos-e9881c66-08f6-4e14-b764-a730d0c6e5c7 = m
+		mode: import
+		queryGroup: Dimensão
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, CommandTimeout=#duration(0, 1, 0, 0), CreateNavigationProperties=false, Query="SELECT d.*, e.IdGrupoEmpresa FROM DwAccordFiscal.TbDPdepartamentos d INNER JOIN DwAccordFiscal.TbEmpresa e ON d.codi_emp=e.codi_emp and d.EmpresaContabilId = e.EmpresaContabilId WHERE e.IdGrupoEmpresa IN " & IdGrupoEmpresa & " and e.EmpresaContabilId = "&EmpresaContabilId&""]),
+				    #"Coluna Mesclada Inserida" = Table.AddColumn(Fonte, "chvdepartamento", each Text.Combine({[codi_emp], [i_depto]}, "-"), type text),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Coluna Mesclada Inserida",{{"DATA_INICIO", type datetime}, {"DATA_INATIVACAO", type datetime}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado", each ([SITUACAO] = "1")),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Linhas Filtradas","Ç","C",Replacer.ReplaceText,{"nome"}),
+				    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído","Ã","A",Replacer.ReplaceText,{"nome"}),
+				    #"Valor Substituído2" = Table.ReplaceValue(#"Valor Substituído1","Ó","O",Replacer.ReplaceText,{"nome"}),
+				    #"Valor Substituído3" = Table.ReplaceValue(#"Valor Substituído2","Í","I",Replacer.ReplaceText,{"nome"}),
+				    #"Linhas Filtradas1" = Table.SelectRows(#"Valor Substituído3", each true)
+				in
+				    #"Linhas Filtradas1"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

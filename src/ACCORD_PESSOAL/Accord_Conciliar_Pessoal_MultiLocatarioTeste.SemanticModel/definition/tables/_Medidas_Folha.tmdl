@@ -1,0 +1,67 @@
+table _Medidas_Folha
+	lineageTag: f9911b30-dadb-4981-a80d-7672485afcb8
+
+	measure foproventos =
+			
+			CALCULATE(SUM(fFolha[valor_cal]), dEventos[COMPOE_LIQUIDO] = "1", fFolha[prov_desc] = "P")
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 1d54c6eb-88ca-4946-953a-928344cee37e
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure foliquido = [foproventos] - [fodescontos]
+		formatString: "R$"\ #,0.00;-"R$"\ #,0.00;"R$"\ #,0.00
+		lineageTag: 04a4e012-0ab7-4199-9533-4af6d9072fef
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure fodescontos =
+			
+			CALCULATE(SUM(fFolha[valor_cal]), dEventos[COMPOE_LIQUIDO] = "1" , fFolha[prov_desc] = "D")
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 709febab-87c7-433e-babb-c0010a455716
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure FoliquidoMesAnterior =
+			
+			CALCULATE([foliquido], DATEADD(dCalendario[Data], -1, MONTH))
+		formatString: "R$"\ #,0.###############;-"R$"\ #,0.###############;"R$"\ #,0.###############
+		lineageTag: 29346041-2497-43b6-845d-3bb7665d3230
+
+		annotation PBI_FormatHint = {"currencyCulture":"pt-BR"}
+
+	measure '% AH' =
+			
+			IF([foliquido] = 0 || [FoliquidoMesAnterior] = 0 || ([foliquido] - [FoliquidoMesAnterior]) / [FoliquidoMesAnterior] = 0, BLANK(), ([foliquido] - [FoliquidoMesAnterior]) / [FoliquidoMesAnterior])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 2dfa363f-d485-459b-af38-692b9c8b1f66
+
+		changedProperty = FormatString
+
+	column 'Coluna 1'
+		dataType: string
+		isHidden
+		lineageTag: 98db9373-0d48-4642-a1dc-9e84f60a4e85
+		summarizeBy: none
+		sourceColumn: Coluna 1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Medidas_Folha-56252043-0ab6-4510-b5d8-fc8ca6990d62 = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,136 @@
+table dCalendario
+	lineageTag: bb02c3a1-a5dd-448a-9e77-0a833e5ca192
+
+	column Data
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 7aefcce3-b08d-4bf7-ba53-5dac95d33a15
+		summarizeBy: none
+		sourceColumn: Data
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Mês
+		dataType: int64
+		formatString: 0
+		lineageTag: 7d173d70-c562-4747-ac6b-e256fc607b8b
+		summarizeBy: sum
+		sourceColumn: Mês
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome do Mês'
+		dataType: string
+		lineageTag: a6fc9d86-816a-40a6-92f9-b63c4968ccfc
+		summarizeBy: none
+		sourceColumn: Nome do Mês
+		sortByColumn: Mês
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Semana do Mês'
+		dataType: int64
+		formatString: 0
+		lineageTag: 74f23bde-da86-4f6a-9731-9bb8960cf731
+		summarizeBy: sum
+		sourceColumn: Semana do Mês
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome do Dia'
+		dataType: string
+		lineageTag: 35e9126d-a03b-4dae-9e94-433c51bed888
+		summarizeBy: none
+		sourceColumn: Nome do Dia
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 22fe7df0-baa5-4661-b413-10ba09de9cea
+		summarizeBy: sum
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column Trimestre
+		dataType: int64
+		formatString: 0
+		lineageTag: 075e1fab-06d5-4e12-aecb-63a07794892c
+		summarizeBy: sum
+		sourceColumn: Trimestre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tri/Ano
+		dataType: string
+		lineageTag: 6383296f-aa50-43c4-ba5f-ebeba35bd2c1
+		summarizeBy: none
+		sourceColumn: Tri/Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column MesAno
+		dataType: string
+		lineageTag: 7ecee8a7-1aac-4941-bfb4-7996d079f713
+		summarizeBy: none
+		sourceColumn: MesAno
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dCalendario-86b06624-2e93-4eae-8f6d-49bd4f2b82d7 = m
+		mode: import
+		queryGroup: Dimensão
+		source = ```
+				let
+				    /*Parametro RangeStat*/
+				    rngDateInicio = Date.FromText(RangeStart),
+				    
+				    /*Parametro RangeEnd*/
+				    rngDateFim = Date.FromText(RangeEnd),
+				
+				    /*Ano Final*/
+				    MaxYear = Date.Year(rngDateFim),
+				
+				    /*Ano Inicial*/
+				    MinYear = Date.Year(rngDateInicio),
+				
+				    /*Data Completa Inicial*/
+				    DataInicial = #date( MinYear, 1 , 1 ),
+				
+				    /*Data Completa Final*/
+				    DataFinal = #date( MaxYear, 12 , 31 ),
+				    
+				    /*Intervalo das Datas*/
+				    Duracao = Duration.Days( DataFinal - DataInicial ) + 1,
+				
+				    Fonte = List.Dates(DataInicial,Duracao,#duration(1,0,0,0)),
+				    #"Convertido para Tabela" = Table.FromList(Fonte, Splitter.SplitByNothing(), null, null, ExtraValues.Error),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Convertido para Tabela",{{"Column1", "Data"}}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Renomeadas",{{"Data", type date}}),
+				    #"Mês Inserido" = Table.AddColumn(#"Tipo Alterado", "Mês", each Date.Month([Data]), Int64.Type),
+				    #"Nome do Mês Inserido" = Table.AddColumn(#"Mês Inserido", "Nome do Mês", each Date.MonthName([Data]), type text),
+				    #"Semana do Mês Inserida" = Table.AddColumn(#"Nome do Mês Inserido", "Semana do Mês", each Date.WeekOfMonth([Data]), Int64.Type),
+				    #"Nome do Dia Inserido" = Table.AddColumn(#"Semana do Mês Inserida", "Nome do Dia", each Date.DayOfWeekName([Data]), type text),
+				    #"Ano Inserido" = Table.AddColumn(#"Nome do Dia Inserido", "Ano", each Date.Year([Data]), Int64.Type),
+				    #"Trimestre Inserido" = Table.AddColumn(#"Ano Inserido", "Trimestre", each Date.QuarterOfYear([Data]), Int64.Type),
+				    #"Coluna Mesclada Inserida" = Table.AddColumn(#"Trimestre Inserido", "Tri/Ano", each Text.Combine({Text.From([Trimestre], "pt-BR"), "º Trim - ", Text.From([Ano], "pt-BR")}), type text),
+				    #"Coluna Personalizada Adicionada" = Table.AddColumn(#"Coluna Mesclada Inserida", "MesAno", each Text.Combine({Text.Proper(Date.ToText([Data], "MMM")), "-", Date.ToText([Data], "yyyy")})),
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(#"Coluna Personalizada Adicionada",{{"Nome do Mês", Text.Proper, type text}})
+				in
+				    #"Colocar Cada Palavra Em Maiúscula"
+				```
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

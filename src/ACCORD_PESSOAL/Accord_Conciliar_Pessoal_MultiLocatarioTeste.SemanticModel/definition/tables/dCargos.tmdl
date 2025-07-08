@@ -1,0 +1,111 @@
+table dCargos
+	lineageTag: 388b857f-596f-458d-a0cd-9031d5e93e29
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 809ab1a2-4abc-49c6-94f3-46549c132b21
+		summarizeBy: none
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column codi_emp
+		dataType: string
+		lineageTag: 7ab410b9-942a-419d-9bcb-beece66bae8c
+		summarizeBy: none
+		sourceColumn: codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column i_cargos
+		dataType: string
+		lineageTag: 2d9ad728-3a9e-42bf-8095-4b57e043d02e
+		summarizeBy: none
+		sourceColumn: i_cargos
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome
+		dataType: string
+		lineageTag: feb6f216-40fa-4e05-a9f0-ec26d3fcdd8c
+		summarizeBy: none
+		sourceColumn: nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATA_INICIO
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 40c6fa37-090b-44e0-9d38-257fbdf5cec1
+		summarizeBy: none
+		sourceColumn: DATA_INICIO
+
+		annotation SummarizationSetBy = Automatic
+
+	column SITUACAO
+		dataType: string
+		lineageTag: 7fec6bca-4093-4adb-bf5e-de50feda82c6
+		summarizeBy: none
+		sourceColumn: SITUACAO
+
+		annotation SummarizationSetBy = Automatic
+
+	column chvcargo
+		dataType: string
+		lineageTag: 7679590b-e980-412d-8b35-054a49564e62
+		summarizeBy: none
+		sourceColumn: chvcargo
+
+		annotation SummarizationSetBy = Automatic
+
+	column cbo_2002
+		dataType: int64
+		formatString: 0
+		lineageTag: 1a2895bd-7d00-4626-9167-d7b1fa5c690e
+		summarizeBy: none
+		sourceColumn: cbo_2002
+
+		annotation SummarizationSetBy = Automatic
+
+	column descricao
+		dataType: string
+		lineageTag: 13db4607-b36d-4f24-a9fa-9d2cea5c6d70
+		summarizeBy: none
+		sourceColumn: descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdGrupoEmpresa
+		dataType: int64
+		formatString: 0
+		lineageTag: 9c56e093-060e-42b2-bdb3-86fbf5153522
+		summarizeBy: none
+		sourceColumn: IdGrupoEmpresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmpresaContabilId
+		dataType: int64
+		formatString: 0
+		lineageTag: bb565b6b-4e8c-4c0b-8bf8-f850e80cf097
+		summarizeBy: none
+		sourceColumn: EmpresaContabilId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dCargos-c84613a0-1de2-4a5f-af5d-6e9dd72804a6 = m
+		mode: import
+		queryGroup: Dimensão
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, CommandTimeout=#duration(0, 1, 0, 0), CreateNavigationProperties=false, Query= "SELECT c.*, e.IdGrupoEmpresa FROM DwAccordFiscal.TbDPcargos c INNER JOIN DwAccordFiscal.TbEmpresa e ON c.codi_emp=e.codi_emp and e.EmpresaContabilId = c.EmpresaContabilId WHERE e.IdGrupoEmpresa IN " & IdGrupoEmpresa & " and e.EmpresaContabilId = "&EmpresaContabilId&""]),
+				    #"Coluna Mesclada Inserida" = Table.AddColumn(Fonte, "chvcargo", each Text.Combine({[codi_emp], [i_cargos]}, "-"), type text),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Coluna Mesclada Inserida", each true)
+				in
+				    #"Linhas Filtradas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
