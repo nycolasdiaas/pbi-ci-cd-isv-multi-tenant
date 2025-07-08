@@ -3,6 +3,10 @@
         "spnSecret": "ISV_TENANT_A",
         "capacity": "none",
         "workspace": "\"ACCORD CONTABILIDADE\"",
+        "semanticModelPath": "src/ACCORD_PESSOAL/Accord_Conciliar_Pessoal_MultiLocatarioTeste.SemanticModel",
+        "reportPaths": [
+            "src/ACCORD_PESSOAL/Accord_Conciliar_Pessoal_MultiLocatarioTeste.Report"
+        ],
         "adminUPNs": "3bf22cb2-ee1c-41c3-bfbb-34bfb64fe529",
         "semanticModelsParameters": [
             { "name": "MySqlServerAddress", "value": "dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com" },
@@ -13,6 +17,10 @@
         "spnSecret": "ISV_ARRAIS_TENANT",
         "capacity": "none",
         "workspace": "\"ARRAIS E COSTA\"",
+        "semanticModelPath": "src/ACCORD_PESSOAL/Accord_Conciliar_Pessoal_MultiLocatarioTeste.SemanticModel",
+        "reportPaths": [
+            "src/ACCORD_PESSOAL/Accord_Conciliar_Pessoal_MultiLocatarioTeste.Report"
+        ],
         "adminUPNs": "3bf22cb2-ee1c-41c3-bfbb-34bfb64fe529",
         "semanticModelsParameters": [
             { "name": "MySqlServerAddress", "value": "dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com" },
@@ -23,6 +31,10 @@
         "spnSecret": "ISV_MARPE_TENANT",
         "capacity": "none",
         "workspace": "AdventureWorks_MARPEOceania",
+        "semanticModelPath": "src/ACCORD_PESSOAL/Accord_Conciliar_Pessoal_MultiLocatarioTeste.SemanticModel",
+        "reportPaths": [
+            "src/ACCORD_PESSOAL/Accord_Conciliar_Pessoal_MultiLocatarioTeste.Report"
+        ],
         "adminUPNs": "3bf22cb2-ee1c-41c3-bfbb-34bfb64fe529",
         "semanticModelsParameters": [
             { "name": "MySqlServerAddress", "value": "dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com" },
@@ -33,6 +45,10 @@
         "spnSecret": "ISV_DEBITT_TENANT",
         "capacity": "none",
         "workspace": "DEBITT",
+        "semanticModelPath": "src/ACCORD_PESSOAL/Accord_Conciliar_Pessoal_MultiLocatarioTeste.SemanticModel",
+        "reportPaths": [
+            "src/ACCORD_PESSOAL/Accord_Conciliar_Pessoal_MultiLocatarioTeste.Report"
+        ],
         "adminUPNs": "3bf22cb2-ee1c-41c3-bfbb-34bfb64fe529",
         "semanticModelsParameters": [
             { "name": "MySqlServerAddress", "value": "dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com" },
