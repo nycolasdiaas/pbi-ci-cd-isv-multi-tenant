@@ -1,0 +1,223 @@
+table _Medidas_Ferias
+	lineageTag: d108eee0-99ac-4e96-bbba-b7f729a6e4d1
+
+	measure 'Dias de Gozando Férias' = ```
+			
+			CALCULATE (
+			    DATEDIFF (
+			        MAX (
+			            fFerias[Inicio_gozo]
+			        ),
+			        MAX ( 
+			            fFerias[Fim_gozo] 
+			        ) + 1,
+			        DAY
+			    ),
+			    fFerias[Condicao] = "Férias"
+			)
+			```
+		formatString: 0
+		lineageTag: fec5148e-5351-4683-b6c4-74165c2f336f
+
+	measure 'Férias Gozadas' =
+			
+			CALCULATE (
+			    MAX (
+			        fFerias[Nome]
+			    ),
+			    FILTER (
+			        fFerias,
+			        fFerias[Fim_gozo] < TODAY()
+			    )
+			)
+		lineageTag: cb157afa-f14c-4ce3-a3e0-e56571d7e7aa
+
+	measure 'Gozando Férias' =
+			
+			CALCULATE(SUM(fFerias[Nome]),fFerias[Condicao] = "Férias")
+		formatString: 0
+		lineageTag: 3d31cbf7-b856-486d-a532-4cc7206e4008
+
+	measure 'Férias a Gozar' =
+			
+			CALCULATE (
+			    MAX (
+			        fFerias[Nome]
+			    ),
+			    FILTER (
+			        fFerias,
+			        fFerias[Inicio_gozo] > TODAY()
+			    )
+			)
+		lineageTag: 4fa8410f-4f74-44e3-96e6-48aef47939b1
+
+	measure 'Qtde Gozando Férias' =
+			
+			CALCULATE (
+			    COUNTROWS (
+			        fFerias
+			    ),
+			    fFerias[Condicao] = "Férias"
+			)
+		formatString: 0
+		lineageTag: 5649cb37-86e4-4fc3-bb32-63c2bad2e50e
+
+	measure 'Dias Férias Gozadas' = ```
+			
+			CALCULATE (
+			    DATEDIFF (
+			        MAX (
+			            fFerias[Inicio_gozo]
+			        ),
+			        MAX ( 
+			            fFerias[Fim_gozo] 
+			        ) + 1,
+			        DAY
+			    ),
+			    fFerias[Condicao] = "Férias Gozadas"
+			)
+			```
+		formatString: 0
+		lineageTag: ecc2ebc8-3307-45a7-823d-a72a7cc51bb9
+
+	measure 'Dias Férias a Gozar' = ```
+			
+			CALCULATE (
+			    DATEDIFF (
+			        MAX (
+			            fFerias[Inicio_gozo]
+			        ),
+			        MAX ( 
+			            fFerias[Fim_gozo] 
+			        ) + 1,
+			        DAY
+			    ),
+			    fFerias[Condicao] = "Férias a Gozar"
+			)
+			```
+		formatString: 0
+		lineageTag: f6ea6526-eb92-494b-bd18-9abefe5d6898
+
+	measure 'Qtde Férias a Gozar' =
+			
+			CALCULATE (
+			    COUNTROWS (
+			        fFerias
+			    ),
+			    fFerias[Condicao] = "Férias a Gozar"
+			)
+		formatString: 0
+		lineageTag: 45c1c1ef-7dc5-4c4a-a7eb-7179ca480827
+
+	measure 'Qtde Férias Perdidas' = ```
+			
+			CALCULATE ( 
+			    DISTINCTCOUNT (
+			        dEmpregados[cpf]
+			    ),
+			    dEmpregados[Férias] = "Férias Perdidas"
+			)
+			```
+		formatString: 0
+		lineageTag: 749e7ee4-cf2b-41c5-a290-fa49c00a0ed2
+
+	measure 'Qtde > 90 dias' = ```
+			
+			CALCULATE ( 
+			    DISTINCTCOUNT (
+			        dEmpregados[cpf]
+			    ),
+			    dEmpregados[Férias] = "Férias > 90 dias"
+			)
+			```
+		formatString: 0
+		lineageTag: a8445a5d-22dc-45c6-b0ed-f26b636e8084
+
+	measure 'Qtde > 30 dias' = ```
+			
+			CALCULATE ( 
+			    DISTINCTCOUNT (
+			        dEmpregados[cpf]
+			    ),
+			    dEmpregados[Férias] = "Férias < 90 dias"
+			)
+			```
+		formatString: 0
+		lineageTag: fda1c988-fdb3-4ba6-a92b-99f5343202ed
+
+	measure 'Qtde < 30 dias' = ```
+			
+			CALCULATE ( 
+			    DISTINCTCOUNT (
+			        dEmpregados[cpf]
+			    ),
+			    dEmpregados[Férias] = "Férias < 30 dias"
+			)
+			```
+		formatString: 0
+		lineageTag: bcf356dc-3944-4947-ae74-ac4f8a54a7db
+
+	measure Férias = ```
+			
+			IF (
+			    MAX (dEmpregados[Inicio Gozo]) = BLANK() && MAX (dEmpregados[Inicio Gozo]) > 90,
+			    "> 90 dias",
+			    IF (
+			        MAX (dEmpregados[Inicio Gozo]) = BLANK() && MAX (dEmpregados[Inicio Gozo]) > 30 && MAX (dEmpregados[Inicio Gozo]) <= 90,
+			        "> 30 dias",
+			        IF (
+			            MAX (dEmpregados[Inicio Gozo]) = BLANK() && MAX (dEmpregados[Inicio Gozo]) > 0 && MAX (dEmpregados[Inicio Gozo]) <= 30,
+			            "< 30 dias",
+			            IF (
+			                MAX (dEmpregados[Inicio Gozo]) = BLANK() && MAX (dEmpregados[Inicio Gozo]) < 0,
+			                "Férias Perdidas",
+			                IF (
+			                    MAX (dEmpregados[Inicio Gozo]) > TODAY(), 
+			                    IF (
+			                        MAX (dEmpregados[Inicio Gozo]) > 90, 
+			                        "> 90 dias",
+			                        IF (
+			                            MAX (dEmpregados[Inicio Gozo]) > 30 && MAX (dEmpregados[Inicio Gozo]) <= 90, 
+			                            "> 30 dias",
+			                            IF (
+			                                MAX (dEmpregados[Inicio Gozo]) > 0 && MAX (dEmpregados[Inicio Gozo]) <= 30, 
+			                                "< 30 dias"
+			                            )
+			                        )
+			                    ),
+			                    IF ( 
+			                        (TODAY() - MAX (dEmpregados[Inicio Gozo])) < 365, 
+			                        "Tirou Férias",
+			                        "Férias Perdidas"
+			                    )
+			                )
+			            )
+			        )
+			    )
+			)
+			
+			```
+		lineageTag: 7e719436-d449-40ef-ae9d-b51776ac8631
+
+	column 'Coluna 1'
+		dataType: string
+		isHidden
+		lineageTag: c6d31e0c-b47b-47d7-9edc-ec2f5b391ee5
+		summarizeBy: none
+		sourceColumn: Coluna 1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _Medidas_Ferias-d31a76a6-f516-45d9-976e-8798ab35e132 = m
+		mode: import
+		source =
+				let
+				    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [#"Coluna 1" = _t]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Coluna 1", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+

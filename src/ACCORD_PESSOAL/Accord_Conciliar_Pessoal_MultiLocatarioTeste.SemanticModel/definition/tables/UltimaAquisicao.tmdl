@@ -1,0 +1,64 @@
+table UltimaAquisicao
+	lineageTag: c5071a74-023e-466c-bf3e-fa294fe5c7e2
+
+	column Codi_empregado
+		dataType: string
+		lineageTag: 55ded019-cd1e-4385-b132-a3fda118a84b
+		summarizeBy: none
+		sourceColumn: Codi_empregado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Inicio_aquis
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 01b85621-8ca6-43bd-802d-65e1c22268e5
+		summarizeBy: none
+		sourceColumn: Inicio_aquis
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Fim_aquis
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1776f928-44a5-4d38-8f8c-bb3519356765
+		summarizeBy: none
+		sourceColumn: Fim_aquis
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Codi_emp
+		dataType: string
+		lineageTag: c9dad445-5054-457b-ba1f-625a2901ca3c
+		summarizeBy: none
+		sourceColumn: Codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmpresaContabilId
+		dataType: int64
+		formatString: 0
+		lineageTag: 52109375-f807-4ad9-adbd-035bd2dde7eb
+		summarizeBy: count
+		sourceColumn: EmpresaContabilId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition UltimaAquisicao-ac2c13ca-c041-4a8f-950c-30e614e820b2 = m
+		mode: import
+		queryGroup: Fato
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [Query="WITH cte AS (#(tab)#(lf)#(tab)#(tab)select t2.codi_emp as Codi_emp, t2.i_empregados as Codi_empregado, t2.EmpresaContabilId,  max(t2.data_inicio) as Inicio_aquis, max(t2.data_fim) as Fim_aquis#(lf)#(tab)from DwAccordFiscal.TbDPFeriasAquisitivo t2#(lf)#(tab)group by t2.codi_emp, t2.i_empregados, t2.EmpresaContabilId#(lf))#(lf)SELECT cte.*#(lf)FROM cte #(lf)INNER JOIN TbEmpresa te ON cte.codi_emp = te.codi_emp AND cte.EmpresaContabilId = te.EmpresaContabilId#(lf)WHERE te.EmpresaContabilId = "&EmpresaContabilId&"", ReturnSingleDatabase=true]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Inicio_aquis", type date}, {"Fim_aquis", type date}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

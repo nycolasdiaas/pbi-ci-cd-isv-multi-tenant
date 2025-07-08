@@ -1,0 +1,137 @@
+table TbDpAlteracaoSalarial
+	lineageTag: 5797fc9a-03d3-41e2-8d24-3576b2d772bf
+
+	column chaveempreg
+		dataType: string
+		lineageTag: 9ec3bb46-d149-42dd-85fb-b6ef4bb379c6
+		summarizeBy: none
+		sourceColumn: chaveempreg
+
+		annotation SummarizationSetBy = Automatic
+
+	column codi_emp
+		dataType: string
+		lineageTag: 350638ba-3d6c-4155-b878-d0e4f73dde72
+		summarizeBy: none
+		sourceColumn: codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column i_empregados
+		dataType: string
+		lineageTag: ce2ca9c5-0e21-4424-bf45-929f9ee93053
+		summarizeBy: none
+		sourceColumn: i_empregados
+
+		annotation SummarizationSetBy = Automatic
+
+	column competencia
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 7ee3a410-5b40-4f39-979f-d36a3435b9aa
+		summarizeBy: none
+		sourceColumn: competencia
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column novo_salario
+		dataType: double
+		lineageTag: 58a404f2-4311-40af-8939-7318aa954583
+		summarizeBy: sum
+		sourceColumn: novo_salario
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column salario_anterior
+		dataType: double
+		lineageTag: 312ea941-405f-4d0a-8f95-843450f098f7
+		summarizeBy: sum
+		sourceColumn: salario_anterior
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column tipo_alt_grade
+		dataType: string
+		lineageTag: eddf8072-6fa1-4368-9ea1-370a47452a84
+		summarizeBy: none
+		sourceColumn: tipo_alt_grade
+
+		annotation SummarizationSetBy = Automatic
+
+	column forma_alteracao
+		dataType: string
+		lineageTag: 51bf3434-f189-4992-8116-750363c6106f
+		summarizeBy: none
+		sourceColumn: forma_alteracao
+
+		annotation SummarizationSetBy = Automatic
+
+	column perc_aumento
+		dataType: string
+		lineageTag: cea10ec5-c57e-4ea5-b598-df8c6fdf411d
+		summarizeBy: none
+		sourceColumn: perc_aumento
+
+		annotation SummarizationSetBy = Automatic
+
+	column periodo_inicio
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 223eb89a-10b2-4f68-9146-8053b96ed5b8
+		summarizeBy: none
+		sourceColumn: periodo_inicio
+
+		annotation SummarizationSetBy = Automatic
+
+	column periodo_fim
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 0b4e323a-8953-4084-b045-ff8ab5a32916
+		summarizeBy: none
+		sourceColumn: periodo_fim
+
+		annotation SummarizationSetBy = Automatic
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 139355c7-01a4-4d1a-beea-079065b145e5
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmpresaContabilId
+		dataType: int64
+		formatString: 0
+		lineageTag: b5b84e1a-808e-4371-828f-0a7706a0072d
+		summarizeBy: count
+		sourceColumn: EmpresaContabilId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TbDpAlteracaoSalarial-00260aec-560d-46e9-b0cf-834fa6c55866 = m
+		mode: import
+		queryGroup: Dimensão
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, Query="SELECT t1.* FROM DwAccordFiscal.TbDPAlteracaoSalarial t1#(lf)INNER JOIN TbEmpresa te ON te.codi_emp = t1.codi_emp AND te.EmpresaContabilId = t1.EmpresaContabilId#(lf)WHERE te.EmpresaContabilId = "&EmpresaContabilId&""]),
+				    #"Coluna Mesclada Inserida" = Table.AddColumn(Fonte, "chaveempreg", each Text.Combine({Text.From([codi_emp], "pt-BR"), Text.From([i_empregados], "pt-BR")}, "-"), type text),
+				    #"Colunas Reordenadas" = Table.ReorderColumns(#"Coluna Mesclada Inserida",{"chaveempreg", "codi_emp", "i_empregados", "competencia", "novo_salario", "salario_anterior"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Reordenadas",{{"codi_emp", type text}, {"i_empregados", type text}}),
+				    Personalizar1 = Table.SelectRows(#"Tipo Alterado", each ([salario_anterior] <> null))
+				in
+				    Personalizar1
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

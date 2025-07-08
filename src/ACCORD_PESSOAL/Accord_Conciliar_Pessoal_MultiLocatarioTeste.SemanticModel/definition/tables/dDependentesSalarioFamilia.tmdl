@@ -1,0 +1,371 @@
+table dDependentesSalarioFamilia
+	lineageTag: 82f40e46-bb5a-40e1-a8f9-dc2540fc130f
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 16359383-0bd8-43df-b43b-66a124b6de8d
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column codi_emp
+		dataType: string
+		lineageTag: 856bbce2-214e-4198-8534-598ad683e41f
+		summarizeBy: none
+		sourceColumn: codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column i_empregados
+		dataType: string
+		lineageTag: 26301b51-da3f-4696-a52a-170604508697
+		summarizeBy: none
+		sourceColumn: i_empregados
+
+		annotation SummarizationSetBy = Automatic
+
+	column i_filhos
+		dataType: string
+		lineageTag: f5c908ed-d28f-418e-802f-05ae8ecc9439
+		summarizeBy: none
+		sourceColumn: i_filhos
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome
+		dataType: string
+		lineageTag: e69c09ae-9ced-4eb4-8891-a430b40e9e4d
+		summarizeBy: none
+		sourceColumn: nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column filho
+		dataType: string
+		lineageTag: 7c090cea-185d-405b-a2a0-614bd8dfe168
+		summarizeBy: none
+		sourceColumn: filho
+
+		annotation SummarizationSetBy = Automatic
+
+	column dependente
+		dataType: string
+		lineageTag: 7d464c59-aa7e-4438-a468-82ad8bcb7d36
+		summarizeBy: none
+		sourceColumn: dependente
+
+		annotation SummarizationSetBy = Automatic
+
+	column SAL_FAM_FIM_DETERMINADO
+		dataType: string
+		lineageTag: 3ee1785d-ad80-448a-84de-263dcb32aeaf
+		summarizeBy: none
+		sourceColumn: SAL_FAM_FIM_DETERMINADO
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEPEND_IRRF_FIM
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 63d66793-fa78-44ee-9303-499618e11cd8
+		summarizeBy: none
+		sourceColumn: DEPEND_IRRF_FIM
+
+		annotation SummarizationSetBy = Automatic
+
+	column DEPEND_IRRF_FIM_DETERMINADO
+		dataType: string
+		lineageTag: aa544f64-b08c-44f5-bd12-57a21cdb1ed9
+		summarizeBy: none
+		sourceColumn: DEPEND_IRRF_FIM_DETERMINADO
+
+		annotation SummarizationSetBy = Automatic
+
+	column CPF
+		dataType: string
+		lineageTag: b5a92e07-e056-4593-a9d4-83159744a540
+		summarizeBy: none
+		sourceColumn: CPF
+
+		annotation SummarizationSetBy = Automatic
+
+	column RECEBE_PENSAO_ALIMENTICIA
+		dataType: string
+		lineageTag: 87849969-a1a4-4808-b958-af0c4118219e
+		summarizeBy: none
+		sourceColumn: RECEBE_PENSAO_ALIMENTICIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column DETERMINAR_FIM_PENSAO_ALIMENTICIA
+		dataType: string
+		lineageTag: 74fe1be3-b1ae-4d0d-a22c-e7ddd950dab1
+		summarizeBy: none
+		sourceColumn: DETERMINAR_FIM_PENSAO_ALIMENTICIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATA_FIM_PENSAO_ALIMENTICIA
+		dataType: string
+		lineageTag: 6155b3be-bd69-4997-9ed6-1b82ebaa3d41
+		summarizeBy: none
+		sourceColumn: DATA_FIM_PENSAO_ALIMENTICIA
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATUS_ESOCIAL
+		dataType: string
+		lineageTag: 173be515-d922-469a-8b18-b610c6fb673b
+		summarizeBy: none
+		sourceColumn: STATUS_ESOCIAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column chaveempreg
+		dataType: string
+		lineageTag: 835b5849-de7a-4f4f-80cc-2a87423fa50d
+		summarizeBy: none
+		sourceColumn: chaveempreg
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data de Nascimento'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: b3c0d020-c112-40d5-a712-10e387f35242
+		summarizeBy: none
+		sourceColumn: Data de Nascimento
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Fim do Salario Familia'
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: bda9f607-a19b-4957-af01-52ee4e00fc01
+		summarizeBy: none
+		sourceColumn: Fim do Salario Familia
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Salario Familia'
+		dataType: string
+		lineageTag: 8abc9714-8882-41e2-8168-1c748bb7478a
+		summarizeBy: none
+		sourceColumn: Salario Familia
+
+		annotation SummarizationSetBy = Automatic
+
+	column Validacao_CPF_Penul_Digito = IF(dDependentesSalarioFamilia[CPF] = BLANK() || dDependentesSalarioFamilia[CPF] = "00000000000", BLANK(), IF(MOD(((CONVERT(LEFT(dDependentesSalarioFamilia[CPF], 1), INTEGER) * 10) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 2, 1), INTEGER) * 9) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 3, 1), INTEGER) * 8) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 4, 1), INTEGER) * 7) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 5, 1), INTEGER) * 6) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 6, 1), INTEGER) * 5) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 7, 1), INTEGER) * 4) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 8, 1), INTEGER) * 3) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 9, 1), INTEGER) * 2)), 11) < 2, 0, 11 - MOD(((CONVERT(LEFT(dDependentesSalarioFamilia[CPF], 1), INTEGER) * 10) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 2, 1), INTEGER) * 9) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 3, 1), INTEGER) * 8) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 4, 1), INTEGER) * 7) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 5, 1), INTEGER) * 6) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 6, 1), INTEGER) * 5) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 7, 1), INTEGER) * 4) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 8, 1), INTEGER) * 3) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 9, 1), INTEGER) * 2)), 11)))
+		lineageTag: 922c417a-518c-472e-b077-04f77eae7b5c
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Validacao_CPF_Ultimo_Digito = IF(dDependentesSalarioFamilia[CPF] = BLANK() || dDependentesSalarioFamilia[CPF] = "00000000000", BLANK(), IF(MOD(((CONVERT(LEFT(dDependentesSalarioFamilia[CPF], 1), INTEGER) * 11) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 2, 1), INTEGER) * 10) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 3, 1), INTEGER) * 9) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 4, 1), INTEGER) * 8) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 5, 1), INTEGER) * 7) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 6, 1), INTEGER) * 6) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 7, 1), INTEGER) * 5) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 8, 1), INTEGER) * 4) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 9, 1), INTEGER) * 3) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 10, 1), INTEGER) * 2)), 11) < 2, 0, 11 - MOD(((CONVERT(LEFT(dDependentesSalarioFamilia[CPF], 1), INTEGER) * 11) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 2, 1), INTEGER) * 10) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 3, 1), INTEGER) * 9) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 4, 1), INTEGER) * 8) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 5, 1), INTEGER) * 7) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 6, 1), INTEGER) * 6) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 7, 1), INTEGER) * 5) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 8, 1), INTEGER) * 4) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 9, 1), INTEGER) * 3) + (CONVERT(MID(dDependentesSalarioFamilia[CPF], 10, 1), INTEGER) * 2)), 11)))
+		lineageTag: 22726224-9ca7-4d5f-bb28-7d171d849d25
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Validacao_CPF = IF(CONCATENATE(dDependentesSalarioFamilia[Validacao_CPF_Penul_Digito], (dDependentesSalarioFamilia[Validacao_CPF_Ultimo_Digito])) = RIGHT(dDependentesSalarioFamilia[CPF], 2) && dDependentesSalarioFamilia[CPF] <> BLANK(), "Válido", "Inválido")
+		lineageTag: ab221bb9-859f-4932-9833-4420a8ec6ec2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Idade = DATEDIFF(dDependentesSalarioFamilia[Data de Nascimento], TODAY(), YEAR)
+		formatString: 0
+		lineageTag: dc8069f5-159a-445a-b947-0a881559ddee
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column GrauParentesco
+		dataType: string
+		lineageTag: 03cbf613-8c7d-4cd1-8e17-5005781403ee
+		summarizeBy: none
+		sourceColumn: GrauParentesco
+
+		annotation SummarizationSetBy = Automatic
+
+	column Diverg_Sal_Fami = ```
+			SWITCH(TRUE(),
+			                    (dDependentesSalarioFamilia[Codgrau_parentesco] in {2, 4} && dDependentesSalarioFamilia[dependente]="N"),
+			                        "SIM",
+			                    (dDependentesSalarioFamilia[Codgrau_parentesco] <> 2 && dDependentesSalarioFamilia[Codgrau_parentesco] <> 4 &&
+			                     dDependentesSalarioFamilia[dependente] = "S"),
+			                        "SIM",
+			                    "NÃO")
+			        
+			                    
+			```
+		lineageTag: 8edd7429-a841-461e-8897-91c6a58a4e45
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegraDeducaoIRRF = ```
+			
+			
+			/* MEDIDA PARA IDENTIFICAR DIVERGENCIA NAS HIPOTESES DE DEDUCAO DO IRRF */
+			
+			//Idade Atual 
+			VAR IDADEATUAL = dDependentesSalarioFamilia[Idade]
+			
+			//Vencimento da Dependencia - S/N
+			VAR VENC_DEPENDENCIA = dDependentesSalarioFamilia[DEPEND_IRRF_FIM_DETERMINADO]
+			 
+			//Data Vencimento IRRF
+			VAR DATA_FIM = IF(ISBLANK(dDependentesSalarioFamilia[DEPEND_IRRF_FIM]), NOW(), dDependentesSalarioFamilia[DEPEND_IRRF_FIM])
+			
+			//Lista de Dependentes c/ Permissao para Deduzir IRRF
+			VAR LISTA_ = {1, 2, 3, 4, 5, 6, 8, 11, 12}
+			
+			    RETURN
+			    
+			        //Parentesco c/ Permissao de DEDUÇÃO? SIM
+			        VAR LOGICO =  SWITCH(dDependentesSalarioFamilia[Codgrau_parentesco] IN LISTA_,
+			
+			            // FILHOS COM IDADE >21 e DEPENDENCIA 'NAO' VENCIDA
+			            (dDependentesSalarioFamilia[Codgrau_parentesco] IN {2, 5}) && IDADEATUAL> 21 && VENC_DEPENDENCIA = "N", "0-Divergencias",
+			
+			            // FILHOS COM IDADE >24 e DEPENDENCIA 'NAO' VENCIDA
+			            (dDependentesSalarioFamilia[Codgrau_parentesco] IN {3, 6}) && IDADEATUAL> 24 && VENC_DEPENDENCIA = "N", "0-Divergencias",
+			
+			            //DEPENDENCIA 'NAO' VENCIDA e DATA LIMITE VENCIDA
+			            VENC_DEPENDENCIA = "N" && DATA_FIM <= NOW() , "0-Divergencias",
+			
+			            //ELSE
+			            "1-Correto")
+			
+			            RETURN
+			                
+			                IF(dDependentesSalarioFamilia[Codgrau_parentesco] IN {0, 13}, "2-BlankDominio", LOGICO)
+			```
+		lineageTag: 74ed45bd-f1ed-471f-afc7-d00ed3bd2b73
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegraSalarioFamilia = ```
+			
+			
+			/* MEDIDA PARA IDENTIFICAR DIVERGENCIA NOS DEPENDENTES p/ FINS DE SALARIO FAMILIA */
+			
+			//Idade Atual 
+			VAR IDADEATUAL = dDependentesSalarioFamilia[Idade]
+			
+			//Vencimento da Dependencia para SalarioFamilia - S/N
+			VAR VENC_SALAFAMI = dDependentesSalarioFamilia[SAL_FAM_FIM_DETERMINADO]
+			 
+			//Data Vencimento SalarioFamilia
+			VAR DATA_FIM = IF(ISBLANK(dDependentesSalarioFamilia[Fim do Salario Familia]), NOW(), dDependentesSalarioFamilia[Fim do Salario Familia])
+			
+			//Lista de Dependentes SalarioFamilia
+			VAR LISTA_ = {2, 4}
+			
+			    RETURN
+			    
+			        //Parentesco c/ Permissao de DEDUÇÃO? SIM
+			        VAR LOGICO =  SWITCH(dDependentesSalarioFamilia[Codgrau_parentesco] IN LISTA_ ,
+			
+			            // FILHOS COM IDADE >21 e DEPENDENCIA 'NAO' VENCIDA
+			            (dDependentesSalarioFamilia[Codgrau_parentesco] IN {2, 4}) && IDADEATUAL> 14 && VENC_SALAFAMI = "N", "0-Divergencias",
+			
+			            //DEPENDENCIA 'NAO' VENCIDA e DATA LIMITE VENCIDA
+			            VENC_SALAFAMI = "N" && DATA_FIM <= NOW() , "0-Divergencias", "1-Correto")
+			
+			            RETURN
+			                
+			                IF(dDependentesSalarioFamilia[Codgrau_parentesco] IN {0}, "2-BlankDominio", LOGICO)
+			
+			```
+		lineageTag: 24c854e7-7d1c-4b01-863c-4706744de178
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Codgrau_parentesco
+		dataType: int64
+		formatString: 0
+		lineageTag: 7872dfb6-84bd-495d-84cf-225560a51cf7
+		summarizeBy: sum
+		sourceColumn: Codgrau_parentesco
+
+		annotation SummarizationSetBy = Automatic
+
+	column InativoSalarioFamilia
+		dataType: string
+		lineageTag: 8ad82123-7518-4214-afa0-328fecd1f2bf
+		summarizeBy: none
+		sourceColumn: InativoSalarioFamilia
+
+		annotation SummarizationSetBy = Automatic
+
+	column InativoIRRF
+		dataType: string
+		lineageTag: 91544b23-480c-48c4-bb89-31a7ec7e7b0e
+		summarizeBy: none
+		sourceColumn: InativoIRRF
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdGrupoEmpresa
+		dataType: string
+		lineageTag: 64ff05b4-cfd9-4c8a-918e-7396c1a02b75
+		summarizeBy: none
+		sourceColumn: IdGrupoEmpresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmpresaContabilId
+		dataType: int64
+		formatString: 0
+		lineageTag: d8dd2db8-ae7d-4212-97b7-a14c311bb895
+		summarizeBy: count
+		sourceColumn: EmpresaContabilId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dDependentesSalarioFamilia-0a744931-d071-48ac-95f6-968a5b88fbc1 = m
+		mode: import
+		queryGroup: Dimensão
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, Query="SELECT #(lf)#(tab)o.*,#(lf)#(tab)ifnull(c.InativoSalarioFamilia,0) as InativoSalarioFamilia, #(lf)    ifnull(c.InativoIRRF,0) as InativoIRRF#(lf)FROM DwAccordFiscal.TbDPdependentes o#(lf)LEFT JOIN DwAccordFiscal.TbDPdependentesControle c #(lf)#(tab)ON c.codi_emp = o.codi_emp and#(lf)#(tab)   c.i_empregados = o.i_empregados and#(lf)       c.i_filhos = o.i_filhos#(lf)INNER JOIN TbEmpresa te ON te.codi_emp = o.codi_emp AND te.EmpresaContabilId = o.EmpresaContabilId #(lf)WHERE te.EmpresaContabilId = "&EmpresaContabilId&"", CommandTimeout=#duration(0, 1, 0, 0)]),
+				    Personalizar1 = Table.AddColumn(Fonte, "chaveempreg", each Text.Combine({[codi_emp], "-", [i_empregados]}), type text),
+				    #"Coluna Personalizada Adicionada" = Table.AddColumn(Personalizar1, "Data de Nascimento", each Text.Combine({DateTime.ToText(DateTime.From([data_nascto]), "dd"), Text.Middle([data_nascto], 4, 4), DateTime.ToText(DateTime.From([data_nascto]), "yyyy")}), type text),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Coluna Personalizada Adicionada",{{"Data de Nascimento", type date}}),
+				    Personalizar2 = Table.AddColumn(#"Tipo Alterado", "Fim do Salario Familia", each Date.AddYears([Data de Nascimento], 14)),
+				    #"Tipo Alterado1" = Table.TransformColumnTypes(Personalizar2,{{"Fim do Salario Familia", type date}}),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado1",{"data_nascto", "SAL_FAM_FIM"}),
+				    #"Personalização Adicionada" = Table.AddColumn(#"Colunas Removidas", "Salario Familia", each if [Fim do Salario Familia] = null then "Sem Direito" else if [Fim do Salario Familia] >= Date.From(DateTime.LocalNow()) then "Com Direito" else "Sem Direito"),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Personalização Adicionada", each ([Salario Familia] = "Com Direito")),
+				    #"Tipo Alterado com Localidade" = Table.TransformColumnTypes(#"Linhas Filtradas", {{"DEPEND_IRRF_FIM", type datetime}}, "en-US"),
+				    #"Colunas Reordenadas" = Table.ReorderColumns(#"Tipo Alterado com Localidade",{"id", "codi_emp", "i_empregados", "i_filhos", "nome", "filho", "dependente", "SAL_FAM_FIM_DETERMINADO", "DEPEND_IRRF_FIM", "DEPEND_IRRF_FIM_DETERMINADO", "CPF", "RECEBE_PENSAO_ALIMENTICIA", "DETERMINAR_FIM_PENSAO_ALIMENTICIA", "DATA_FIM_PENSAO_ALIMENTICIA", "STATUS_ESOCIAL", "Codgrau_parentesco", "GrauParentesco", "chaveempreg", "Data de Nascimento", "Fim do Salario Familia", "Salario Familia", "InativoSalarioFamilia", "InativoIRRF"}),
+				    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Colunas Reordenadas",{{"InativoSalarioFamilia", type text}, {"InativoIRRF", type text}}),
+				    #"Consultas Mescladas" = Table.NestedJoin(#"Tipo Alterado2", {"codi_emp"}, dEmpresa, {"codi_emp"}, "dEmpresa", JoinKind.LeftOuter),
+				    #"dEmpresa Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas", "dEmpresa", {"IdGrupoEmpresa"}, {"IdGrupoEmpresa"}),
+				    #"Tipo Alterado3" = Table.TransformColumnTypes(#"dEmpresa Expandido",{{"IdGrupoEmpresa", type text}}),
+				    IdGrupoEmpresa = Table.SelectRows(#"Tipo Alterado3", each [IdGrupoEmpresa] <> null)
+				in
+				    IdGrupoEmpresa
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

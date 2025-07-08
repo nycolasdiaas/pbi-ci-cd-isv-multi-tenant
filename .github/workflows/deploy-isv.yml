@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:     
       matrix:        
-        tenant: [TENANT_A, TENANT_B, TENANT_C]      
+        tenant: [ACCORD_CONTABILIDADE, ARRAIS_E_COSTA, MARPE, DEBITT]   
 
     steps:
       - name: Check out the code

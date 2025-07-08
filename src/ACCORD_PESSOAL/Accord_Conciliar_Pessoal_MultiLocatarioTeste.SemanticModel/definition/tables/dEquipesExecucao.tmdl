@@ -1,0 +1,196 @@
+table dEquipesExecucao
+	lineageTag: 11789652-5690-4a7d-8d20-7463a35cbf63
+
+	column codi_emp
+		dataType: string
+		lineageTag: b496a742-16fa-4ac0-af72-d3b48f620a04
+		summarizeBy: none
+		sourceColumn: codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column login
+		dataType: string
+		lineageTag: a28a0185-a721-4031-9866-7b261a48625e
+		summarizeBy: none
+		sourceColumn: login
+
+		annotation SummarizationSetBy = Automatic
+
+	column CNPJ
+		dataType: string
+		lineageTag: c385b6b0-2510-4789-a7e0-c932d6e6ca3f
+		summarizeBy: none
+		sourceColumn: CNPJ
+
+		annotation SummarizationSetBy = Automatic
+
+	column Empresa
+		dataType: string
+		lineageTag: 19e469dd-3c2e-49c1-84cc-a211fa9c3841
+		summarizeBy: none
+		sourceColumn: Empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column Responsavel
+		dataType: string
+		lineageTag: a7e3cf45-4d34-463c-93bb-aa0e56410e6a
+		summarizeBy: none
+		sourceColumn: Responsavel
+
+		annotation SummarizationSetBy = Automatic
+
+	column UsuarioIdFiscal
+		dataType: int64
+		formatString: 0
+		lineageTag: 02f4db78-05f2-4b52-bdd2-7a1f2b19a41c
+		summarizeBy: sum
+		sourceColumn: UsuarioIdFiscal
+
+		annotation SummarizationSetBy = Automatic
+
+	column UsuarioIdContabilidade
+		dataType: int64
+		formatString: 0
+		lineageTag: e34e47b4-0d5c-4c6c-bc79-e954a81278c2
+		summarizeBy: sum
+		sourceColumn: UsuarioIdContabilidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column UsuarioIdPessoal
+		dataType: int64
+		formatString: 0
+		lineageTag: 65b35087-0134-4f96-a6b8-a1a3044d5449
+		summarizeBy: sum
+		sourceColumn: UsuarioIdPessoal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Equipe
+		dataType: string
+		lineageTag: 5db732ad-a74a-40f0-95f5-52b888e6164d
+		summarizeBy: none
+		sourceColumn: Equipe
+
+		annotation SummarizationSetBy = Automatic
+
+	column EquipeContabil
+		dataType: string
+		lineageTag: 541a6182-df47-410c-b30e-1f3f8972f192
+		summarizeBy: none
+		sourceColumn: EquipeContabil
+
+		annotation SummarizationSetBy = Automatic
+
+	column EquipePessoal
+		dataType: string
+		lineageTag: 36d97930-f329-41a7-965f-0381965920a3
+		summarizeBy: none
+		sourceColumn: EquipePessoal
+
+		annotation SummarizationSetBy = Automatic
+
+	column Departamento
+		dataType: string
+		lineageTag: 15bea596-59a1-4691-bf3a-d99041c0987a
+		summarizeBy: none
+		sourceColumn: Departamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column TipoImportacao
+		dataType: string
+		lineageTag: 78643797-e70e-4f78-aa38-da697637931e
+		summarizeBy: none
+		sourceColumn: TipoImportacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ativo
+		dataType: string
+		lineageTag: 981a4410-b800-4bb6-9d8f-5e68a997fcb0
+		summarizeBy: none
+		sourceColumn: Ativo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Observacao
+		dataType: string
+		lineageTag: 7e1f3230-4c98-460f-86fc-76887443aa71
+		summarizeBy: none
+		sourceColumn: Observacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Codi_emp 2'
+		dataType: int64
+		formatString: 0
+		lineageTag: ec9240cd-6c22-44b2-9127-bacb79d80faf
+		summarizeBy: sum
+		sourceColumn: Codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmpresaContabilId
+		dataType: int64
+		formatString: 0
+		lineageTag: bccc79f8-b372-4c0d-aad4-09f019ee1943
+		summarizeBy: count
+		sourceColumn: EmpresaContabilId
+
+		annotation SummarizationSetBy = Automatic
+
+	column ContatoEmpresa
+		dataType: string
+		lineageTag: 298225cf-6b21-4fa5-b6c8-5ae44f01d90b
+		summarizeBy: none
+		sourceColumn: ContatoEmpresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column UsuarioIdAnalistaFiscal
+		dataType: int64
+		formatString: 0
+		lineageTag: c05b81dc-4449-4ac7-89b4-c151a1f14fbe
+		summarizeBy: sum
+		sourceColumn: UsuarioIdAnalistaFiscal
+
+		annotation SummarizationSetBy = Automatic
+
+	column UsuarioIdAnalistaContabilidade
+		dataType: int64
+		formatString: 0
+		lineageTag: 6c3f2901-2c72-4d5b-a900-d512d455e76a
+		summarizeBy: sum
+		sourceColumn: UsuarioIdAnalistaContabilidade
+
+		annotation SummarizationSetBy = Automatic
+
+	column UsuarioIdAnalistaPessoal
+		dataType: int64
+		formatString: 0
+		lineageTag: b6e5a277-048d-4b8b-97fc-67c0cae7d11b
+		summarizeBy: sum
+		sourceColumn: UsuarioIdAnalistaPessoal
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dEquipesExecucao-02205e5d-d01c-4bd3-8caf-fa17806c5e31 = m
+		mode: import
+		queryGroup: Dimensão
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, Query="SELECT e.codi_emp,#(lf)#(tab)   u.login,#(lf)#(tab)   eq.*#(lf)FROM DwAccordFiscal.TbEquipesExecucao eq, DwAccordFiscal.TbEmpresa e, AccordOperacao.Tb_Sc_users u#(lf)WHERE e.Id = eq.EmpresaId and u.id = eq.UsuarioIdPessoal and e.IdGrupoEmpresa in " & IdGrupoEmpresa & "#(lf) and e.EmpresaContabilId = "&EmpresaContabilId&""]),
+				    #"Colunas Removidas" = Table.RemoveColumns(Fonte,{"id", "EmpresaId"}),
+				    #"Texto em Maiúscula" = Table.TransformColumns(#"Colunas Removidas",{{"login", Text.Upper, type text}}),
+				    #"Valor Substituído" = Table.ReplaceValue(#"Texto em Maiúscula","RAFAELSANTOS","RAFAEL",Replacer.ReplaceText,{"login"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Valor Substituído",{{"codi_emp", type text}})
+				in
+				    #"Tipo Alterado"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

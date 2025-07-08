@@ -1,0 +1,696 @@
+table dEmpresa
+	lineageTag: e3ada541-58f4-417d-acb5-1b69597588d0
+
+	column Id
+		dataType: string
+		lineageTag: 0422c5ca-46d6-4def-a3a6-b9d92d029b4d
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column codi_emp
+		dataType: string
+		lineageTag: e7c27534-26b3-4a3f-94ec-0af291404199
+		summarizeBy: none
+		sourceColumn: codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column ApelidoEmpresa
+		dataType: string
+		lineageTag: a24500c3-b002-4fa6-8217-8ab21d9c7106
+		summarizeBy: none
+		sourceColumn: ApelidoEmpresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column CNPJ
+		dataType: string
+		lineageTag: 53dcc17f-2696-469b-9730-0e55fd9550a0
+		summarizeBy: none
+		sourceColumn: CNPJ
+
+		annotation SummarizationSetBy = Automatic
+
+	column StatusEmpesa
+		dataType: string
+		lineageTag: 861f7281-ed23-464c-8bd9-870a8ffbf899
+		summarizeBy: none
+		sourceColumn: StatusEmpesa
+
+		annotation SummarizationSetBy = Automatic
+
+	column RamoAtividade
+		dataType: string
+		lineageTag: 670c67d1-2811-40fe-9213-e140dde7d90c
+		summarizeBy: none
+		sourceColumn: RamoAtividade
+
+		annotation SummarizationSetBy = Automatic
+
+	column CNAE
+		dataType: string
+		lineageTag: 61933401-0a18-4a21-9906-3f9d42da4bdf
+		summarizeBy: none
+		sourceColumn: CNAE
+
+		annotation SummarizationSetBy = Automatic
+
+	column usa_dominio_web
+		dataType: int64
+		formatString: 0
+		lineageTag: c00fce75-f70e-4092-a879-ddd46dd5881f
+		summarizeBy: sum
+		sourceColumn: usa_dominio_web
+
+		annotation SummarizationSetBy = Automatic
+
+	column CERTIFICADO_DIGITAL
+		dataType: string
+		lineageTag: 3430f341-f917-4af8-a406-4c0fe650a3e0
+		summarizeBy: none
+		sourceColumn: CERTIFICADO_DIGITAL
+
+		annotation SummarizationSetBy = Automatic
+
+	column IE
+		dataType: string
+		lineageTag: 285de6a2-9813-4325-83e6-596a53dfc973
+		summarizeBy: none
+		sourceColumn: IE
+
+		annotation SummarizationSetBy = Automatic
+
+	column Sub_IE
+		dataType: string
+		lineageTag: 09a7fe87-32ee-4cd4-bb47-d9bb5961dd9c
+		summarizeBy: none
+		sourceColumn: Sub_IE
+
+		annotation SummarizationSetBy = Automatic
+
+	column Empresa_Cod
+		dataType: string
+		lineageTag: d2c688e8-6453-44b9-8149-d62370d9c63c
+		summarizeBy: none
+		sourceColumn: Empresa_Cod
+
+		annotation SummarizationSetBy = Automatic
+
+	column IM
+		dataType: string
+		lineageTag: c31904c5-7592-4f11-ad76-868e78f95d62
+		summarizeBy: none
+		sourceColumn: IM
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboCFE
+		dataType: int64
+		formatString: 0
+		lineageTag: 6e117ebb-a865-4ce7-ba70-fe2f8aee73c8
+		summarizeBy: sum
+		sourceColumn: RoboCFE
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboISS
+		dataType: int64
+		formatString: 0
+		lineageTag: dc7c7526-0bcc-446f-997f-73d0dae54ea2
+		summarizeBy: sum
+		sourceColumn: RoboISS
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboSIGET
+		dataType: int64
+		formatString: 0
+		lineageTag: ebd3956e-8a5c-45ca-b0e6-db3617da611d
+		summarizeBy: sum
+		sourceColumn: RoboSIGET
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboSITRAM
+		dataType: int64
+		formatString: 0
+		lineageTag: 6ae94ddb-0789-441c-8241-d048d6ab1f90
+		summarizeBy: sum
+		sourceColumn: RoboSITRAM
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdGrupoEmpresa
+		dataType: int64
+		formatString: 0
+		lineageTag: e8af95f2-b7cd-4bf2-aaba-00a9e6770b4d
+		summarizeBy: sum
+		sourceColumn: IdGrupoEmpresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column AtivoConciliarMunicipal
+		dataType: int64
+		formatString: 0
+		lineageTag: 88567867-d154-48a0-bc7e-a9aa4bfaa072
+		summarizeBy: sum
+		sourceColumn: AtivoConciliarMunicipal
+
+		annotation SummarizationSetBy = Automatic
+
+	column AtivoConciliarEstadual
+		dataType: int64
+		formatString: 0
+		lineageTag: 108d54b5-4a88-4f84-84b7-de7ad4edf6cd
+		summarizeBy: sum
+		sourceColumn: AtivoConciliarEstadual
+
+		annotation SummarizationSetBy = Automatic
+
+	column AtivoPainelContabil
+		dataType: int64
+		formatString: 0
+		lineageTag: 323d991b-ac7d-4627-aae3-8c9670ff3557
+		summarizeBy: sum
+		sourceColumn: AtivoPainelContabil
+
+		annotation SummarizationSetBy = Automatic
+
+	column codi_mun
+		dataType: int64
+		formatString: 0
+		lineageTag: b1eae52d-52a4-4334-baa2-e9235410da43
+		summarizeBy: sum
+		sourceColumn: codi_mun
+
+		annotation SummarizationSetBy = Automatic
+
+	column nume_emp
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b618d0f-26cd-450e-9641-504b2d1d600f
+		summarizeBy: sum
+		sourceColumn: nume_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column codi_cla
+		dataType: int64
+		formatString: 0
+		lineageTag: 39f8bb94-24d8-4a9d-9921-da23033aae20
+		summarizeBy: sum
+		sourceColumn: codi_cla
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataInicioCliente
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 7905fb34-abdf-4ffc-bdf1-d062467b2bd5
+		summarizeBy: none
+		sourceColumn: DataInicioCliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboEnviaFolhaPonto
+		dataType: int64
+		formatString: 0
+		lineageTag: 8abce45e-27a5-4fe9-9c3f-3ac4fe89c791
+		summarizeBy: sum
+		sourceColumn: RoboEnviaFolhaPonto
+
+		annotation SummarizationSetBy = Automatic
+
+	column AtivoPainelProcessos
+		dataType: int64
+		formatString: 0
+		lineageTag: 8dede606-478c-420b-a0c0-ba487147c48a
+		summarizeBy: sum
+		sourceColumn: AtivoPainelProcessos
+
+		annotation SummarizationSetBy = Automatic
+
+	column AtivoPainelDeclaracoes
+		dataType: int64
+		formatString: 0
+		lineageTag: 21a6a39f-bc3a-409c-bd11-71d058398aed
+		summarizeBy: sum
+		sourceColumn: AtivoPainelDeclaracoes
+
+		annotation SummarizationSetBy = Automatic
+
+	column AtivoPainelAcumuladores
+		dataType: int64
+		formatString: 0
+		lineageTag: 82ac2f9e-1a60-495a-8639-11880266a827
+		summarizeBy: sum
+		sourceColumn: AtivoPainelAcumuladores
+
+		annotation SummarizationSetBy = Automatic
+
+	column Emp_Duplicada
+		dataType: int64
+		formatString: 0
+		lineageTag: 7f3a68ad-ffd1-4c58-b3cb-5da37426ab69
+		summarizeBy: sum
+		sourceColumn: Emp_Duplicada
+
+		annotation SummarizationSetBy = Automatic
+
+	column SolicitanteOnvioPessoal
+		dataType: string
+		lineageTag: cf003fcc-bbbf-4569-b96c-6dcc4a957625
+		summarizeBy: none
+		sourceColumn: SolicitanteOnvioPessoal
+
+		annotation SummarizationSetBy = Automatic
+
+	column SolicitanteOnvioContabil
+		dataType: string
+		lineageTag: 00f3d9cc-2dac-45b8-ac7f-ac2284a806a0
+		summarizeBy: none
+		sourceColumn: SolicitanteOnvioContabil
+
+		annotation SummarizationSetBy = Automatic
+
+	column SolicitanteOnvioFiscal
+		dataType: string
+		lineageTag: 09196258-1b68-4084-ab83-bcc3a1d7c415
+		summarizeBy: none
+		sourceColumn: SolicitanteOnvioFiscal
+
+		annotation SummarizationSetBy = Automatic
+
+	column RegimeTributarioAtual
+		dataType: int64
+		formatString: 0
+		lineageTag: 61d94e05-9013-41e6-9da7-178b74158523
+		summarizeBy: sum
+		sourceColumn: RegimeTributarioAtual
+
+		annotation SummarizationSetBy = Automatic
+
+	column TributacaoSegmentoId
+		dataType: int64
+		formatString: 0
+		lineageTag: 76181b44-3163-4ce1-9572-4cbc712e74ee
+		summarizeBy: count
+		sourceColumn: TributacaoSegmentoId
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdAux
+		dataType: int64
+		formatString: 0
+		lineageTag: 4eb037b6-cbb8-4000-876f-b0640850a9a6
+		summarizeBy: sum
+		sourceColumn: IdAux
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModuloContabil
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b6fa6a6-3b78-4caa-a58a-66cf70ed73ae
+		summarizeBy: sum
+		sourceColumn: ModuloContabil
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModuloLivroCaixa
+		dataType: int64
+		formatString: 0
+		lineageTag: 2de2d40a-139c-4280-8284-dde89e18d735
+		summarizeBy: sum
+		sourceColumn: ModuloLivroCaixa
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModuloHonorario
+		dataType: int64
+		formatString: 0
+		lineageTag: 0b2c8e1c-5477-4fc6-958e-7c706982aab5
+		summarizeBy: sum
+		sourceColumn: ModuloHonorario
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModuloEscritaFiscal
+		dataType: int64
+		formatString: 0
+		lineageTag: fea5a037-3ba2-4899-809b-ab3a0fe1f376
+		summarizeBy: sum
+		sourceColumn: ModuloEscritaFiscal
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModuloPatrimonio
+		dataType: int64
+		formatString: 0
+		lineageTag: 9a4e4803-c660-42cf-87e1-96e6a82758da
+		summarizeBy: sum
+		sourceColumn: ModuloPatrimonio
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModuloLalur
+		dataType: int64
+		formatString: 0
+		lineageTag: 18ee5961-36d4-48c0-aa99-cf74180fbbdc
+		summarizeBy: sum
+		sourceColumn: ModuloLalur
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModuloAtualizar
+		dataType: int64
+		formatString: 0
+		lineageTag: ca073a72-d83c-4f46-a55e-4aae09659d5f
+		summarizeBy: sum
+		sourceColumn: ModuloAtualizar
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModuloProtocolo
+		dataType: int64
+		formatString: 0
+		lineageTag: fe08ba6d-42f2-42da-adb2-d67b07da4efe
+		summarizeBy: sum
+		sourceColumn: ModuloProtocolo
+
+		annotation SummarizationSetBy = Automatic
+
+	column UF
+		dataType: string
+		lineageTag: f878a936-3f05-487a-b48c-d4acacf9faa9
+		summarizeBy: none
+		sourceColumn: UF
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboESocial
+		dataType: int64
+		formatString: 0
+		lineageTag: 5840a01a-a8e4-42fd-998a-eefc19fa3a84
+		summarizeBy: sum
+		sourceColumn: RoboESocial
+
+		annotation SummarizationSetBy = Automatic
+
+	column AtivoConciliarPessoal
+		dataType: int64
+		formatString: 0
+		lineageTag: c974711e-a728-45eb-bed4-fcaa489a1f88
+		summarizeBy: sum
+		sourceColumn: AtivoConciliarPessoal
+
+		annotation SummarizationSetBy = Automatic
+
+	column PrioridadeRoboIssFortaleza
+		dataType: int64
+		formatString: 0
+		lineageTag: bffc63e6-461f-4b3f-96ba-bdccb8824199
+		summarizeBy: sum
+		sourceColumn: PrioridadeRoboIssFortaleza
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboISSEusebio
+		dataType: int64
+		formatString: 0
+		lineageTag: 79e63b04-dac7-437b-b6fb-9e1db562d57b
+		summarizeBy: sum
+		sourceColumn: RoboISSEusebio
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboSIEGEntradas
+		dataType: int64
+		formatString: 0
+		lineageTag: 53b5547a-cf43-44b3-a717-32431075c4f4
+		summarizeBy: sum
+		sourceColumn: RoboSIEGEntradas
+
+		annotation SummarizationSetBy = Automatic
+
+	column Usuario_SiteISS
+		dataType: string
+		lineageTag: 5801c9fb-f13d-4fa3-a529-32e428e2007a
+		summarizeBy: none
+		sourceColumn: Usuario_SiteISS
+
+		annotation SummarizationSetBy = Automatic
+
+	column Senha_SiteISS
+		dataType: string
+		lineageTag: 24a7bd23-e036-45b3-9cc5-61c553f1449e
+		summarizeBy: none
+		sourceColumn: Senha_SiteISS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ApelidoEmpresaCopia
+		dataType: string
+		lineageTag: c61439bd-0ce6-46e5-b782-1199ca7a0d13
+		summarizeBy: none
+		sourceColumn: ApelidoEmpresaCopia
+
+		annotation SummarizationSetBy = Automatic
+
+	column UsuarioPrioritarioMFE
+		dataType: string
+		lineageTag: 7c4b40c7-653c-41fa-b08b-584b716e37a0
+		summarizeBy: none
+		sourceColumn: UsuarioPrioritarioMFE
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataInicioClienteOperacao
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4f158cf9-766e-49f0-8aaa-4c30579adc81
+		summarizeBy: none
+		sourceColumn: DataInicioClienteOperacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboSigetPE
+		dataType: int64
+		formatString: 0
+		lineageTag: f3612877-9d99-4582-9f6b-34178adf69f9
+		summarizeBy: sum
+		sourceColumn: RoboSigetPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column Empresa
+		dataType: string
+		lineageTag: c4dda8bf-af2c-4a61-b28c-0ab1f301fb0a
+		summarizeBy: none
+		sourceColumn: Empresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column AtivoConciliarContabil
+		dataType: int64
+		formatString: 0
+		lineageTag: 93613da1-ef28-4dd1-a97f-eaa6894c5d53
+		summarizeBy: sum
+		sourceColumn: AtivoConciliarContabil
+
+		annotation SummarizationSetBy = Automatic
+
+	column AtivoConciliarImportacoes
+		dataType: int64
+		formatString: 0
+		lineageTag: 4dbc4055-41e9-4d1e-b928-31ec08d0f7a8
+		summarizeBy: sum
+		sourceColumn: AtivoConciliarImportacoes
+
+		annotation SummarizationSetBy = Automatic
+
+	column AtivoPainelSimplesNacional
+		dataType: int64
+		formatString: 0
+		lineageTag: e48d629c-1ebc-4e66-b625-dfb4c76e5442
+		summarizeBy: sum
+		sourceColumn: AtivoPainelSimplesNacional
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboSIEGSaidas
+		dataType: int64
+		formatString: 0
+		lineageTag: c8836c62-e88e-4899-8c9e-6e5a2f58a6e1
+		summarizeBy: sum
+		sourceColumn: RoboSIEGSaidas
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmpresaContabilId
+		dataType: int64
+		formatString: 0
+		lineageTag: 952d29cc-62d9-4053-803d-23df21268646
+		summarizeBy: count
+		sourceColumn: EmpresaContabilId
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboAlvarasPortalTransparencia
+		dataType: int64
+		formatString: 0
+		lineageTag: 0f1f0772-c9ae-4903-bc61-950abc996d0e
+		summarizeBy: sum
+		sourceColumn: RoboAlvarasPortalTransparencia
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboSefazMaranhao
+		dataType: int64
+		formatString: 0
+		lineageTag: d09f38b5-5a1b-4549-9640-d9f0f1428dff
+		summarizeBy: sum
+		sourceColumn: RoboSefazMaranhao
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboOsasco
+		dataType: int64
+		formatString: 0
+		lineageTag: 3bccf149-b079-4bad-9a66-4c803dc10b20
+		summarizeBy: sum
+		sourceColumn: RoboOsasco
+
+		annotation SummarizationSetBy = Automatic
+
+	column ModuloFolha
+		dataType: int64
+		formatString: 0
+		lineageTag: 8d3f1eba-c54e-4753-a138-65b010f112c0
+		summarizeBy: sum
+		sourceColumn: ModuloFolha
+
+		annotation SummarizationSetBy = Automatic
+
+	column Usuario_SiteOsasco
+		dataType: string
+		lineageTag: f50fa160-89db-4856-affd-08492a5b88db
+		summarizeBy: none
+		sourceColumn: Usuario_SiteOsasco
+
+		annotation SummarizationSetBy = Automatic
+
+	column Senha_SiteOsasco
+		dataType: string
+		lineageTag: 9dcc7b77-f214-458e-8d78-315ee67ee635
+		summarizeBy: none
+		sourceColumn: Senha_SiteOsasco
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataFimCliente
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 483f7845-ffdd-4001-ba15-615bbde962e2
+		summarizeBy: none
+		sourceColumn: DataFimCliente
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataFimClienteOperacao
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 51475ba4-7767-4ac3-9d56-322ae3b2fd23
+		summarizeBy: none
+		sourceColumn: DataFimClienteOperacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboSIAT_NFE
+		dataType: string
+		lineageTag: 814a5852-3574-44f7-bf39-c76e063f68f6
+		summarizeBy: none
+		sourceColumn: RoboSIAT_NFE
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboSIAT_NFCE
+		dataType: string
+		lineageTag: 758a0daa-8fca-4846-96db-c6950cde1def
+		summarizeBy: none
+		sourceColumn: RoboSIAT_NFCE
+
+		annotation SummarizationSetBy = Automatic
+
+	column SefazMaranhaoCPFsocio
+		dataType: string
+		lineageTag: 2869d91e-24a1-42e8-8b2d-c5e46d110150
+		summarizeBy: none
+		sourceColumn: SefazMaranhaoCPFsocio
+
+		annotation SummarizationSetBy = Automatic
+
+	column SefazMaranhaoUltimoProtocoloDief
+		dataType: int64
+		formatString: 0
+		lineageTag: 0c04304a-f3cc-45ca-8f7c-987e5680fe24
+		summarizeBy: sum
+		sourceColumn: SefazMaranhaoUltimoProtocoloDief
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboConsultaNFE
+		dataType: string
+		lineageTag: c685f9ea-2e5b-4bd2-9a05-4ba746f66989
+		summarizeBy: none
+		sourceColumn: RoboConsultaNFE
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboISSMaracanau
+		dataType: int64
+		formatString: 0
+		lineageTag: b5a8ecb8-8e99-4097-ba50-dccfce3a9fe4
+		summarizeBy: sum
+		sourceColumn: RoboISSMaracanau
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboISSMossoro
+		dataType: int64
+		formatString: 0
+		lineageTag: 75c975bd-f9d0-408c-b2a5-9f09b8c9fc31
+		summarizeBy: sum
+		sourceColumn: RoboISSMossoro
+
+		annotation SummarizationSetBy = Automatic
+
+	column RoboISSGuaraciaba
+		dataType: int64
+		formatString: 0
+		lineageTag: 0d8c9393-35ba-431e-82f0-b9cb005e2db3
+		summarizeBy: sum
+		sourceColumn: RoboISSGuaraciaba
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dEmpresa-77f1df62-868b-44f2-8500-54d2072aab22 = m
+		mode: import
+		queryGroup: Dimensão
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, Query="SELECT * FROM TbEmpresa#(lf)WHERE IdGrupoEmpresa in " & IdGrupoEmpresa & " and EmpresaContabilId = "&EmpresaContabilId&""]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Id", type text}, {"codi_emp", type text}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Tipo Alterado", each ([StatusEmpesa] = "A")),
+				    #"Coluna Mesclada Inserida" = Table.AddColumn(#"Linhas Filtradas", "Empresa_", each Text.Combine({"Empresa ", [codi_emp]}), type text),
+				    #"Colunas Removidas" = Table.RemoveColumns(#"Coluna Mesclada Inserida",{"Empresa"}),
+				    #"Colunas Renomeadas" = Table.RenameColumns(#"Colunas Removidas",{{"Empresa_", "Empresa"}})
+				in
+				    #"Colunas Renomeadas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

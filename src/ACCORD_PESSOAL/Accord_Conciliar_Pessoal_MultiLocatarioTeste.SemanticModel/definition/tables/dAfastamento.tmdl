@@ -1,0 +1,181 @@
+table dAfastamento
+	lineageTag: 2fd3d7b9-bf8c-466e-8ed9-aa4db1e82c49
+
+	column Id
+		dataType: int64
+		formatString: 0
+		lineageTag: f4a8a82c-2c8f-4eaf-a169-c5847c89fd06
+		summarizeBy: count
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column codi_emp
+		dataType: string
+		lineageTag: 35bb84f9-17ae-4e06-86fe-1b0e6577fb97
+		summarizeBy: none
+		sourceColumn: codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column codi_empregado
+		dataType: string
+		lineageTag: bf61ed4a-ce87-44c1-8cb7-2a771555669f
+		summarizeBy: none
+		sourceColumn: codi_empregado
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataReal
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: e9b3200a-f24f-4421-a6f7-852d61d87194
+		summarizeBy: none
+		sourceColumn: DataReal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Motivo
+		dataType: string
+		lineageTag: 76cbca2e-6477-4b83-98e2-4a82b4ec0fc8
+		summarizeBy: none
+		sourceColumn: Motivo
+
+		annotation SummarizationSetBy = Automatic
+
+	column Descricao
+		dataType: string
+		lineageTag: cbebada2-34ba-4633-a52f-c14cef78f4c4
+		summarizeBy: none
+		sourceColumn: Descricao
+
+		annotation SummarizationSetBy = Automatic
+
+	column chaveempreg
+		dataType: string
+		lineageTag: eaa3df1a-0309-49dc-8416-052f9914764a
+		summarizeBy: none
+		sourceColumn: chaveempreg
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataFim
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 20a52492-599b-4c31-b948-4c66bc61ca48
+		summarizeBy: none
+		sourceColumn: DataFim
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column 'Afastado ou Estável' = IF(dAfastamento[DataRetorno] > TODAY() || dAfastamento[DataFim] = BLANK(), "Afastado ou Estável", "Trabalhando")
+		lineageTag: e4dfa146-ffe9-4314-bbaf-8865f418b4b6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome do Mês'
+		dataType: string
+		lineageTag: 45164c9d-ec21-40b3-b436-de85b0de8ee3
+		summarizeBy: none
+		sourceColumn: Nome do Mês
+		sortByColumn: Mês
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: f8fc5be2-cacd-4d60-8a7d-cdc8091a0788
+		summarizeBy: sum
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mês
+		dataType: int64
+		formatString: 0
+		lineageTag: d682a278-339d-48af-9613-625c36eb0403
+		summarizeBy: sum
+		sourceColumn: Mês
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nome do Dia'
+		dataType: string
+		lineageTag: d7933f3b-4480-4482-bdbc-1786a5eee07c
+		summarizeBy: none
+		sourceColumn: Nome do Dia
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataRetorno = IF(dAfastamento[DataFim] = BLANK(), BLANK(), IF(dAfastamento[Nome do Dia] = "sábado", dAfastamento[DataFim] + 2, IF(dAfastamento[Nome do Dia] = "domingo", dAfastamento[DataFim] + 1, IF(dAfastamento[Nome do Dia] = "sexta-feira", dAfastamento[DataFim] + 2, dAfastamento[DataFim]) + 1)))
+		formatString: Short Date
+		lineageTag: 1b29a907-c14f-4dc3-91e9-341cb5748f53
+		summarizeBy: none
+
+		changedProperty = DataType
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DiasRetorno = DATEDIFF(TODAY(), dAfastamento[DataRetorno],DAY)
+		formatString: 0
+		lineageTag: 15778130-5894-43a1-9f98-98540da9dedf
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdGrupoEmpresa
+		dataType: int64
+		formatString: 0
+		lineageTag: 311fa9af-4e17-4aad-886d-2b7c85cc005d
+		summarizeBy: sum
+		sourceColumn: IdGrupoEmpresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmpresaContabilId
+		dataType: int64
+		formatString: 0
+		lineageTag: 8be7fc88-b69c-4771-9aa8-759ff671c282
+		summarizeBy: count
+		sourceColumn: EmpresaContabilId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition dAfastamento-09bf490b-7d52-475e-9695-62c741a8e94a = m
+		mode: import
+		queryGroup: Dimensão
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, Query="SELECT #(lf)a.*, #(lf)e.IdGrupoEmpresa#(lf)FROM DwAccordFiscal.TbDPAfastamento a#(lf)INNER JOIN DwAccordFiscal.TbEmpresa e#(lf) ON a.codi_emp=e.codi_emp and a.EmpresaContabilId = e.EmpresaContabilId #(lf)WHERE e.IdGrupoEmpresa IN " & IdGrupoEmpresa & " and e.EmpresaContabilId = "&EmpresaContabilId&"#(lf)"]),
+				    Personalizar1 = Table.AddColumn(Fonte, "chaveempreg", each Text.Combine({[codi_emp], "-", [codi_empregado]}), type text),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Personalizar1,{{"DataReal", type date}, {"DataFim", type date}}),
+				    #"Nome do Mês Inserido" = Table.AddColumn(#"Tipo Alterado", "Nome do Mês", each Date.MonthName([DataReal]), type text),
+				    #"Ano Inserido" = Table.AddColumn(#"Nome do Mês Inserido", "Ano", each Date.Year([DataReal]), Int64.Type),
+				    #"Mês Inserido" = Table.AddColumn(#"Ano Inserido", "Mês", each Date.Month([DataReal]), Int64.Type),
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(#"Mês Inserido",{{"Nome do Mês", Text.Proper, type text}}),
+				    #"Nome do Dia Inserido" = Table.AddColumn(#"Colocar Cada Palavra Em Maiúscula", "Nome do Dia", each Date.DayOfWeekName([DataFim]), type text)
+				in
+				    #"Nome do Dia Inserido"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,121 @@
+table TbDpRescisao
+	lineageTag: ba705dbd-f142-48ff-951f-a139f8f3e7ee
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: e49b80e0-7606-4c7c-afeb-ef72f711e728
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column codi_emp
+		dataType: string
+		lineageTag: ffff1d30-a373-4485-b25b-42d294dac463
+		summarizeBy: none
+		sourceColumn: codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column i_empregados
+		dataType: string
+		lineageTag: 1f1dad2c-ba15-4529-ba07-4c59bba3dfaf
+		summarizeBy: none
+		sourceColumn: i_empregados
+
+		annotation SummarizationSetBy = Automatic
+
+	column demissao
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 72584543-d011-452b-81e7-003d6585369b
+		summarizeBy: none
+		sourceColumn: demissao
+
+		annotation SummarizationSetBy = Automatic
+
+	column tipo
+		dataType: string
+		lineageTag: 5a6ed91e-b039-4cea-8b55-b0148b99b8df
+		summarizeBy: none
+		sourceColumn: tipo
+
+		annotation SummarizationSetBy = Automatic
+
+	column motivo
+		dataType: string
+		lineageTag: 1b19d660-c2be-403b-9e8a-6bfbc25727b8
+		summarizeBy: none
+		sourceColumn: motivo
+
+		annotation SummarizationSetBy = Automatic
+
+	column aviso_indenizado
+		dataType: string
+		lineageTag: d93b3c1f-6297-4513-866d-03a844f3ef41
+		summarizeBy: none
+		sourceColumn: aviso_indenizado
+
+		annotation SummarizationSetBy = Automatic
+
+	column proventos
+		dataType: double
+		lineageTag: 4f652f72-491d-46b4-8231-8aabb1c0d331
+		summarizeBy: sum
+		sourceColumn: proventos
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column descontos
+		dataType: double
+		lineageTag: 75e4dc2c-f2f8-4eb7-b4de-deb3937c0b46
+		summarizeBy: sum
+		sourceColumn: descontos
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column aviso_previo
+		dataType: string
+		lineageTag: 3f06ede2-bdf4-4761-8f90-a65d446debcd
+		summarizeBy: none
+		sourceColumn: aviso_previo
+
+		annotation SummarizationSetBy = Automatic
+
+	column chavempreg
+		dataType: string
+		lineageTag: 1e503b4f-2afe-4118-8e76-5b6e2348bc4e
+		summarizeBy: none
+		sourceColumn: chavempreg
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmpresaContabilId
+		dataType: int64
+		formatString: 0
+		lineageTag: ef04f402-50c8-4c95-9607-d9faf4e283e9
+		summarizeBy: count
+		sourceColumn: EmpresaContabilId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TbDpRescisao-e422edd7-3efd-47b5-bb3b-890a9cb279df = m
+		mode: import
+		queryGroup: Dimensão
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, Query="SELECT t1.* FROM DwAccordFiscal.TbDPrescisoes t1#(lf)INNER JOIN TbEmpresa te ON te.codi_emp = t1.codi_emp AND te.EmpresaContabilId = t1.EmpresaContabilId#(lf)WHERE te.EmpresaContabilId = "&EmpresaContabilId&""]),
+				    #"Coluna Mesclada Inserida" = Table.AddColumn(Fonte, "chavempreg", each Text.Combine({[codi_emp], [i_empregados]}, "-"), type text),
+				    #"Colunas Reordenadas" = Table.ReorderColumns(#"Coluna Mesclada Inserida",{"id", "chavempreg", "codi_emp", "i_empregados", "demissao", "tipo", "motivo", "aviso_indenizado", "proventos", "descontos", "aviso_previo"})
+				in
+				    #"Colunas Reordenadas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

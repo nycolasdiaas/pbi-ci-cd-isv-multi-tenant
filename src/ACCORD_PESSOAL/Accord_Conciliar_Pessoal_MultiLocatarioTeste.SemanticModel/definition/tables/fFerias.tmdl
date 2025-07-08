@@ -1,0 +1,328 @@
+table fFerias
+	lineageTag: 3286bc95-361b-44a3-88fc-9b05a9ceb994
+
+	column Id
+		dataType: string
+		lineageTag: 75c266d0-f9c9-4186-947b-88e9608dc132
+		summarizeBy: none
+		sourceColumn: Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column Codi_emp
+		dataType: string
+		lineageTag: 5ac259f0-b5c3-459c-a418-04eee8a7fa6e
+		summarizeBy: none
+		sourceColumn: Codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column Codi_empregado
+		dataType: string
+		lineageTag: 9539c0ed-81ca-45bb-91d9-71bdb52b9c07
+		summarizeBy: none
+		sourceColumn: Codi_empregado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nome
+		dataType: string
+		lineageTag: 39175419-7731-4311-8545-2114ac1f2c37
+		summarizeBy: none
+		sourceColumn: Nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column Admissao
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: ccd90dd8-a46e-4e20-b891-b0bf738b0d32
+		summarizeBy: none
+		sourceColumn: Admissao
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Inicio_aquis
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 37b9a5c8-f5eb-4c6b-941f-11ba711ea8a1
+		summarizeBy: none
+		sourceColumn: Inicio_aquis
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Fim_aquis
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 29922b6a-260c-4e17-a6f8-ca64c8756886
+		summarizeBy: none
+		sourceColumn: Fim_aquis
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Dias_direito
+		dataType: int64
+		formatString: 0
+		lineageTag: 88cbf366-c587-478b-aede-d861998f7c74
+		summarizeBy: sum
+		sourceColumn: Dias_direito
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dias_gozados
+		dataType: int64
+		formatString: 0
+		lineageTag: 81b7a83d-d825-474b-b288-61793f0dd2b1
+		summarizeBy: sum
+		sourceColumn: Dias_gozados
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dias_faltas
+		dataType: int64
+		formatString: 0
+		lineageTag: a1a523e4-5d84-4016-ae97-efd7b2f6d2de
+		summarizeBy: sum
+		sourceColumn: Dias_faltas
+
+		annotation SummarizationSetBy = Automatic
+
+	column Salario
+		dataType: double
+		lineageTag: 6c12e8ed-c3fc-489d-84a8-0a937c79bad1
+		summarizeBy: sum
+		sourceColumn: Salario
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Limite_para_gozo
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 34bf0b44-2432-4f75-822c-ff67e8621d75
+		summarizeBy: none
+		sourceColumn: Limite_para_gozo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Inicio_gozo
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: dd86f271-0090-4c93-b010-6be255a36e19
+		summarizeBy: none
+		sourceColumn: Inicio_gozo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column Dias_atrasados
+		dataType: int64
+		formatString: 0
+		lineageTag: f19e5062-8529-4c29-be2c-ae5be0c7acef
+		summarizeBy: sum
+		sourceColumn: Dias_atrasados
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dias_restantes
+		dataType: int64
+		formatString: 0
+		lineageTag: 57e92964-6bc0-40f4-ace7-f27c04c7266c
+		summarizeBy: sum
+		sourceColumn: Dias_restantes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fim_gozo
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: 91f173b3-88e0-48cb-8f25-606bddcc8320
+		summarizeBy: none
+		sourceColumn: Fim_gozo
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column MesAno
+		dataType: string
+		lineageTag: 818a7f5b-bc70-4530-b662-dee8094d880f
+		summarizeBy: none
+		sourceColumn: MesAno
+
+		annotation SummarizationSetBy = Automatic
+
+	column Situacao
+		dataType: int64
+		formatString: 0
+		lineageTag: 7c884bd2-2c92-4a40-9ff4-aca2d8fc99d1
+		summarizeBy: sum
+		sourceColumn: Situacao
+
+		annotation SummarizationSetBy = Automatic
+
+	column chaveempreg
+		dataType: string
+		lineageTag: 07f0bf75-ad29-44fc-bf9d-07dce5361fa1
+		summarizeBy: none
+		sourceColumn: chaveempreg
+
+		annotation SummarizationSetBy = Automatic
+
+	column I_AFASTAMENTOS
+		dataType: string
+		lineageTag: c90dcfed-9b27-4ee1-8dc7-ca8e1888ac89
+		summarizeBy: none
+		sourceColumn: I_AFASTAMENTOS
+
+		annotation SummarizationSetBy = Automatic
+
+	column Condicao =
+			
+			IF (
+			    fFerias[Inicio_gozo] <= TODAY() && fFerias[Fim_gozo] >= TODAY(),
+			    "Férias",
+			    IF (
+			        fFerias[Inicio_gozo] > TODAY(),
+			        "Férias a Gozar",
+			        "Férias Gozadas"
+			    )
+			)
+		lineageTag: 1013c0ea-5f54-4f6d-a848-d70666f7758a
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column venc_ferias
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: fc4b3260-4217-4c2e-ab49-0728a8d5d1bc
+		summarizeBy: none
+		sourceColumn: venc_ferias
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Nome do Mês'
+		dataType: string
+		lineageTag: e874661e-564f-4f59-a8c6-5c548e5d52db
+		summarizeBy: none
+		sourceColumn: Nome do Mês
+		sortByColumn: Mês
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		dataType: int64
+		formatString: 0
+		lineageTag: 2ed4b2e2-c1f0-4206-8a4c-34f602667335
+		summarizeBy: sum
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mês
+		dataType: int64
+		formatString: 0
+		lineageTag: d4722e4e-e919-48cc-89e5-938408a8eef5
+		summarizeBy: sum
+		sourceColumn: Mês
+
+		annotation SummarizationSetBy = Automatic
+
+	column dias_de_ferias = DATEDIFF(fFerias[Inicio_gozo], fFerias[Fim_gozo], DAY) + 1
+		formatString: 0
+		lineageTag: 21ae4204-7db1-45de-a62f-9785ae77cd3c
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column direito_ferias_meses = DATEDIFF(fFerias[Fim_aquis], TODAY(), MONTH)
+		formatString: 0
+		lineageTag: f4466615-f99b-4aa5-a47e-98f759744cbe
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column situacao_ferias = IF(fFerias[Inicio_gozo] > fFerias[Fim_aquis], "Correto", "Incorreto")
+		lineageTag: e3b74e4d-96a0-4ea3-92c2-332df8d1468b
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column IdGrupoEmpresa
+		dataType: int64
+		formatString: 0
+		lineageTag: d6611baf-bfcc-462c-8375-a46250cd2d41
+		summarizeBy: sum
+		sourceColumn: IdGrupoEmpresa
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataReal
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 294bed8c-043b-4ef3-b2be-7126b77e0a14
+		summarizeBy: none
+		sourceColumn: DataReal
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmpresaContabilId
+		dataType: int64
+		formatString: 0
+		lineageTag: 25a21823-dd1c-4a1b-9526-06a6655ccd03
+		summarizeBy: count
+		sourceColumn: EmpresaContabilId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fFerias-745a678f-bbb1-43a9-814c-cc610574a1ff = m
+		mode: import
+		queryGroup: Fato
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, Query="SELECT f.*, e.IdGrupoEmpresa FROM DwAccordFiscal.TbDPFerias f INNER JOIN DwAccordFiscal.TbEmpresa e ON f.codi_emp=e.codi_emp  AND f.EmpresaContabilId = e.EmpresaContabilId WHERE e.IdGrupoEmpresa IN " & IdGrupoEmpresa & " and f.EmpresaContabilId="&EmpresaContabilId&""]),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"Id", type text}, {"Codi_emp", type text}, {"Codi_empregado", type text}, {"Admissao", type date}, {"Inicio_aquis", type date}, {"Fim_aquis", type date}, {"Limite_para_gozo", type date}, {"Inicio_gozo", type date}, {"Fim_gozo", type date}}),
+				    #"Coluna Personalizada Adicionada" = Table.AddColumn(#"Tipo Alterado", "MesAno", each Text.Combine({Text.Proper(Date.ToText([Inicio_gozo], "MMM")), "-", Date.ToText([Inicio_gozo], "yyyy")}), type text),
+				    Personalizar1 = Table.AddColumn(#"Coluna Personalizada Adicionada", "chaveempreg", each Text.Combine({[Codi_emp], "-", [Codi_empregado]}), type text),
+				    #"Consultas Mescladas" = Table.NestedJoin(Personalizar1, {"chaveempreg"}, dEmpregados, {"chaveempreg"}, "dEmpregados", JoinKind.LeftOuter),
+				    #"dEmpregados Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas", "dEmpregados", {"venc_ferias", "I_AFASTAMENTOS"}, {"venc_ferias", "I_AFASTAMENTOS"}),
+				    #"Nome do Mês Inserido" = Table.AddColumn(#"dEmpregados Expandido", "Nome do Mês", each Date.MonthName([venc_ferias]), type text),
+				    #"Ano Inserido" = Table.AddColumn(#"Nome do Mês Inserido", "Ano", each Date.Year([venc_ferias]), Int64.Type),
+				    #"Mês Inserido" = Table.AddColumn(#"Ano Inserido", "Mês", each Date.Month([venc_ferias]), Int64.Type),
+				    #"Colocar Cada Palavra Em Maiúscula" = Table.TransformColumns(#"Mês Inserido",{{"Nome do Mês", Text.Proper, type text}})
+				in
+				    #"Colocar Cada Palavra Em Maiúscula"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

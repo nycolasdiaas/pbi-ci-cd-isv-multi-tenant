@@ -1,0 +1,176 @@
+table fASO
+	lineageTag: a0755ad0-6746-4798-a4b7-6283978395ff
+
+	measure ADMISS_OK = ```
+			
+			        CALCULATE(COUNTROWS(fASO), fASO[ASO ADMISSIONAL] = "🟢-Recebido")
+			```
+		formatString: 0
+		lineageTag: c63ddb3f-78cc-41a2-bf4e-1dd7ccca043a
+
+		changedProperty = FormatString
+
+	measure ADMISS_VENCIDO = ```
+			
+			        CALCULATE(COUNTROWS(fASO), fASO[ASO ADMISSIONAL] = "🔴-Vencido")
+			```
+		formatString: #,0
+		lineageTag: 4a293941-4c98-4c62-815f-ac5c7f6bf697
+
+		changedProperty = FormatString
+
+	measure DMISS_OK = ```
+			
+			        CALCULATE(COUNTROWS(fASO), 
+			        fASO[ASO DEMISSIONAL] = "🟢-Recebido",
+			        USERELATIONSHIP(fASO[DataDemissao], dCalendario[Data]))
+			```
+		formatString: 0
+		lineageTag: 4b5803ee-6d3e-42e7-8b04-3e43ff2bf6a9
+
+		changedProperty = FormatString
+
+	measure DMISS_VENCIDO = ```
+			
+			        CALCULATE(
+			                COUNTROWS(fASO), 
+			                fASO[ASO DEMISSIONAL] = "🔴-Vencido",
+			                USERELATIONSHIP(fASO[DataDemissao], dCalendario[Data]))
+			        
+			```
+		formatString: 0
+		lineageTag: d932f896-5533-4970-a955-3cd6e3cb9876
+
+		changedProperty = FormatString
+
+	measure DMISS_PENDENTE = ```
+			
+			        CALCULATE(COUNTROWS(fASO), 
+			        fASO[ASO DEMISSIONAL] = "🟡-Pendente",
+			        USERELATIONSHIP(fASO[DataDemissao], dCalendario[Data]))
+			```
+		formatString: #,0
+		lineageTag: 4724b13f-4981-4e78-bbc6-6c4d6ec354f8
+
+		changedProperty = FormatString
+
+	column codi_emp
+		dataType: string
+		lineageTag: d45105dc-b673-4597-ab27-3ecf02a75c91
+		summarizeBy: none
+		sourceColumn: codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column i_empregados
+		dataType: string
+		lineageTag: b29fb57b-67f4-4b09-b4d4-a9c11789bab0
+		summarizeBy: none
+		sourceColumn: i_empregados
+
+		annotation SummarizationSetBy = Automatic
+
+	column nome
+		dataType: string
+		lineageTag: 9f6b09ca-8755-40c3-957f-fc5ac8c4c359
+		summarizeBy: none
+		sourceColumn: nome
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataAdmissao
+		dataType: dateTime
+		formatString: dd/mm/yyyy
+		lineageTag: acc3b480-e25e-4de2-aa30-918caad0fe58
+		summarizeBy: none
+		sourceColumn: DataAdmissao
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	column DataDemissao
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 2b9c91d0-db11-49b7-b0ec-4ac147193b47
+		summarizeBy: none
+		sourceColumn: DataDemissao
+
+		changedProperty = FormatString
+
+		annotation SummarizationSetBy = Automatic
+
+	column QtdASOAdmissao
+		dataType: int64
+		formatString: 0
+		lineageTag: 509e69d4-59b3-4e43-94eb-ae93541f7f0c
+		summarizeBy: sum
+		sourceColumn: QtdASOAdmissao
+
+		annotation SummarizationSetBy = Automatic
+
+	column QtdASODemissao
+		dataType: int64
+		formatString: 0
+		lineageTag: cba38c8c-95b5-4397-a82b-a2b8b36e2b1f
+		summarizeBy: sum
+		sourceColumn: QtdASODemissao
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ASO ADMISSIONAL' =
+			
+			VAR cntASOAdmin = fASO[QtdASOAdmissao]
+			VAR dtADMISSAO = fASO[DataAdmissao]
+			VAR dtDIFAdmiss = (NOW()-dtADMISSAO)
+			RETURN
+			IF(cntASOAdmin=0 && (dtADMISSAO<now()), "🔴-Vencido",
+			    IF(cntASOAdmin=0 && (dtADMISSAO>now()), BLANK(),
+			        "🟢-Recebido")
+			        )
+		lineageTag: 74f44274-3f3c-4e5f-bb65-5b7868bc4157
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'ASO DEMISSIONAL' =
+			
+			VAR cntASODemis = fASO[QtdASODemissao]
+			VAR dtDEMISSAO = fASO[DataDemissao]
+			VAR dtDIFDemiss = (NOW()-dtDEMISSAO)
+			RETURN
+			IF(cntASODemis=0 && NOT(ISBLANK(dtDEMISSAO)),
+			    SWITCH(cntASODemis=0, dtDIFDemiss<=11, "🟡-Pendente", dtDIFDemiss>11, "🔴-Vencido"),
+			        IF(cntASODemis>0,"🟢-Recebido","Blank"))
+		lineageTag: ec11d578-5d3c-4958-aacf-c9feae30c9a2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tipo = ```
+			
+			    IF(ISBLANK(fASO[DataDemissao]),
+			            "Admissional",
+			            "Demissional"
+			    )
+			```
+		lineageTag: 7608f3c3-872e-4739-93f2-43b55640bc8d
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition fASO-6c179975-c896-4b2c-812e-3777897f2b2f = m
+		mode: import
+		queryGroup: Fato
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, Query="#(tab)SELECT #(lf)#(tab)#(tab)e.codi_emp, #(lf)#(tab)#(tab)e.i_empregados, #(lf)#(tab)#(tab)e.nome, #(lf)#(tab)#(tab)e.dataadmissaoaux as DataAdmissao,#(lf)#(tab)#(tab)e.DataDemissao,#(lf)#(tab)#(tab)(SELECT #(lf)#(tab)#(tab)#(tab)Count(*) #(lf)#(tab)#(tab) FROM #(lf)#(tab)#(tab)#(tab)DwAccordFiscal.TbDpASOMonitoramento m #(lf)#(tab)#(tab)where #(lf)#(tab)#(tab)#(tab)tipo_aso=1 and m.codi_emp=e.codi_emp and #(lf)#(tab)#(tab)#(tab)m.i_empregados=e.i_empregados and m.data_aso<=e.dataadmissaoaux) as QtdASOAdmissao,#(lf)#(tab)#(tab)(SELECT #(lf)#(tab)#(tab)#(tab)Count(*)#(lf)#(tab)#(tab) FROM #(lf)#(tab)#(tab)#(tab)DwAccordFiscal.TbDpASOMonitoramento m #(lf)#(tab)#(tab)where #(lf)#(tab)#(tab)#(tab)tipo_aso=6 and m.codi_emp=e.codi_emp and #(lf)#(tab)#(tab)#(tab)m.i_empregados=e.i_empregados and m.data_aso>=e.datademissao) as QtdASODemissao#(lf)#(tab)FROM DwAccordFiscal.TbDPempregados e#(lf)#(tab)INNER JOIN TbEmpresa te ON te.codi_emp = e.codi_emp AND te.EmpresaContabilId = e.EmpresaContabilId#(lf)#(tab)WHERE te.EmpresaContabilId = "&EmpresaContabilId&""])
+				in
+				    Fonte
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navegação
+

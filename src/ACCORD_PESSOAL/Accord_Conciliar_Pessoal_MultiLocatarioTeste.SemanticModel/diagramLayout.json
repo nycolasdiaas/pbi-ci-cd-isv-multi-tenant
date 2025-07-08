@@ -1,0 +1,437 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 817.33332316080737
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 461.6739557327989,
+            "y": 726.06372723995241
+          },
+          "nodeIndex": "dCalendario",
+          "nodeLineageTag": "bb02c3a1-a5dd-448a-9e77-0a833e5ca192",
+          "size": {
+            "height": 337,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 52.82622825258656,
+            "y": 1514.3719528099498
+          },
+          "nodeIndex": "fFerias",
+          "size": {
+            "height": 337,
+            "width": 234
+          },
+          "zIndex": 19
+        },
+        {
+          "location": {
+            "x": 1892.4104025883805,
+            "y": 1180.2316055874926
+          },
+          "nodeIndex": "dEmpresa",
+          "size": {
+            "height": 337,
+            "width": 234
+          },
+          "zIndex": 27
+        },
+        {
+          "location": {
+            "x": 1383.9445847145503,
+            "y": 534.75047338650279
+          },
+          "nodeIndex": "dEmpregados",
+          "size": {
+            "height": 271.89427312775342,
+            "width": 234
+          },
+          "zIndex": 30
+        },
+        {
+          "location": {
+            "x": 235.01468544865594,
+            "y": 0
+          },
+          "nodeIndex": "Ultima Atualização",
+          "size": {
+            "height": 124,
+            "width": 234
+          },
+          "zIndex": 16
+        },
+        {
+          "location": {
+            "x": 1546.9173256803128,
+            "y": 1129.1893450512575
+          },
+          "nodeIndex": "dAvisoPrevio",
+          "size": {
+            "height": 256,
+            "width": 234
+          },
+          "zIndex": 24
+        },
+        {
+          "location": {
+            "x": 0,
+            "y": 0
+          },
+          "nodeIndex": "_Medidas_Ferias",
+          "size": {
+            "height": 124,
+            "width": 234
+          },
+          "zIndex": 14
+        },
+        {
+          "location": {
+            "x": 469.62548093041414,
+            "y": 0
+          },
+          "nodeIndex": "_Medidas_Aviso_Previo",
+          "size": {
+            "height": 124,
+            "width": 234
+          },
+          "zIndex": 15
+        },
+        {
+          "location": {
+            "x": 350.2380952380953,
+            "y": 289.89351380995009
+          },
+          "nodeIndex": "dAfastamento",
+          "nodeLineageTag": "2fd3d7b9-bf8c-466e-8ed9-aa4db1e82c49",
+          "size": {
+            "height": 334.76222526814638,
+            "width": 234
+          },
+          "zIndex": 26
+        },
+        {
+          "location": {
+            "x": 850.88790769507773,
+            "y": 1049.5572294937019
+          },
+          "nodeIndex": "dContratoExperiencia",
+          "nodeLineageTag": "012fb9f3-387e-4177-bdfe-2602779a2379",
+          "size": {
+            "height": 543.35525515582333,
+            "width": 234
+          },
+          "zIndex": 32
+        },
+        {
+          "location": {
+            "x": 944.438668999999,
+            "y": 0
+          },
+          "nodeIndex": "_Medidas_Afastamento",
+          "size": {
+            "height": 124,
+            "width": 234
+          },
+          "zIndex": 17
+        },
+        {
+          "location": {
+            "x": 1183.170666999999,
+            "y": 0
+          },
+          "nodeIndex": "_Medidas_Contrato_Experiencia",
+          "size": {
+            "height": 124,
+            "width": 234
+          },
+          "zIndex": 18
+        },
+        {
+          "location": {
+            "x": 706.292075063749,
+            "y": 0
+          },
+          "nodeIndex": "_Medidas_Salario_Familia",
+          "size": {
+            "height": 124,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 918.37459682664678,
+            "y": 1632.544416108535
+          },
+          "nodeIndex": "fSalarioFamilia",
+          "size": {
+            "height": 326.86171952538587,
+            "width": 234
+          },
+          "zIndex": 23
+        },
+        {
+          "location": {
+            "x": 76.3095238095238,
+            "y": 629.07977415467337
+          },
+          "nodeIndex": "dDependentesSalarioFamilia",
+          "size": {
+            "height": 331.60202297104217,
+            "width": 234
+          },
+          "zIndex": 12
+        },
+        {
+          "location": {
+            "x": 2623.3269507716368,
+            "y": 791.28886927117685
+          },
+          "nodeIndex": "dEquipesExecucao",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 1269.6183292760954,
+            "y": 1749.2854291156025
+          },
+          "nodeIndex": "fFolha",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 2134.5989039092,
+            "y": 220.07968109724797
+          },
+          "nodeIndex": "dCargos",
+          "size": {
+            "height": 330.50328036034432,
+            "width": 234
+          },
+          "zIndex": 28
+        },
+        {
+          "location": {
+            "x": 1632.1870896131923,
+            "y": 772.07587886893145
+          },
+          "nodeIndex": "dDepartamentos",
+          "size": {
+            "height": 306.28571428571445,
+            "width": 234
+          },
+          "zIndex": 21
+        },
+        {
+          "location": {
+            "x": 1898.2261904761904,
+            "y": 1727.1238699519063
+          },
+          "nodeIndex": "dEventos",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 20
+        },
+        {
+          "location": {
+            "x": 1423.4044351377106,
+            "y": 0
+          },
+          "nodeIndex": "_Medidas_Folha",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 1661.7010360421684,
+            "y": 0
+          },
+          "nodeIndex": "SalárioSimulacao",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1899.48650060751,
+            "y": 0
+          },
+          "nodeIndex": "_Medidas_Encargos",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 443.98105634969613,
+            "y": 1602.154564457282
+          },
+          "nodeIndex": "fEncargosEmpresa",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 22
+        },
+        {
+          "location": {
+            "x": 2234.8958488692479,
+            "y": 13.034822914304186
+          },
+          "nodeIndex": "UltimaAquisicao",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 1556.7079440507907,
+            "y": 1499.3840354910722
+          },
+          "nodeIndex": "fASO",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 25
+        },
+        {
+          "location": {
+            "x": 676.57699811202065,
+            "y": 221.96092930564296
+          },
+          "nodeIndex": "TbDPAlteracaoCargo",
+          "size": {
+            "height": 280.75,
+            "width": 234
+          },
+          "zIndex": 29
+        },
+        {
+          "location": {
+            "x": 972.02957500428147,
+            "y": 689.77155443675269
+          },
+          "nodeIndex": "TbDpAlteracaoSalarial",
+          "size": {
+            "height": 239.49889867841409,
+            "width": 234
+          },
+          "zIndex": 31
+        },
+        {
+          "location": {
+            "x": 2949.7,
+            "y": 0
+          },
+          "nodeIndex": "_Cargos_Salarios",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 1884.8826842992844,
+            "y": 735.89427312775319
+          },
+          "nodeIndex": "TbDpRescisao",
+          "size": {
+            "height": 342.88105726872243,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 3233.7,
+            "y": 874.64271455780136
+          },
+          "nodeIndex": "dEmpregados - dEmpresa",
+          "nodeLineageTag": "2c1d39db-e3df-48b1-a5dd-c2825dbb2799",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 3517.7,
+            "y": 936.64271455780136
+          },
+          "nodeIndex": "UltimaAquisicao - cópia",
+          "nodeLineageTag": "8941350b-6e89-429e-8db2-05ce69b988b9",
+          "size": {
+            "height": 176,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 3801.7,
+            "y": 888.64271455780136
+          },
+          "nodeIndex": "fValorPorDependente",
+          "nodeLineageTag": "42b1452a-c7d0-443e-8352-591aeebbb175",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 4085.7,
+            "y": 972.64271455780136
+          },
+          "nodeIndex": "VersaoPainel",
+          "nodeLineageTag": "1e5e4fad-4e39-4234-bd7a-74d74728fa1e",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "Todas as tabelas",
+      "zoomValue": 60,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "Todas as tabelas",
+  "defaultDiagram": "Todas as tabelas"
+}

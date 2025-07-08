@@ -1,0 +1,134 @@
+table TbDPAlteracaoCargo
+	lineageTag: a6549409-684e-4dcb-8d18-a808615c0202
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 73960fec-ddd5-4830-a928-d4f88b91ea14
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column chaveempreg
+		dataType: string
+		lineageTag: fedad303-89f4-4b61-af3a-73f3a6e50646
+		summarizeBy: none
+		sourceColumn: chaveempreg
+
+		annotation SummarizationSetBy = Automatic
+
+	column codi_emp
+		dataType: string
+		lineageTag: 02159c21-189d-4a96-b332-330b45ac1402
+		summarizeBy: none
+		sourceColumn: codi_emp
+
+		annotation SummarizationSetBy = Automatic
+
+	column i_empregados
+		dataType: string
+		lineageTag: ab314c42-eb46-419d-a1c2-0e94c409d142
+		summarizeBy: none
+		sourceColumn: i_empregados
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_troca
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: 98d53097-ea21-4b0d-9a60-b2c46141e1c7
+		summarizeBy: none
+		sourceColumn: data_troca
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CargoNovo
+		dataType: string
+		lineageTag: 34ce657a-2d26-47b0-8444-b938788ba64e
+		summarizeBy: none
+		sourceColumn: CargoNovo
+
+		annotation SummarizationSetBy = Automatic
+
+	column CargoAntigo
+		dataType: string
+		lineageTag: 34c5255f-a5d6-4ae5-8da9-efb90d0a8ae9
+		summarizeBy: none
+		sourceColumn: CargoAntigo
+
+		annotation SummarizationSetBy = Automatic
+
+	column data_gravacao
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: a7c72d7d-b6ec-4bd8-825d-74dea3652136
+		summarizeBy: none
+		sourceColumn: data_gravacao
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Descricao CargoAntigo' = LOOKUPVALUE(dCargos[nome], dCargos[chvcargo], TbDPAlteracaoCargo[chvcargoantigo])
+		lineageTag: 4b295e00-d739-4658-97e5-7225f85c6676
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column chvcargoantigo
+		dataType: string
+		lineageTag: 2094ab69-6dbc-4e83-bb03-f6028e6549d7
+		summarizeBy: none
+		sourceColumn: chvcargoantigo
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Descricao CargoNovo' = LOOKUPVALUE(dCargos[nome], dCargos[chvcargo], TbDPAlteracaoCargo[chvcargonovo])
+		lineageTag: 0849817e-2a5a-492b-a068-f29ad5602110
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column chvcargonovo
+		dataType: string
+		lineageTag: 6f8e1732-be26-4f70-a47b-4e6da6bbafd2
+		summarizeBy: none
+		sourceColumn: chvcargonovo
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmpresaContabilId
+		dataType: int64
+		formatString: 0
+		lineageTag: 705daab4-a019-4568-816a-0a376dab86ee
+		summarizeBy: count
+		sourceColumn: EmpresaContabilId
+
+		annotation SummarizationSetBy = Automatic
+
+	partition TbDPAlteracaoCargo-c899dd88-fff2-4ff8-ad9b-4d71f05fe48b = m
+		mode: import
+		queryGroup: Dimensão
+		source =
+				let
+				    Fonte = MySQL.Database("dwaccord2020.cm0u3usrchv0.us-east-1.rds.amazonaws.com", "DwAccordFiscal", [ReturnSingleDatabase=true, Query="SELECT t1.* FROM DwAccordFiscal.TbDPAlteracaoCargo t1#(lf)INNER JOIN TbEmpresa te ON te.codi_emp = t1.codi_emp AND te.EmpresaContabilId = t1.EmpresaContabilId#(lf)WHERE te.EmpresaContabilId = "&EmpresaContabilId&"#(lf)"]),
+				    #"Coluna Mesclada Inserida" = Table.AddColumn(Fonte, "chaveempreg", each Text.Combine({Text.From([codi_emp], "pt-BR"), Text.From([i_empregados], "pt-BR")}, "-"), type text),
+				    #"Colunas Reordenadas" = Table.ReorderColumns(#"Coluna Mesclada Inserida",{"id", "chaveempreg", "codi_emp", "i_empregados", "data_troca", "CargoNovo", "CargoAntigo", "data_gravacao"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Reordenadas",{{"codi_emp", type text}, {"i_empregados", type text}, {"CargoNovo", type text}, {"CargoAntigo", type text}}),
+				    #"Coluna Mesclada Inserida1" = Table.AddColumn(#"Tipo Alterado", "chvcargonovo", each Text.Combine({[codi_emp], [CargoNovo]}, "-"), type text),
+				    #"Coluna Mesclada Inserida2" = Table.AddColumn(#"Coluna Mesclada Inserida1", "chvcargoantigo", each Text.Combine({[codi_emp], [CargoAntigo]}, "-"), type text),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Coluna Mesclada Inserida2", each ([CargoAntigo] <> null))
+				in
+				    #"Linhas Filtradas"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
